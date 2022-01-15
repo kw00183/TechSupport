@@ -19,7 +19,8 @@ namespace TechSupport
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new View.LoginForm().Show();
+            View.LoginForm login = new View.LoginForm();
+            login.Show();
         }
     }
 }
