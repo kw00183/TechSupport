@@ -16,5 +16,10 @@ namespace TechSupport
         {
             InitializeComponent();
         }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new View.LoginForm().Show();
+        }
     }
 }
