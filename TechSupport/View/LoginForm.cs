@@ -37,7 +37,6 @@ namespace TechSupport.View
                 hideErrorMessage();
                 View.MainForm main = new MainForm();
                 main.Show();
-                this.Close();
             }
             else
             {
