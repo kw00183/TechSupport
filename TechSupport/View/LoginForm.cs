@@ -17,6 +17,8 @@ namespace TechSupport.View
     /// </summary>
     public partial class LoginForm : Form
     {
+        public static string usernameEntry = "";
+
         /// <summary>
         /// constructor used to initialize the LoginForm class
         /// </summary>
@@ -34,20 +36,23 @@ namespace TechSupport.View
         {
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
-                hideErrorMessage();
+                usernameEntry = "Jane";
+                HideErrorMessage();
                 View.MainForm main = new MainForm();
-                main.Show();
+                this.Hide();
+                main.ShowDialog();
+                this.Close();
             }
             else
             {
-                showInvalidErrorMessage();
+                ShowInvalidErrorMessage();
             }
         }
 
         /// <summary>
         /// method used to clear the error message text from the errorMessageLabel object
         /// </summary>
-        private void hideErrorMessage()
+        private void HideErrorMessage()
         {
             errorMessageLabel.Text = "";
         }
@@ -55,7 +60,7 @@ namespace TechSupport.View
         /// <summary>
         /// method used to control the message and color of text for the errorMessageLabel object
         /// </summary>
-        private void showInvalidErrorMessage()
+        private void ShowInvalidErrorMessage()
         {
             errorMessageLabel.Text = "invalid username/password";
             errorMessageLabel.ForeColor = Color.Red;
@@ -68,7 +73,7 @@ namespace TechSupport.View
         /// <param name="e"></param>
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {
-            hideErrorMessage();
+            HideErrorMessage();
         }
 
         /// <summary>
@@ -78,7 +83,17 @@ namespace TechSupport.View
         /// <param name="e"></param>
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
-            hideErrorMessage();
+            HideErrorMessage();
+        }
+
+        /// <summary>
+        /// method used to close the application if the x button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
