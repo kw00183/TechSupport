@@ -26,15 +26,21 @@ namespace TechSupport.View
         {
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
-                errorText.Text = "";
+                errorMessageLabel.Text = "";
                 View.MainForm main = new MainForm();
                 main.Show();
+                this.Close();
             }
             else
             {
-                errorText.Text = "invalid username/password";
-                errorText.ForeColor = Color.Red;
+                errorMessageLabel.Text = "invalid username/password";
+                errorMessageLabel.ForeColor = Color.Red;
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
