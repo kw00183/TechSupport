@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TechSupport.View
@@ -17,6 +14,7 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
+        LoginForm loginForm;
         /// <summary>
         /// constructor used to initialize the MainForm class
         /// </summary>
@@ -25,37 +23,31 @@ namespace TechSupport.View
             InitializeComponent();
         }
 
-        /// <summary>
-        /// method used to populate the username to MainForm on load
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             usernameLabel.Text = View.LoginForm.usernameEntry;
         }
 
-        /// <summary>
-        /// method used to close the MainForm and open the LoginForm on click
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            View.LoginForm login = new LoginForm();
-            this.Hide();
-            login.ShowDialog();
-            this.Close();
+            if (loginForm == null)
+            {
+                loginForm = new LoginForm();
+                FormClosed += LoginForm_FormClosed;
+            }
+            loginForm.Show(this);  //Show Form assigning this form as the forms owner
+            Hide();
         }
 
-        /// <summary>
-        /// method used to close the application if the x button is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm = null;  //If form is closed make sure reference is set to null
+            Show();
         }
     }
 }

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TechSupport.View
@@ -18,6 +15,7 @@ namespace TechSupport.View
     public partial class LoginForm : Form
     {
         public static string usernameEntry = "";
+        MainForm mainForm;
 
         /// <summary>
         /// constructor used to initialize the LoginForm class
@@ -27,21 +25,20 @@ namespace TechSupport.View
             InitializeComponent();
         }
 
-        /// <summary>
-        /// method used to handle the Login button event logic to check the username and password
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
                 usernameEntry = "Jane";
                 HideErrorMessage();
-                View.MainForm main = new MainForm();
-                this.Hide();
-                main.ShowDialog();
-                this.Close();
+
+                if (mainForm == null)
+                {
+                    mainForm = new MainForm();
+                    FormClosed += MainForm_FormClosed;
+                }
+                mainForm.Show(this);  //Show Form assigning this form as the forms owner
+                Hide();
             }
             else
             {
@@ -49,51 +46,36 @@ namespace TechSupport.View
             }
         }
 
-        /// <summary>
-        /// method used to clear the error message text from the errorMessageLabel object
-        /// </summary>
         private void HideErrorMessage()
         {
             errorMessageLabel.Text = "";
         }
 
-        /// <summary>
-        /// method used to control the message and color of text for the errorMessageLabel object
-        /// </summary>
         private void ShowInvalidErrorMessage()
         {
             errorMessageLabel.Text = "invalid username/password";
             errorMessageLabel.ForeColor = Color.Red;
         }
 
-        /// <summary>
-        /// method used to handle text change event to the usernameTextBox object
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
             HideErrorMessage();
         }
 
-        /// <summary>
-        /// method used to handle text change event to the passwordTextBox object
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void passwordTextBox_TextChanged(object sender, EventArgs e)
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             HideErrorMessage();
         }
 
-        /// <summary>
-        /// method used to close the application if the x button is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mainForm = null;
+            Show();
         }
     }
 }
