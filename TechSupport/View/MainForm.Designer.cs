@@ -65,7 +65,7 @@ namespace TechSupport.View
             // 
             this.addIncidentButton.AutoSize = true;
             this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addIncidentButton.Location = new System.Drawing.Point(73, 110);
+            this.addIncidentButton.Location = new System.Drawing.Point(69, 110);
             this.addIncidentButton.Name = "addIncidentButton";
             this.addIncidentButton.Size = new System.Drawing.Size(126, 34);
             this.addIncidentButton.TabIndex = 2;
@@ -76,7 +76,7 @@ namespace TechSupport.View
             // 
             this.searchIncidentButton.AutoSize = true;
             this.searchIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchIncidentButton.Location = new System.Drawing.Point(223, 110);
+            this.searchIncidentButton.Location = new System.Drawing.Point(219, 110);
             this.searchIncidentButton.Name = "searchIncidentButton";
             this.searchIncidentButton.Size = new System.Drawing.Size(151, 34);
             this.searchIncidentButton.TabIndex = 3;
