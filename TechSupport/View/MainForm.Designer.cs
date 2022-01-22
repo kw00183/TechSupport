@@ -31,6 +31,10 @@ namespace TechSupport.View
         {
             this.usernameLabel = new System.Windows.Forms.Label();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
+            this.addIncidentButton = new System.Windows.Forms.Button();
+            this.searchIncidentButton = new System.Windows.Forms.Button();
+            this.incidentDataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // usernameLabel
@@ -57,11 +61,44 @@ namespace TechSupport.View
             this.logoutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogoutLabel_LinkClicked);
             // 
+            // addIncidentButton
+            // 
+            this.addIncidentButton.AutoSize = true;
+            this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addIncidentButton.Location = new System.Drawing.Point(73, 110);
+            this.addIncidentButton.Name = "addIncidentButton";
+            this.addIncidentButton.Size = new System.Drawing.Size(126, 34);
+            this.addIncidentButton.TabIndex = 2;
+            this.addIncidentButton.Text = "Add Incident";
+            this.addIncidentButton.UseVisualStyleBackColor = true;
+            // 
+            // searchIncidentButton
+            // 
+            this.searchIncidentButton.AutoSize = true;
+            this.searchIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchIncidentButton.Location = new System.Drawing.Point(223, 110);
+            this.searchIncidentButton.Name = "searchIncidentButton";
+            this.searchIncidentButton.Size = new System.Drawing.Size(151, 34);
+            this.searchIncidentButton.TabIndex = 3;
+            this.searchIncidentButton.Text = "Search Incident";
+            this.searchIncidentButton.UseVisualStyleBackColor = true;
+            // 
+            // incidentDataGridView
+            // 
+            this.incidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.incidentDataGridView.Location = new System.Drawing.Point(12, 162);
+            this.incidentDataGridView.Name = "incidentDataGridView";
+            this.incidentDataGridView.Size = new System.Drawing.Size(410, 187);
+            this.incidentDataGridView.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 361);
+            this.Controls.Add(this.incidentDataGridView);
+            this.Controls.Add(this.searchIncidentButton);
+            this.Controls.Add(this.addIncidentButton);
             this.Controls.Add(this.logoutLabel);
             this.Controls.Add(this.usernameLabel);
             this.MaximizeBox = false;
@@ -72,6 +109,7 @@ namespace TechSupport.View
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +119,8 @@ namespace TechSupport.View
 
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.LinkLabel logoutLabel;
+        private System.Windows.Forms.Button addIncidentButton;
+        private System.Windows.Forms.Button searchIncidentButton;
+        private System.Windows.Forms.DataGridView incidentDataGridView;
     }
 }
