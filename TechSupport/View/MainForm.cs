@@ -30,6 +30,7 @@ namespace TechSupport.View
         private void MainForm_Load(object sender, EventArgs e)
         {
             usernameLabel.Text = View.LoginForm.usernameEntry;
+            RefreshIncidentDataGrid();
         }
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -56,8 +57,8 @@ namespace TechSupport.View
 
         private void RefreshIncidentDataGrid()
         {
-            this.incidentDataGridView.DataSource = null;
-            //this.incidentDataGridView.DataSource = this.incidentController.GetIncidents();
+            incidentDataGridView.DataSource = null;
+            incidentDataGridView.DataSource = this.incidentController.GetIncidents();
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
