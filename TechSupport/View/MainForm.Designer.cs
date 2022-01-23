@@ -55,7 +55,7 @@ namespace TechSupport.View
             this.logoutLabel.Location = new System.Drawing.Point(354, 50);
             this.logoutLabel.Name = "logoutLabel";
             this.logoutLabel.Size = new System.Drawing.Size(68, 24);
-            this.logoutLabel.TabIndex = 1;
+            this.logoutLabel.TabIndex = 0;
             this.logoutLabel.TabStop = true;
             this.logoutLabel.Text = "Logout";
             this.logoutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -68,7 +68,7 @@ namespace TechSupport.View
             this.addIncidentButton.Location = new System.Drawing.Point(69, 110);
             this.addIncidentButton.Name = "addIncidentButton";
             this.addIncidentButton.Size = new System.Drawing.Size(126, 34);
-            this.addIncidentButton.TabIndex = 2;
+            this.addIncidentButton.TabIndex = 1;
             this.addIncidentButton.Text = "Add Incident";
             this.addIncidentButton.UseVisualStyleBackColor = true;
             this.addIncidentButton.Click += new System.EventHandler(this.AddIncidentButton_Click);
@@ -80,13 +80,14 @@ namespace TechSupport.View
             this.searchIncidentButton.Location = new System.Drawing.Point(219, 110);
             this.searchIncidentButton.Name = "searchIncidentButton";
             this.searchIncidentButton.Size = new System.Drawing.Size(151, 34);
-            this.searchIncidentButton.TabIndex = 3;
+            this.searchIncidentButton.TabIndex = 2;
             this.searchIncidentButton.Text = "Search Incident";
             this.searchIncidentButton.UseVisualStyleBackColor = true;
             this.searchIncidentButton.Click += new System.EventHandler(this.SearchIncidentButton_Click);
             // 
             // incidentDataGridView
             // 
+            this.incidentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.incidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.incidentDataGridView.Location = new System.Drawing.Point(12, 162);
             this.incidentDataGridView.Name = "incidentDataGridView";

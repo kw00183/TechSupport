@@ -29,36 +29,15 @@ namespace TechSupport.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.errorMessageLabel = new System.Windows.Forms.Label();
             this.loginButton = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.errorMessageLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.21683F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.78317F));
-            this.tableLayoutPanel1.Controls.Add(this.passwordLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.usernameTextBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.passwordTextBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.loginButton, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.usernameLabel, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(63, 75);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.17699F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.82301F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(309, 201);
-            this.tableLayoutPanel1.TabIndex = 6;
             // 
             // passwordLabel
             // 
@@ -90,15 +69,6 @@ namespace TechSupport.View
             this.passwordTextBox.UseSystemPasswordChar = true;
             this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
-            // errorMessageLabel
-            // 
-            this.errorMessageLabel.AutoSize = true;
-            this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorMessageLabel.Location = new System.Drawing.Point(118, 92);
-            this.errorMessageLabel.Name = "errorMessageLabel";
-            this.errorMessageLabel.Size = new System.Drawing.Size(0, 20);
-            this.errorMessageLabel.TabIndex = 4;
-            // 
             // loginButton
             // 
             this.loginButton.AutoSize = true;
@@ -121,6 +91,38 @@ namespace TechSupport.View
             this.usernameLabel.TabIndex = 0;
             this.usernameLabel.Text = "Username";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.21683F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.78317F));
+            this.tableLayoutPanel1.Controls.Add(this.passwordLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.usernameTextBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.passwordTextBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.loginButton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.usernameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 1, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(63, 80);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.17699F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.82301F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(309, 201);
+            this.tableLayoutPanel1.TabIndex = 7;
+            // 
+            // errorMessageLabel
+            // 
+            this.errorMessageLabel.AutoSize = true;
+            this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorMessageLabel.Location = new System.Drawing.Point(118, 92);
+            this.errorMessageLabel.MaximumSize = new System.Drawing.Size(200, 0);
+            this.errorMessageLabel.Name = "errorMessageLabel";
+            this.errorMessageLabel.Size = new System.Drawing.Size(21, 20);
+            this.errorMessageLabel.TabIndex = 13;
+            this.errorMessageLabel.Text = "   ";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,12 +143,13 @@ namespace TechSupport.View
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label usernameLabel;
+
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
-        private System.Windows.Forms.Label errorMessageLabel;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label errorMessageLabel;
     }
 }

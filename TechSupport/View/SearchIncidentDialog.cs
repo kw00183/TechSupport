@@ -63,10 +63,11 @@ namespace TechSupport.View
                 this.incidentController.Search(customerID);
                 this.RefreshSearchDataGrid();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("CustomerID cannot be empty" + Environment.NewLine + ex.Message,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.ShowInvalidErrorMessage();
+                /* MessageBox.Show("CustomerID cannot be empty" + Environment.NewLine + ex.Message,
+                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); */
             }
         }
 
@@ -75,6 +76,22 @@ namespace TechSupport.View
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void HideErrorMessage()
+        {
+            errorMessageLabel.Text = "";
+        }
+
+        private void ShowInvalidErrorMessage()
+        {
+            errorMessageLabel.Text = "CustomerID must be number and cannot be empty";
+            errorMessageLabel.ForeColor = Color.Red;
+        }
+
         #endregion
+
+        private void CustomerID_TextChanged(object sender, EventArgs e)
+        {
+            HideErrorMessage();
+        }
     }
 }
