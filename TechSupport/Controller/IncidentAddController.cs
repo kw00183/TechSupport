@@ -5,30 +5,34 @@ using TechSupport.Model;
 
 namespace TechSupport.Controller
 {
+    /// <summary>
+    /// class controller used to access the DAL to add incidents to the all incidents list
+    /// </summary>
     public class IncidentAddController
     {
         private readonly IncidentDAL incidentSource;
+        
         /// <summary>
-        /// Create an IncidentController object.
-        /// 
+        /// create an IncidentController object to add incidents
         /// </summary>
         public IncidentAddController()
         {
             this.incidentSource = new IncidentDAL();
-
         }
+        
         /// <summary>
-        /// Getting the incident
+        /// method used to get/return all the incidents
         /// </summary>
-        /// <returns></returns>
+        /// <returns>a list of all the incidents</returns>
         public List<Incident> GetAllIncidents()
         {
             return this.incidentSource.GetAllIncidents();
         }
+        
         /// <summary>
-        /// Add an incident to the list
+        /// method used to add an incident to the list
         /// </summary>
-        /// <param name="incident"></param>
+        /// <param name="incident">incident is customrID, title and description</param>
         public void Add(Incident incident)
         {
             if (incident == null)

@@ -3,19 +3,29 @@ using System.Collections.Generic;
 
 namespace TechSupport.Model
 {
+    /// <summary>
+    /// model class used to define incidents
+    /// </summary>
     public class Incident
     {
+
         /// <summary>
-        /// The Incident model class.
+        /// getter method for incident CustomerID
         /// </summary>
         public int CustomerID { get; }
 
+        /// <summary>
+        /// getter method for incident title
+        /// </summary>
         public string Title { get; }
 
+        /// <summary>
+        /// getter method for incident description
+        /// </summary>
         public string Description { get; }
         
         /// <summary>
-        /// Incident constructor.
+        /// constructor used to create incident
         /// </summary>
         /// <param name="customerID">the customer's ID</param>
         /// <param name="title">the title of the incident</param>

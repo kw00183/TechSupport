@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechSupport.Controller;
 using TechSupport.Model;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// class for add incident dialog form
+    /// </summary>
     public partial class AddIncidentDialog : Form
     {
         #region Data members
@@ -21,10 +22,13 @@ namespace TechSupport.View
 
         #region Constructors
 
+        /// <summary>
+        /// constructor used to create the add incident form
+        /// </summary>
         public AddIncidentDialog()
         {
-            InitializeComponent();
-            incidentController = new IncidentAddController();
+            this.InitializeComponent();
+            this.incidentController = new IncidentAddController();
         }
 
         #endregion
@@ -46,14 +50,14 @@ namespace TechSupport.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something is wrong with the input!" + Environment.NewLine + ex.Message,
+                MessageBox.Show("CustomerID must be number and title/description must have a value" + Environment.NewLine + ex.Message,
                     "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
         }
 
         #endregion

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechSupport.Controller;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// class for search incident dialog form
+    /// </summary>
     public partial class SearchIncidentDialog : Form
     {
         #region Data members
@@ -20,10 +21,13 @@ namespace TechSupport.View
 
         #region Constructors
 
+        /// <summary>
+        /// constructor used to create the search incident form
+        /// </summary>
         public SearchIncidentDialog()
         {
-            InitializeComponent();
-            incidentController = new IncidentSearchController();
+            this.InitializeComponent();
+            this.incidentController = new IncidentSearchController();
         }
 
         #endregion
@@ -32,8 +36,8 @@ namespace TechSupport.View
 
         private void RefreshSearchDataGrid()
         {
-            searchDataGridView.DataSource = null;
-            searchDataGridView.DataSource = incidentController.GetSearchIncidents();
+            this.searchDataGridView.DataSource = null;
+            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents();
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
@@ -57,18 +61,18 @@ namespace TechSupport.View
                 var customerID = int.Parse(this.customerIDTextBox.Text);
 
                 this.incidentController.Search(customerID);
-                RefreshSearchDataGrid();
+                this.RefreshSearchDataGrid();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something is wrong with the input!" + Environment.NewLine + ex.Message,
+                MessageBox.Show("CustomerID cannot be empty" + Environment.NewLine + ex.Message,
                     "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
         }
 
         #endregion

@@ -4,6 +4,9 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// data layer class used to access the incidents
+    /// </summary>
     public class IncidentDAL
     {
         private readonly static List<Incident> _incidents = new List<Incident>
@@ -17,21 +20,28 @@ namespace TechSupport.DAL
         {
         };
 
+        /// <summary>
+        /// method used to get/return all the incidents
+        /// </summary>
+        /// <returns>list of all the incidents</returns>
         public List<Incident> GetAllIncidents()
         {
             return _incidents;
         }
 
+        /// <summary>
+        /// method used to get/return all the incidents for a specific customerID
+        /// </summary>
+        /// <returns></returns>
         public List<Incident> GetSearchIncidents()
         {
             return _results;
         }
 
         /// <summary>
-        /// Add an incident to the list 
+        /// method used to add an incident to the list of all incidents
         /// </summary>
-        /// <param name="incident"></param>
-
+        /// <param name="incident">the inicident object</param>
         public void Add(Incident incident)
         {
             if (incident == null)
@@ -41,6 +51,10 @@ namespace TechSupport.DAL
             _incidents.Add(incident);
         }
 
+        /// <summary>
+        /// method used to search the list of incidents by customerID and add them to a results list
+        /// </summary>
+        /// <param name="customerID">CustomerID of incident</param>
         public void Search(int customerID)
         {
             _results.Clear();
