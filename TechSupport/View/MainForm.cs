@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using TechSupport.Controller;
 
 namespace TechSupport.View
 {
@@ -14,13 +15,16 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
-        LoginForm loginForm;
+        private LoginForm loginForm;
+        private readonly IncidentController incidentController;
+
         /// <summary>
         /// constructor used to initialize the MainForm class
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            incidentController = new IncidentController();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,6 +52,33 @@ namespace TechSupport.View
         {
             loginForm = null;  //If form is closed make sure reference is set to null
             Show();
+        }
+
+        private void RefreshIncidentDataGrid()
+        {
+            this.incidentDataGridView.DataSource = null;
+            //this.incidentDataGridView.DataSource = this.incidentController.GetIncidents();
+        }
+
+        private void AddIncidentButton_Click(object sender, EventArgs e)
+        {
+            using (Form addIncidentDialog = new AddIncidentDialog())
+            {
+                DialogResult result = addIncidentDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    this.RefreshIncidentDataGrid();
+                }
+            }
+        }
+
+        private void SearchIncidentButton_Click(object sender, EventArgs e)
+        {
+            using (Form searchIncidentDialog = new SearchIncidentDialog())
+            {
+                DialogResult result = searchIncidentDialog.ShowDialog();
+            }
         }
     }
 }

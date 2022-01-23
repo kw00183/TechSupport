@@ -71,6 +71,7 @@ namespace TechSupport.View
             this.addIncidentButton.TabIndex = 2;
             this.addIncidentButton.Text = "Add Incident";
             this.addIncidentButton.UseVisualStyleBackColor = true;
+            this.addIncidentButton.Click += new System.EventHandler(this.AddIncidentButton_Click);
             // 
             // searchIncidentButton
             // 
@@ -82,6 +83,7 @@ namespace TechSupport.View
             this.searchIncidentButton.TabIndex = 3;
             this.searchIncidentButton.Text = "Search Incident";
             this.searchIncidentButton.UseVisualStyleBackColor = true;
+            this.searchIncidentButton.Click += new System.EventHandler(this.SearchIncidentButton_Click);
             // 
             // incidentDataGridView
             // 
