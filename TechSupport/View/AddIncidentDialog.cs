@@ -37,7 +37,7 @@ namespace TechSupport.View
 
             try
             {
-                var customerID = this.customerIDTextBox.Text;
+                var customerID = int.Parse(this.customerIDTextBox.Text);
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 

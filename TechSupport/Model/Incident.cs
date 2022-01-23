@@ -8,7 +8,7 @@ namespace TechSupport.Model
         /// <summary>
         /// The Incident model class.
         /// </summary>
-        public string CustomerID { get; }
+        public int CustomerID { get; }
 
         public string Title { get; }
 
@@ -20,12 +20,12 @@ namespace TechSupport.Model
         /// <param name="customerID">the customer's ID</param>
         /// <param name="title">the title of the incident</param>
         /// <param name="description">the incident description</param>
-        public Incident(string customerID, string title, string description)
+        public Incident(int customerID, string title, string description)
         {
 
-            if (string.IsNullOrEmpty(customerID) || customerID.Length > 50)
+            if (customerID < 0)
             {
-                throw new ArgumentException("Incident's CustomerID cannot be null/empty or greater than 50", "customerID");
+                throw new ArgumentOutOfRangeException("customerID", "Incident's CustomerID has to be number greater than 0");
 
             }
 
