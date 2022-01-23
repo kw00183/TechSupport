@@ -29,33 +29,34 @@ namespace TechSupport.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.closeButton = new System.Windows.Forms.Button();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.customerIDTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.customerIDLabel = new System.Windows.Forms.Label();
             this.searchDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.searchDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // closeButton
+            // cancelButton
             // 
-            this.closeButton.AutoSize = true;
-            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.Location = new System.Drawing.Point(254, 249);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(80, 34);
-            this.closeButton.TabIndex = 15;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = true;
+            this.cancelButton.AutoSize = true;
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(254, 249);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(80, 34);
+            this.cancelButton.TabIndex = 15;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // usernameTextBox
+            // customerIDTextBox
             // 
-            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(208, 28);
-            this.usernameTextBox.MaxLength = 50;
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(188, 29);
-            this.usernameTextBox.TabIndex = 13;
+            this.customerIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customerIDTextBox.Location = new System.Drawing.Point(208, 28);
+            this.customerIDTextBox.MaxLength = 50;
+            this.customerIDTextBox.Name = "customerIDTextBox";
+            this.customerIDTextBox.Size = new System.Drawing.Size(188, 29);
+            this.customerIDTextBox.TabIndex = 13;
             // 
             // searchButton
             // 
@@ -67,6 +68,7 @@ namespace TechSupport.View
             this.searchButton.TabIndex = 14;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // customerIDLabel
             // 
@@ -87,19 +89,19 @@ namespace TechSupport.View
             this.searchDataGridView.Size = new System.Drawing.Size(460, 155);
             this.searchDataGridView.TabIndex = 16;
             // 
-            // searchIncidentDialog
+            // SearchIncidentDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.searchDataGridView);
-            this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.usernameTextBox);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.customerIDTextBox);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.customerIDLabel);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "searchIncidentDialog";
+            this.Name = "SearchIncidentDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search Incident";
             ((System.ComponentModel.ISupportInitialize)(this.searchDataGridView)).EndInit();
@@ -110,8 +112,8 @@ namespace TechSupport.View
 
         #endregion
 
-        private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox customerIDTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label customerIDLabel;
         private System.Windows.Forms.DataGridView searchDataGridView;

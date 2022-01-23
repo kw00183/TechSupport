@@ -5,14 +5,14 @@ using TechSupport.Model;
 
 namespace TechSupport.Controller
 {
-    public class IncidentController
+    public class IncidentAddController
     {
-        private IncidentDAL incidentSource;
+        private readonly IncidentDAL incidentSource;
         /// <summary>
         /// Create an IncidentController object.
         /// 
         /// </summary>
-        public IncidentController()
+        public IncidentAddController()
         {
             this.incidentSource = new IncidentDAL();
 
@@ -21,9 +21,9 @@ namespace TechSupport.Controller
         /// Getting the incident
         /// </summary>
         /// <returns></returns>
-        public List<Incident> GetIncidents()
+        public List<Incident> GetAllIncidents()
         {
-            return this.incidentSource.GetIncidents();
+            return this.incidentSource.GetAllIncidents();
         }
         /// <summary>
         /// Add an incident to the list

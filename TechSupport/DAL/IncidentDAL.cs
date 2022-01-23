@@ -6,16 +6,25 @@ namespace TechSupport.DAL
 {
     public class IncidentDAL
     {
-        private static List<Incident> _incidents = new List<Incident>
+        private readonly static List<Incident> _incidents = new List<Incident>
         {
             new Incident(1, "problem logging in", "when I try to log in, it gives an invalid error"),
             new Incident(2, "need to change username", "don't see an option to change the username"),
             new Incident(3, "need to change my password", "don't see an option to allow password change")
         };
 
-        public List<Incident> GetIncidents()
+        private readonly static List<Incident> _results = new List<Incident>
+        {
+        };
+
+        public List<Incident> GetAllIncidents()
         {
             return _incidents;
+        }
+
+        public List<Incident> GetSearchIncidents()
+        {
+            return _results;
         }
 
         /// <summary>
@@ -30,6 +39,22 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null");
             }
             _incidents.Add(incident);
+        }
+
+        public void Search(int customerID)
+        {
+            _results.Clear();
+            if (customerID < 0)
+            {
+                throw new ArgumentNullException("CustomerID cannot be less than 0");
+            }
+            foreach (var incident in _incidents)
+            {
+                if (incident.CustomerID == customerID)
+                {
+                    _results.Add(incident);
+                }
+            }
         }
     }
 }

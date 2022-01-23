@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +15,7 @@ namespace TechSupport.View
     {
         #region Data members
 
-        private readonly IncidentController incidentController;
+        private readonly IncidentAddController incidentController;
 
         #endregion
 
@@ -25,7 +24,7 @@ namespace TechSupport.View
         public AddIncidentDialog()
         {
             InitializeComponent();
-            incidentController = new IncidentController();
+            incidentController = new IncidentAddController();
         }
 
         #endregion

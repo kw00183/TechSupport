@@ -16,7 +16,7 @@ namespace TechSupport.View
     public partial class MainForm : Form
     {
         private LoginForm loginForm;
-        private readonly IncidentController incidentController;
+        private readonly IncidentAddController incidentController;
 
         /// <summary>
         /// constructor used to initialize the MainForm class
@@ -24,7 +24,7 @@ namespace TechSupport.View
         public MainForm()
         {
             InitializeComponent();
-            incidentController = new IncidentController();
+            incidentController = new IncidentAddController();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace TechSupport.View
         private void RefreshIncidentDataGrid()
         {
             incidentDataGridView.DataSource = null;
-            incidentDataGridView.DataSource = this.incidentController.GetIncidents();
+            incidentDataGridView.DataSource = this.incidentController.GetAllIncidents();
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
