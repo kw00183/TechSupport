@@ -88,10 +88,5 @@ namespace TechSupport.View
         {
             HideErrorMessage();
         }
-
-        private void errorMessageLabel_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

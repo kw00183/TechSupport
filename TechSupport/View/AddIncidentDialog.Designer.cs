@@ -139,7 +139,6 @@ namespace TechSupport.View
             this.errorMessageLabel.TabIndex = 12;
             this.errorMessageLabel.Text = "   ";
             this.errorMessageLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.errorMessageLabel.Click += new System.EventHandler(this.errorMessageLabel_Click);
             // 
             // AddIncidentDialog
             // 
