@@ -15,10 +15,7 @@ namespace TechSupport.DAL
             new Incident(2, "need to change username", "don't see an option to change the username"),
             new Incident(3, "need to change my password", "don't see an option to allow password change")
         };
-
-        private readonly static List<Incident> _results = new List<Incident>
-        {
-        };
+        private readonly List<Incident> _results = new List<Incident>();
 
         /// <summary>
         /// method used to get/return all the incidents

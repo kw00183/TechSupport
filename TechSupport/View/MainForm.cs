@@ -35,24 +35,15 @@ namespace TechSupport.View
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (loginForm == null)
-            {
-                loginForm = new LoginForm();
-                FormClosed += LoginForm_FormClosed;
-            }
-            loginForm.Show(this);  //Show Form assigning this form as the forms owner
-            Hide();
+            this.Hide();
+            loginForm = new LoginForm();
+            loginForm.Closed += (s, args) => this.Close();
+            loginForm.Show();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            loginForm = null;  //If form is closed make sure reference is set to null
-            Show();
         }
 
         private void RefreshIncidentDataGrid()

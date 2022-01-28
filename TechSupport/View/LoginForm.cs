@@ -15,7 +15,7 @@ namespace TechSupport.View
     public partial class LoginForm : Form
     {
         public static string usernameEntry = "";
-        MainForm mainForm;
+        private MainForm mainForm;
 
         /// <summary>
         /// constructor used to initialize the LoginForm class
@@ -32,13 +32,10 @@ namespace TechSupport.View
                 usernameEntry = "Jane";
                 HideErrorMessage();
 
-                if (mainForm == null)
-                {
-                    mainForm = new MainForm();
-                    FormClosed += MainForm_FormClosed;
-                }
-                mainForm.Show(this);  //Show Form assigning this form as the forms owner
-                Hide();
+                this.Hide();
+                mainForm = new MainForm();
+                mainForm.Closed += (s, args) => this.Close();
+                mainForm.Show();
             }
             else
             {
@@ -70,12 +67,6 @@ namespace TechSupport.View
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            mainForm = null;
-            Show();
         }
     }
 }
