@@ -29,9 +29,9 @@ namespace TechSupport.View
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
                 usernameEntry = usernameTextBox.Text;
-                MainForm mainForm = new MainForm(this);
-                mainForm.SetUsername(usernameEntry);
-                mainForm.Show();
+                MainDashboard mainDashboard = new MainDashboard(this);
+                mainDashboard.SetUsername(usernameEntry);
+                mainDashboard.Show();
                 this.Hide();
             }
             else
