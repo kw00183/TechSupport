@@ -15,16 +15,27 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
-        private LoginForm loginForm;
         private readonly IncidentAddController incidentController;
+        private LoginForm loginForm;
+        public MainForm mainForm;
 
-        /// <summary>
-        /// constructor used to initialize the MainForm class
-        /// </summary>
         public MainForm()
         {
             InitializeComponent();
             incidentController = new IncidentAddController();
+            mainForm = this;
+            loginForm = null;
+        }
+
+        /// <summary>
+        /// constructor used to initialize the MainForm class
+        /// </summary>
+        public MainForm(ref LoginForm form)
+        {
+            InitializeComponent();
+            incidentController = new IncidentAddController();
+            mainForm = this;
+            loginForm = form;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -35,10 +46,13 @@ namespace TechSupport.View
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            loginForm = new LoginForm();
-            loginForm.Closed += (s, args) => this.Close();
+            if (loginForm == null)
+            {
+                loginForm = new LoginForm(ref mainForm);
+            }
+            LoginForm.EmptyFormControls(loginForm);
             loginForm.Show();
+            mainForm.Hide();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

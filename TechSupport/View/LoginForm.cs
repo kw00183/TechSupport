@@ -16,13 +16,24 @@ namespace TechSupport.View
     {
         public static string usernameEntry = "";
         private MainForm mainForm;
+        public LoginForm loginForm;
+
+        public LoginForm()
+        {
+            InitializeComponent();
+            loginForm = this;
+            mainForm = null;
+        }
 
         /// <summary>
         /// constructor used to initialize the LoginForm class
         /// </summary>
-        public LoginForm()
+        public LoginForm(ref MainForm form)
         {
+            mainForm = form;
             InitializeComponent();
+            loginForm = this;
+            mainForm = form;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -32,10 +43,13 @@ namespace TechSupport.View
                 usernameEntry = "Jane";
                 HideErrorMessage();
 
-                this.Hide();
-                mainForm = new MainForm();
-                mainForm.Closed += (s, args) => this.Close();
+                if (mainForm == null)
+                {
+                    mainForm = new MainForm(ref loginForm);
+                }
+                
                 mainForm.Show();
+                loginForm.Hide();
             }
             else
             {
@@ -47,6 +61,24 @@ namespace TechSupport.View
         {
             errorMessageLabel.Text = "";
         }
+
+        /// <summary>
+        /// method used to clear textbox entries on form
+        /// </summary>
+        /// <param name="control">form with textboxes to clear</param>
+        public static void EmptyFormControls(Control control)
+        {
+            if (control is TextBox)
+            {
+                ((TextBox)control).Text = string.Empty;
+            }
+
+            for (int i = 0; i < control.Controls.Count; i++)
+            {
+                EmptyFormControls(control.Controls[i]);
+            }
+        }
+
 
         private void ShowInvalidErrorMessage()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TechSupport.View;
 
 namespace TechSupport
 {
@@ -14,7 +15,7 @@ namespace TechSupport
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View.LoginForm());
+            Application.Run(new LoginForm());
         }
     }
 }
