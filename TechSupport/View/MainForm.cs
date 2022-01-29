@@ -15,44 +15,40 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
-        private readonly IncidentAddController incidentController;
-        private LoginForm loginForm;
-        public MainForm mainForm;
-
-        public MainForm()
-        {
-            InitializeComponent();
-            incidentController = new IncidentAddController();
-            mainForm = this;
-            loginForm = null;
-        }
+        private readonly IncidentController incidentController;
+        public string username;
+        private readonly LoginForm loginForm;
 
         /// <summary>
         /// constructor used to initialize the MainForm class
         /// </summary>
-        public MainForm(ref LoginForm form)
+        /// <param name="form">login form passed to main form</param>
+        public MainForm(LoginForm form)
         {
             InitializeComponent();
-            incidentController = new IncidentAddController();
-            mainForm = this;
+            incidentController = new IncidentController();
             loginForm = form;
+        }
+
+        /// <summary>
+        /// method used to set the username to show on the form
+        /// </summary>
+        /// <param name="user">username of person logging in</param>
+        public void SetUsername(string user)
+        {
+            username = user;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            usernameLabel.Text = View.LoginForm.usernameEntry;
+            usernameLabel.Text = username;
             RefreshIncidentDataGrid();
         }
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (loginForm == null)
-            {
-                loginForm = new LoginForm(ref mainForm);
-            }
-            LoginForm.EmptyFormControls(loginForm);
-            loginForm.Show();
-            mainForm.Hide();
+            loginForm.LogOut();
+            this.Hide();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

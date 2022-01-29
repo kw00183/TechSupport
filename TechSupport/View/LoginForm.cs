@@ -15,46 +15,38 @@ namespace TechSupport.View
     public partial class LoginForm : Form
     {
         public static string usernameEntry = "";
-        private MainForm mainForm;
-        public LoginForm loginForm;
-
-        public LoginForm()
-        {
-            InitializeComponent();
-            loginForm = this;
-            mainForm = null;
-        }
 
         /// <summary>
         /// constructor used to initialize the LoginForm class
         /// </summary>
-        public LoginForm(ref MainForm form)
+        public LoginForm()
         {
-            mainForm = form;
             InitializeComponent();
-            loginForm = this;
-            mainForm = form;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
-                usernameEntry = "Jane";
-                HideErrorMessage();
-
-                if (mainForm == null)
-                {
-                    mainForm = new MainForm(ref loginForm);
-                }
-                
+                usernameEntry = usernameTextBox.Text;
+                MainForm mainForm = new MainForm(this);
+                mainForm.SetUsername(usernameEntry);
                 mainForm.Show();
-                loginForm.Hide();
+                this.Hide();
             }
             else
             {
-                ShowInvalidErrorMessage();
+                this.ShowInvalidErrorMessage();
             }
+        }
+
+        /// <summary>
+        /// method used to clear the text boxes and show login screen
+        /// </summary>
+        public void LogOut()
+        {
+            EmptyFormControls(this);
+            this.Show();
         }
 
         private void HideErrorMessage()
@@ -68,9 +60,9 @@ namespace TechSupport.View
         /// <param name="control">form with textboxes to clear</param>
         public static void EmptyFormControls(Control control)
         {
-            if (control is TextBox)
+            if (control is TextBox box)
             {
-                ((TextBox)control).Text = string.Empty;
+                box.Text = string.Empty;
             }
 
             for (int i = 0; i < control.Controls.Count; i++)
@@ -78,7 +70,6 @@ namespace TechSupport.View
                 EmptyFormControls(control.Controls[i]);
             }
         }
-
 
         private void ShowInvalidErrorMessage()
         {

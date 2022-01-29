@@ -15,7 +15,7 @@ namespace TechSupport.View
     {
         #region Data members
 
-        private readonly IncidentSearchController incidentController;
+        private readonly IncidentController incidentController;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace TechSupport.View
         public SearchIncidentDialog()
         {
             this.InitializeComponent();
-            this.incidentController = new IncidentSearchController();
+            this.incidentController = new IncidentController();
         }
 
         #endregion

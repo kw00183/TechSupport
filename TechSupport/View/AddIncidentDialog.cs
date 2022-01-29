@@ -16,7 +16,7 @@ namespace TechSupport.View
     {
         #region Data members
 
-        private readonly IncidentAddController incidentController;
+        private readonly IncidentController incidentController;
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace TechSupport.View
         public AddIncidentDialog()
         {
             this.InitializeComponent();
-            this.incidentController = new IncidentAddController();
+            this.incidentController = new IncidentController();
         }
 
         #endregion
