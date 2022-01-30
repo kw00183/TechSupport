@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
+using TechSupport.UserControls;
 
 namespace TechSupport.View
 {
@@ -37,7 +38,6 @@ namespace TechSupport.View
         private void MainDashboard_Load(object sender, EventArgs e)
         {
             usernameLabel.Text = username;
-        //    RefreshIncidentDataGrid();
         }
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -49,33 +49,6 @@ namespace TechSupport.View
         private void MainDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        //private void RefreshIncidentDataGrid()
-        //{
-        //    incidentDataGridView.DataSource = null;
-        //    incidentDataGridView.DataSource = this.incidentController.GetAllIncidents();
-        //}
-
-        private void AddIncidentButton_Click(object sender, EventArgs e)
-        {
-            using (Form addIncidentDialog = new AddIncidentDialog())
-            {
-                DialogResult result = addIncidentDialog.ShowDialog();
-
-                if (result == DialogResult.OK)
-                {
-                //    this.RefreshIncidentDataGrid();
-                }
-            }
-        }
-
-        private void SearchIncidentButton_Click(object sender, EventArgs e)
-        {
-            using (Form searchIncidentDialog = new SearchIncidentDialog())
-            {
-                DialogResult result = searchIncidentDialog.ShowDialog();
-            }
         }
     }
 }

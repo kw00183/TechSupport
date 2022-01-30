@@ -31,13 +31,17 @@ namespace TechSupport.View
         {
             this.IncidentTabs = new System.Windows.Forms.TabControl();
             this.addIncidentTab = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.loadIncidentTab = new System.Windows.Forms.TabPage();
-            this.searchIncidentTab = new System.Windows.Forms.TabPage();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.searchIncidentTab = new System.Windows.Forms.TabPage();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.IncidentTabs.SuspendLayout();
             this.addIncidentTab.SuspendLayout();
+            this.loadIncidentTab.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // IncidentTabs
@@ -63,16 +67,9 @@ namespace TechSupport.View
             this.addIncidentTab.Text = "Add Incident";
             this.addIncidentTab.UseVisualStyleBackColor = true;
             // 
-            // addIncidentUserControl1
-            // 
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(0, 11);
-            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(583, 357);
-            this.addIncidentUserControl1.TabIndex = 0;
-            // 
             // loadIncidentTab
             // 
+            this.loadIncidentTab.Controls.Add(this.loadIncidentUserControl1);
             this.loadIncidentTab.Location = new System.Drawing.Point(4, 25);
             this.loadIncidentTab.Name = "loadIncidentTab";
             this.loadIncidentTab.Padding = new System.Windows.Forms.Padding(3);
@@ -80,6 +77,46 @@ namespace TechSupport.View
             this.loadIncidentTab.TabIndex = 2;
             this.loadIncidentTab.Text = "Load Incidents";
             this.loadIncidentTab.UseVisualStyleBackColor = true;
+            // 
+            // logoutLabel
+            // 
+            this.logoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.logoutLabel.AutoSize = true;
+            this.logoutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutLabel.Location = new System.Drawing.Point(33, 26);
+            this.logoutLabel.Name = "logoutLabel";
+            this.logoutLabel.Size = new System.Drawing.Size(68, 24);
+            this.logoutLabel.TabIndex = 1;
+            this.logoutLabel.TabStop = true;
+            this.logoutLabel.Text = "Logout";
+            this.logoutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogoutLabel_LinkClicked);
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.Location = new System.Drawing.Point(71, 0);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(30, 24);
+            this.usernameLabel.TabIndex = 2;
+            this.usernameLabel.Text = "    ";
+            this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.ColumnCount = 1;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.Controls.Add(this.usernameLabel, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.logoutLabel, 0, 1);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(468, 12);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(104, 53);
+            this.tableLayoutPanel.TabIndex = 3;
             // 
             // searchIncidentTab
             // 
@@ -91,46 +128,40 @@ namespace TechSupport.View
             this.searchIncidentTab.Text = "Search Incidents";
             this.searchIncidentTab.UseVisualStyleBackColor = true;
             // 
-            // logoutLabel
+            // addIncidentUserControl1
             // 
-            this.logoutLabel.AutoSize = true;
-            this.logoutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutLabel.Location = new System.Drawing.Point(504, 40);
-            this.logoutLabel.Name = "logoutLabel";
-            this.logoutLabel.Size = new System.Drawing.Size(68, 24);
-            this.logoutLabel.TabIndex = 1;
-            this.logoutLabel.TabStop = true;
-            this.logoutLabel.Text = "Logout";
-            this.logoutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogoutLabel_LinkClicked);
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(-12, 0);
+            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(607, 379);
+            this.addIncidentUserControl1.TabIndex = 0;
             // 
-            // usernameLabel
+            // loadIncidentUserControl1
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(512, 9);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(30, 24);
-            this.usernameLabel.TabIndex = 2;
-            this.usernameLabel.Text = "    ";
-            this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.loadIncidentUserControl1.Location = new System.Drawing.Point(-13, 1);
+            this.loadIncidentUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadIncidentUserControl1.Name = "loadIncidentUserControl1";
+            this.loadIncidentUserControl1.Size = new System.Drawing.Size(611, 379);
+            this.loadIncidentUserControl1.TabIndex = 0;
             // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 461);
-            this.Controls.Add(this.logoutLabel);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.IncidentTabs);
-            this.Controls.Add(this.usernameLabel);
             this.Name = "MainDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Incidents";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainDashboard_FormClosing);
             this.Load += new System.EventHandler(this.MainDashboard_Load);
             this.IncidentTabs.ResumeLayout(false);
             this.addIncidentTab.ResumeLayout(false);
+            this.loadIncidentTab.ResumeLayout(false);
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -139,9 +170,11 @@ namespace TechSupport.View
         private System.Windows.Forms.TabControl IncidentTabs;
         private System.Windows.Forms.TabPage addIncidentTab;
         private System.Windows.Forms.TabPage loadIncidentTab;
-        private System.Windows.Forms.TabPage searchIncidentTab;
-        private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private System.Windows.Forms.LinkLabel logoutLabel;
         private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.TabPage searchIncidentTab;
+        private UserControls.AddIncidentUserControl addIncidentUserControl1;
+        private UserControls.LoadIncidentUserControl loadIncidentUserControl1;
     }
 }
