@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -14,7 +11,13 @@ namespace TechSupport.View
     /// </summary>
     public partial class LoginForm : Form
     {
+        #region Data members
+
         public static string usernameEntry = "";
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// constructor used to initialize the LoginForm class
@@ -23,6 +26,10 @@ namespace TechSupport.View
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Methods
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
@@ -91,5 +98,7 @@ namespace TechSupport.View
         {
             Application.Exit();
         }
+
+        #endregion
     }
 }

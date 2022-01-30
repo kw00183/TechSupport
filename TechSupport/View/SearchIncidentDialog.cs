@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
@@ -10,6 +7,8 @@ namespace TechSupport.View
 {
     /// <summary>
     /// class for search incident dialog form
+    /// Author: Kim Weible
+    /// Version: Spring 2022
     /// </summary>
     public partial class SearchIncidentDialog : Form
     {
@@ -87,11 +86,11 @@ namespace TechSupport.View
             errorMessageLabel.ForeColor = Color.Red;
         }
 
-        #endregion
-
         private void CustomerID_TextChanged(object sender, EventArgs e)
         {
             HideErrorMessage();
         }
+
+        #endregion
     }
 }

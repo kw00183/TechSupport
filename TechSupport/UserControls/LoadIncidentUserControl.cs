@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// user control class that encapsulates the load all incident controls
+    /// Author: Kim Weible
+    /// Version: Spring 2022
+    /// </summary>
     public partial class LoadIncidentUserControl : UserControl
     {
         #region Data members
 
         private readonly IncidentController incidentController;
 
-        public DialogResult DialogResult { get; private set; }
-
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// constructor used to create the add incident form
+        /// constructor used to create the add incident controls
         /// </summary>
         public LoadIncidentUserControl()
         {
@@ -39,11 +38,11 @@ namespace TechSupport.UserControls
             incidentDataGridView.DataSource = this.incidentController.GetAllIncidents();
         }
 
-        #endregion
-
         private void IncidentDataGridView_VisibleChanged(object sender, EventArgs e)
         {
             RefreshIncidentDataGrid();
         }
+
+        #endregion
     }
 }

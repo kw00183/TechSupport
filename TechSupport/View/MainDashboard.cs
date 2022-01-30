@@ -1,19 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
-using TechSupport.UserControls;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// class for tabbed dashboard form
+    /// Author: Kim Weible
+    /// Version: Spring 2022
+    /// </summary>
     public partial class MainDashboard : Form
     {
+        #region Data members
+
         private readonly IncidentController incidentController;
         public string username;
         private readonly LoginForm loginForm;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// constructor used to initialize the MainDashboard class
@@ -25,6 +31,10 @@ namespace TechSupport.View
             incidentController = new IncidentController();
             loginForm = form;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// method used to set the username to show on the form
@@ -50,5 +60,7 @@ namespace TechSupport.View
         {
             Application.Exit();
         }
+
+        #endregion
     }
 }

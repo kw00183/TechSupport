@@ -15,9 +15,15 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
+        #region Data members
+
         private readonly IncidentController incidentController;
         public string username;
         private readonly LoginForm loginForm;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// constructor used to initialize the MainForm class
@@ -29,6 +35,10 @@ namespace TechSupport.View
             incidentController = new IncidentController();
             loginForm = form;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// method used to set the username to show on the form
@@ -82,5 +92,7 @@ namespace TechSupport.View
                 DialogResult result = searchIncidentDialog.ShowDialog();
             }
         }
+
+        #endregion
     }
 }
