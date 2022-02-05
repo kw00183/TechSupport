@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controller\IncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
+    <Compile Include="DAL\IncidentDBDAL.cs" />
     <Compile Include="Model\Incident.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +63,12 @@
     </Compile>
     <Compile Include="UserControls\LoadIncidentUserControl.Designer.cs">
       <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OpenIncidentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OpenIncidentUserControl.Designer.cs">
+      <DependentUpon>OpenIncidentUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SearchIncidentUserControl.cs">
       <SubType>UserControl</SubType>
@@ -104,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoadIncidentUserControl.resx">
       <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OpenIncidentUserControl.resx">
+      <DependentUpon>OpenIncidentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SearchIncidentUserControl.resx">
       <DependentUpon>SearchIncidentUserControl.cs</DependentUpon>
