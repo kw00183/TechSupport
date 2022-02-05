@@ -18,8 +18,8 @@ namespace TechSupport.Controller
         /// </summary>
         public IncidentController()
         {
-            this.incidentSource = new IncidentDAL();
-            this.incidentDBSource = new IncidentDBDAL();
+            incidentSource = new IncidentDAL();
+            incidentDBSource = new IncidentDBDAL();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace TechSupport.Controller
         /// <returns>a list of all the incidents</returns>
         public List<Incident> GetAllIncidents()
         {
-            return this.incidentSource.GetAllIncidents();
+            return incidentSource.GetAllIncidents();
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace TechSupport.Controller
             {
                 throw new ArgumentNullException("Incident cannot be null");
             }
-            this.incidentSource.Add(incident);
+            incidentSource.Add(incident);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace TechSupport.Controller
         /// <returns>list of all the incidents searched</returns>
         public List<Incident> GetSearchIncidents()
         {
-            return this.incidentSource.GetSearchIncidents();
+            return incidentSource.GetSearchIncidents();
         }
 
         /// <summary>
@@ -63,12 +63,12 @@ namespace TechSupport.Controller
             {
                 throw new ArgumentNullException("CustomerID cannot be less than 0");
             }
-            this.incidentSource.Search(customerID);
+            incidentSource.Search(customerID);
         }
 
         public List<OpenIncident> GetOpenIncidents()
         {
-            return this.incidentDBSource.GetOpenIncidents();
+            return incidentDBSource.GetOpenIncidents();
         }
     }
 }

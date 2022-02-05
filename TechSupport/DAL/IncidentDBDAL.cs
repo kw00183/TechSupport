@@ -15,19 +15,20 @@ namespace TechSupport.DAL
             List<OpenIncident> openIncidentList = new List<OpenIncident>();
 
             string selectStatement =
-                "SELECT" +
+                "SELECT " +
                 "INC.ProductCode" +
-                ", FORMAT(INC.DateOpened, 'MM/dd/yyyy') AS DateOpened" +
+                ", INC.DateOpened" +
                 ", ISNULL(CUS.Name, '') AS Customer" +
                 ", ISNULL(TEC.Name, '') AS Technician" +
-                ", INC.Title" +
-                "FROM Incidents INC" +
-                "LEFT JOIN Customers CUS" +
-                "    ON INC.CustomerID = CUS.CustomerID" +
-                "LEFT JOIN Technicians TEC" +
-                "    ON INC.TechID = TEC.TechID" +
-                "WHERE" +
-                "INC.DateClosed IS NULL" +
+                ", INC.Title " +
+                "FROM Incidents INC " +
+                "LEFT JOIN Customers CUS " +
+                "    ON INC.CustomerID = CUS.CustomerID " +
+                "LEFT JOIN Technicians TEC " +
+                "    ON INC.TechID = TEC.TechID " +
+                "WHERE " +
+                "INC.DateClosed IS NULL " +
+                "AND INC.DateOpened IS NOT NULL " +
                 "ORDER BY INC.DateOpened";
 
             try
@@ -42,29 +43,26 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                OpenIncident openIncident = new OpenIncident
-                                {
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    DateOpened = (DateTime)reader["DateOpened"],
-                                    Customer = reader["Customer"].ToString(),
-                                    Technician = reader["Technician"].ToString(),
-                                    Title = reader["Title"].ToString()
-                                };
-                                openIncidentList.Add(openIncident);
+                            OpenIncident openIncident = new OpenIncident();
+                            openIncident.ProductCode = reader["ProductCode"].ToString();
+                            openIncident.DateOpened = (DateTime)reader["DateOpened"];
+                            openIncident.Customer = reader["Customer"].ToString();
+                            openIncident.Technician = reader["Technician"].ToString();
+                            openIncident.Title = reader["Title"].ToString();
+                            openIncidentList.Add(openIncident);
                             }
                         }
                     }
                 }
             }
-                catch (SqlException ex)
+                catch (SqlException)
             {
-                throw ex;
+                throw;
             }
-                catch (Exception ex)
+                catch (Exception)
             {
-                throw ex;
+                throw;
             }
-
             return openIncidentList;
         }
     }

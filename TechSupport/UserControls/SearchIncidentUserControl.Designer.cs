@@ -45,7 +45,7 @@ namespace TechSupport.UserControls
             this.errorMessageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.errorMessageLabel.AutoSize = true;
             this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorMessageLabel.Location = new System.Drawing.Point(277, 35);
+            this.errorMessageLabel.Location = new System.Drawing.Point(275, 35);
             this.errorMessageLabel.MaximumSize = new System.Drawing.Size(400, 0);
             this.errorMessageLabel.Name = "errorMessageLabel";
             this.errorMessageLabel.Size = new System.Drawing.Size(21, 20);
@@ -77,7 +77,7 @@ namespace TechSupport.UserControls
             // customerIDTextBox
             // 
             this.customerIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerIDTextBox.Location = new System.Drawing.Point(158, 3);
+            this.customerIDTextBox.Location = new System.Drawing.Point(154, 3);
             this.customerIDTextBox.MaxLength = 50;
             this.customerIDTextBox.Name = "customerIDTextBox";
             this.customerIDTextBox.Size = new System.Drawing.Size(253, 29);
@@ -101,7 +101,7 @@ namespace TechSupport.UserControls
             this.customerIDLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerIDLabel.AutoSize = true;
             this.customerIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerIDLabel.Location = new System.Drawing.Point(25, 0);
+            this.customerIDLabel.Location = new System.Drawing.Point(21, 0);
             this.customerIDLabel.Name = "customerIDLabel";
             this.customerIDLabel.Size = new System.Drawing.Size(113, 24);
             this.customerIDLabel.TabIndex = 21;
@@ -113,7 +113,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.72848F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.271523F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 264F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 268F));
             this.tableLayoutPanel1.Controls.Add(this.customerIDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.customerIDTextBox, 2, 0);
