@@ -29,23 +29,23 @@ namespace TechSupport.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.openIncidentListview = new System.Windows.Forms.ListView();
+            this.openIncidentListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // openIncidentListview
+            // openIncidentListView
             // 
-            this.openIncidentListview.Location = new System.Drawing.Point(15, 14);
-            this.openIncidentListview.Name = "openIncidentListview";
-            this.openIncidentListview.Size = new System.Drawing.Size(420, 270);
-            this.openIncidentListview.TabIndex = 0;
-            this.openIncidentListview.UseCompatibleStateImageBehavior = false;
-            this.openIncidentListview.VisibleChanged += new System.EventHandler(this.OpenIncidentListview_VisibleChanged);
+            this.openIncidentListView.Location = new System.Drawing.Point(15, 14);
+            this.openIncidentListView.Name = "openIncidentListView";
+            this.openIncidentListView.Size = new System.Drawing.Size(420, 270);
+            this.openIncidentListView.TabIndex = 0;
+            this.openIncidentListView.UseCompatibleStateImageBehavior = false;
+            this.openIncidentListView.VisibleChanged += new System.EventHandler(this.OpenIncidentListView_VisibleChanged);
             // 
             // OpenIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.openIncidentListview);
+            this.Controls.Add(this.openIncidentListView);
             this.Name = "OpenIncidentUserControl";
             this.Size = new System.Drawing.Size(450, 300);
             this.ResumeLayout(false);
@@ -54,6 +54,6 @@ namespace TechSupport.UserControls
 
         #endregion
 
-        private System.Windows.Forms.ListView openIncidentListview;
+        private System.Windows.Forms.ListView openIncidentListView;
     }
 }

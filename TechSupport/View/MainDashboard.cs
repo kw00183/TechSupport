@@ -13,7 +13,6 @@ namespace TechSupport.View
     {
         #region Data members
 
-        private readonly IncidentController incidentController;
         public string username;
         private readonly LoginForm loginForm;
 
@@ -28,7 +27,6 @@ namespace TechSupport.View
         public MainDashboard(LoginForm form)
         {
             InitializeComponent();
-            incidentController = new IncidentController();
             loginForm = form;
         }
 

@@ -11,6 +11,7 @@ namespace TechSupport.Controller
     public class IncidentController
     {
         private readonly IncidentDAL incidentSource;
+        private readonly IncidentDBDAL incidentDBSource;
 
         /// <summary>
         /// create an IncidentController object to add incidents
@@ -18,6 +19,7 @@ namespace TechSupport.Controller
         public IncidentController()
         {
             this.incidentSource = new IncidentDAL();
+            this.incidentDBSource = new IncidentDBDAL();
         }
 
         /// <summary>
@@ -62,6 +64,11 @@ namespace TechSupport.Controller
                 throw new ArgumentNullException("CustomerID cannot be less than 0");
             }
             this.incidentSource.Search(customerID);
+        }
+
+        public List<OpenIncident> GetOpenIncidents()
+        {
+            return this.incidentDBSource.GetOpenIncidents();
         }
     }
 }

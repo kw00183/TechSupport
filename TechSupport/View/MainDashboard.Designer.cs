@@ -36,10 +36,10 @@ namespace TechSupport.View
             this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.searchIncidentTab = new System.Windows.Forms.TabPage();
             this.searchIncidentUserControl1 = new TechSupport.UserControls.SearchIncidentUserControl();
+            this.displayOpenIncidentTab = new System.Windows.Forms.TabPage();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.displayOpenIncidentTab = new System.Windows.Forms.TabPage();
             this.IncidentTabs.SuspendLayout();
             this.addIncidentTab.SuspendLayout();
             this.loadIncidentTab.SuspendLayout();
@@ -117,6 +117,15 @@ namespace TechSupport.View
             this.searchIncidentUserControl1.Size = new System.Drawing.Size(601, 384);
             this.searchIncidentUserControl1.TabIndex = 0;
             // 
+            // displayOpenIncidentTab
+            // 
+            this.displayOpenIncidentTab.Location = new System.Drawing.Point(4, 25);
+            this.displayOpenIncidentTab.Name = "displayOpenIncidentTab";
+            this.displayOpenIncidentTab.Size = new System.Drawing.Size(579, 375);
+            this.displayOpenIncidentTab.TabIndex = 4;
+            this.displayOpenIncidentTab.Text = "Display Open Incidents";
+            this.displayOpenIncidentTab.UseVisualStyleBackColor = true;
+            // 
             // logoutLabel
             // 
             this.logoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -156,15 +165,6 @@ namespace TechSupport.View
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(104, 53);
             this.tableLayoutPanel.TabIndex = 3;
-            // 
-            // displayOpenIncidentTab
-            // 
-            this.displayOpenIncidentTab.Location = new System.Drawing.Point(4, 25);
-            this.displayOpenIncidentTab.Name = "displayOpenIncidentTab";
-            this.displayOpenIncidentTab.Size = new System.Drawing.Size(579, 375);
-            this.displayOpenIncidentTab.TabIndex = 4;
-            this.displayOpenIncidentTab.Text = "Display Open Incidents";
-            this.displayOpenIncidentTab.UseVisualStyleBackColor = true;
             // 
             // MainDashboard
             // 
