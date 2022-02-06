@@ -49,6 +49,7 @@ namespace TechSupport.UserControls
 
                 if (openIncidentList.Count > 0)
                 {
+                    listViewOpenIncidents.Items.Clear();
                     OpenIncident openIncident;
                     for (int i = 0; i < openIncidentList.Count; i++)
                     {
