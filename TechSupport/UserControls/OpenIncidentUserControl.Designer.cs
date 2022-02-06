@@ -56,22 +56,27 @@ namespace TechSupport.UserControls
             // productCodeHeader
             // 
             this.productCodeHeader.Text = "Product Code";
+            this.productCodeHeader.Width = 102;
             // 
             // dateOpenedHeader
             // 
             this.dateOpenedHeader.Text = "Date Opened";
+            this.dateOpenedHeader.Width = 117;
             // 
             // customerHeader
             // 
             this.customerHeader.Text = "Customer";
+            this.customerHeader.Width = 97;
             // 
             // technicianHeader
             // 
             this.technicianHeader.Text = "Technician";
+            this.technicianHeader.Width = 101;
             // 
             // titleHeader
             // 
             this.titleHeader.Text = "Title";
+            this.titleHeader.Width = 116;
             // 
             // OpenIncidentUserControl
             // 

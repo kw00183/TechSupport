@@ -32,6 +32,9 @@ namespace TechSupport.UserControls
 
         #region Methods
 
+        /// <summary>
+        /// method used to refresh and load all incidents
+        /// </summary>
         public void RefreshIncidentDataGrid()
         {
             incidentDataGridView.DataSource = null;

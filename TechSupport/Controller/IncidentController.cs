@@ -7,11 +7,19 @@ namespace TechSupport.Controller
 {
     /// <summary>
     /// class controller used to access the DAL to search incidents in the incidents list
+    /// Author: Kim Weible
+    /// Version: Spring 2022
     /// </summary>
     public class IncidentController
     {
+        #region Data Members
+
         private readonly IncidentDAL incidentSource;
         private readonly IncidentDBDAL incidentDBSource;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// create an IncidentController object to add incidents
@@ -21,6 +29,10 @@ namespace TechSupport.Controller
             incidentSource = new IncidentDAL();
             incidentDBSource = new IncidentDBDAL();
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// method used to get/return all the incidents
@@ -66,9 +78,15 @@ namespace TechSupport.Controller
             incidentSource.Search(customerID);
         }
 
+        /// <summary>
+        /// method used to return open incidents from DAL
+        /// </summary>
+        /// <returns>return list of open incidents</returns>
         public List<OpenIncident> GetOpenIncidents()
         {
             return incidentDBSource.GetOpenIncidents();
         }
+
+        #endregion
     }
 }

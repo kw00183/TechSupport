@@ -5,9 +5,12 @@ namespace TechSupport.Model
 {
     /// <summary>
     /// model class used to define incidents
+    /// Author: Kim Weible
+    /// Version: Spring 2022
     /// </summary>
     public class Incident
     {
+        #region Data Members
 
         /// <summary>
         /// getter method for incident CustomerID
@@ -23,7 +26,11 @@ namespace TechSupport.Model
         /// getter method for incident description
         /// </summary>
         public string Description { get; }
-        
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// constructor used to create incident
         /// </summary>
@@ -55,5 +62,7 @@ namespace TechSupport.Model
             this.Title = title;
             this.Description = description;
         }
+
+        #endregion
     }
 }

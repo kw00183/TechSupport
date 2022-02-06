@@ -7,9 +7,17 @@ namespace TechSupport.DAL
 {
     /// <summary>
     /// data access layer used to access database TechSupport
+    /// Author: Kim Weible
+    /// Version: Spring 2022
     /// </summary>
     public class IncidentDBDAL
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to connect to the database and run a query to return the open incidents
+        /// </summary>
+        /// <returns>list of open incidents</returns>
         public List<OpenIncident> GetOpenIncidents()
         {
             List<OpenIncident> openIncidentList = new List<OpenIncident>();
@@ -43,13 +51,15 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                            OpenIncident openIncident = new OpenIncident();
-                            openIncident.ProductCode = reader["ProductCode"].ToString();
-                            openIncident.DateOpened = (DateTime)reader["DateOpened"];
-                            openIncident.Customer = reader["Customer"].ToString();
-                            openIncident.Technician = reader["Technician"].ToString();
-                            openIncident.Title = reader["Title"].ToString();
-                            openIncidentList.Add(openIncident);
+                                OpenIncident openIncident = new OpenIncident
+                                {
+                                    ProductCode = reader["ProductCode"].ToString(),
+                                    DateOpened = (DateTime)reader["DateOpened"],
+                                    Customer = reader["Customer"].ToString(),
+                                    Technician = reader["Technician"].ToString(),
+                                    Title = reader["Title"].ToString()
+                                };
+                                openIncidentList.Add(openIncident);
                             }
                         }
                     }
@@ -65,5 +75,7 @@ namespace TechSupport.DAL
             }
             return openIncidentList;
         }
+
+        #endregion
     }
 }

@@ -6,9 +6,13 @@ namespace TechSupport.DAL
 {
     /// <summary>
     /// data layer class used to access the incidents
+    /// Author: Kim Weible
+    /// Version: Spring 2022
     /// </summary>
     public class IncidentDAL
     {
+        #region Data Members
+
         private readonly static List<Incident> _incidents = new List<Incident>
         {
             new Incident(1, "problem logging in", "when I try to log in, it gives an invalid error"),
@@ -16,6 +20,10 @@ namespace TechSupport.DAL
             new Incident(3, "need to change my password", "don't see an option to allow password change")
         };
         private readonly List<Incident> _results = new List<Incident>();
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// method used to get/return all the incidents
@@ -67,5 +75,7 @@ namespace TechSupport.DAL
                 }
             }
         }
+
+        #endregion
     }
 }

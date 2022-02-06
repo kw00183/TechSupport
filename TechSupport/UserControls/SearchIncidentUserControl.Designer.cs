@@ -45,7 +45,7 @@ namespace TechSupport.UserControls
             this.errorMessageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.errorMessageLabel.AutoSize = true;
             this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorMessageLabel.Location = new System.Drawing.Point(275, 35);
+            this.errorMessageLabel.Location = new System.Drawing.Point(275, 39);
             this.errorMessageLabel.MaximumSize = new System.Drawing.Size(400, 0);
             this.errorMessageLabel.Name = "errorMessageLabel";
             this.errorMessageLabel.Size = new System.Drawing.Size(21, 20);
@@ -80,7 +80,7 @@ namespace TechSupport.UserControls
             this.customerIDTextBox.Location = new System.Drawing.Point(154, 3);
             this.customerIDTextBox.MaxLength = 50;
             this.customerIDTextBox.Name = "customerIDTextBox";
-            this.customerIDTextBox.Size = new System.Drawing.Size(253, 29);
+            this.customerIDTextBox.Size = new System.Drawing.Size(263, 29);
             this.customerIDTextBox.TabIndex = 18;
             this.customerIDTextBox.TextChanged += new System.EventHandler(this.CustomerID_TextChanged);
             // 
@@ -113,16 +113,16 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.72848F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.271523F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 268F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 269F));
             this.tableLayoutPanel1.Controls.Add(this.customerIDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.customerIDTextBox, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 15);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 11);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(420, 60);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.04546F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.95454F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(420, 70);
             this.tableLayoutPanel1.TabIndex = 24;
             // 
             // SearchIncidentUserControl
