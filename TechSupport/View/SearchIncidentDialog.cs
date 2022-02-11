@@ -36,7 +36,7 @@ namespace TechSupport.View
         private void RefreshSearchDataGrid()
         {
             this.searchDataGridView.DataSource = null;
-            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents();
+            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(this.customerIDTextBox.Text);
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
@@ -58,8 +58,6 @@ namespace TechSupport.View
             try
             {
                 var customerID = int.Parse(this.customerIDTextBox.Text);
-
-                this.incidentController.Search(customerID);
                 this.RefreshSearchDataGrid();
             }
             catch (Exception)

@@ -14,6 +14,7 @@ namespace TechSupport.View
         #region Data members
 
         public static string usernameEntry = "";
+        private readonly MainDashboard mainDashboard;
 
         #endregion
 
@@ -25,6 +26,7 @@ namespace TechSupport.View
         public LoginForm()
         {
             InitializeComponent();
+            mainDashboard = new MainDashboard(this);
         }
 
         #endregion
@@ -36,7 +38,6 @@ namespace TechSupport.View
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
                 usernameEntry = usernameTextBox.Text;
-                MainDashboard mainDashboard = new MainDashboard(this);
                 mainDashboard.SetUsername(usernameEntry);
                 mainDashboard.Show();
                 this.Hide();

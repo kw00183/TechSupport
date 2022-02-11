@@ -19,7 +19,6 @@ namespace TechSupport.DAL
             new Incident(2, "need to change username", "don't see an option to change the username"),
             new Incident(3, "need to change my password", "don't see an option to allow password change")
         };
-        private readonly List<Incident> _results = new List<Incident>();
 
         #endregion
 
@@ -38,9 +37,17 @@ namespace TechSupport.DAL
         /// method used to get/return all the incidents for a specific customerID
         /// </summary>
         /// <returns></returns>
-        public List<Incident> GetSearchIncidents()
+        public List<Incident> GetSearchIncidents(string customerID)
         {
-            return _results;
+            try
+            {
+                int customerIDInteger = Int32.Parse(customerID);
+                return _incidents.FindAll(item => item.CustomerID == customerIDInteger);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentNullException("CustomerID cannot be empty or less than 0");
+            }
         }
 
         /// <summary>
@@ -54,26 +61,6 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null");
             }
             _incidents.Add(incident);
-        }
-
-        /// <summary>
-        /// method used to search the list of incidents by customerID and add them to a results list
-        /// </summary>
-        /// <param name="customerID">CustomerID of incident</param>
-        public void Search(int customerID)
-        {
-            _results.Clear();
-            if (customerID < 0)
-            {
-                throw new ArgumentNullException("CustomerID cannot be less than 0");
-            }
-            foreach (var incident in _incidents)
-            {
-                if (incident.CustomerID == customerID)
-                {
-                    _results.Add(incident);
-                }
-            }
         }
 
         #endregion

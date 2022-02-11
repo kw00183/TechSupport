@@ -60,22 +60,9 @@ namespace TechSupport.Controller
         /// method used to get/return all the incidents with a specific CustomerID
         /// </summary>
         /// <returns>list of all the incidents searched</returns>
-        public List<Incident> GetSearchIncidents()
+        public List<Incident> GetSearchIncidents(string customerIDTextBox)
         {
-            return incidentSource.GetSearchIncidents();
-        }
-
-        /// <summary>
-        /// method used to search for incidents by CustomerID
-        /// </summary>
-        /// <param name="customerID">CustomerID used to search incidents</param>
-        public void Search(int customerID)
-        {
-            if (customerID < 0)
-            {
-                throw new ArgumentNullException("CustomerID cannot be less than 0");
-            }
-            incidentSource.Search(customerID);
+            return incidentSource.GetSearchIncidents(customerIDTextBox);
         }
 
         /// <summary>

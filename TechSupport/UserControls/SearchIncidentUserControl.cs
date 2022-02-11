@@ -36,24 +36,19 @@ namespace TechSupport.UserControls
         private void RefreshSearchDataGrid()
         {
             this.searchDataGridView.DataSource = null;
-            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents();
+            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(this.customerIDTextBox.Text);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-
             try
             {
-                var customerID = int.Parse(this.customerIDTextBox.Text);
-
-                this.incidentController.Search(customerID);
                 this.RefreshSearchDataGrid();
             }
             catch (Exception)
             {
-                this.ShowInvalidErrorMessage();
-                /* MessageBox.Show("CustomerID cannot be empty" + Environment.NewLine + ex.Message,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); */
+                string message = "CustomerID must be number and cannot be empty";
+                this.ShowInvalidErrorMessage(message);
             }
         }
 
@@ -68,9 +63,9 @@ namespace TechSupport.UserControls
             errorMessageLabel.Text = "";
         }
 
-        private void ShowInvalidErrorMessage()
+        private void ShowInvalidErrorMessage(string message)
         {
-            errorMessageLabel.Text = "CustomerID must be number and cannot be empty";
+            errorMessageLabel.Text = message;
             errorMessageLabel.ForeColor = Color.Red;
         }
 
