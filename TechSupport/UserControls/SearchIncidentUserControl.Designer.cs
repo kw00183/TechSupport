@@ -61,6 +61,7 @@ namespace TechSupport.UserControls
             this.searchDataGridView.Name = "searchDataGridView";
             this.searchDataGridView.Size = new System.Drawing.Size(420, 155);
             this.searchDataGridView.TabIndex = 22;
+            this.searchDataGridView.VisibleChanged += new System.EventHandler(this.SearchDataGridView_VisibleChanged);
             // 
             // clearButton
             // 

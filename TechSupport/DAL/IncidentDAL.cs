@@ -36,18 +36,15 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to get/return all the incidents for a specific customerID
         /// </summary>
-        /// <returns></returns>
-        public List<Incident> GetSearchIncidents(string customerID)
+        /// <returns>list of searched incidents</returns>
+        /// <param name="customerID">customerID to search</param>
+        public List<Incident> GetSearchIncidents(int customerID)
         {
-            try
+            if (customerID < 1)
             {
-                int customerIDInteger = Int32.Parse(customerID);
-                return _incidents.FindAll(item => item.CustomerID == customerIDInteger);
+                throw new ArgumentException("CustomerID cannot be less than 1");
             }
-            catch (Exception)
-            {
-                throw new ArgumentNullException("CustomerID cannot be empty or less than 0");
-            }
+            return _incidents.FindAll(item => item.CustomerID == customerID);
         }
 
         /// <summary>

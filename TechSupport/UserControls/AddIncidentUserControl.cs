@@ -44,12 +44,14 @@ namespace TechSupport.UserControls
                 var description = this.descriptionTextBox.Text;
 
                 this.incidentController.Add(new Incident(customerID, title, description));
+
+                string errorMessage = "Incident Added for CustomerID " + customerID.ToString();
+                this.ShowInvalidErrorMessage(errorMessage);
             }
             catch (Exception)
             {
-                this.ShowInvalidErrorMessage();
-                /* MessageBox.Show("CustomerID must be number and title/description must have a value" + Environment.NewLine + ex.Message,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); */
+                string errorMessage = "CustomerID must be number and fields cannot be empty";
+                this.ShowInvalidErrorMessage(errorMessage);
             }
         }
 
@@ -58,9 +60,9 @@ namespace TechSupport.UserControls
             errorMessageLabel.Text = "";
         }
 
-        private void ShowInvalidErrorMessage()
+        private void ShowInvalidErrorMessage(string errorMessage)
         {
-            errorMessageLabel.Text = "CustomerID must be number and fields cannot be empty";
+            errorMessageLabel.Text = errorMessage;
             errorMessageLabel.ForeColor = Color.Red;
         }
 
@@ -81,9 +83,20 @@ namespace TechSupport.UserControls
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            this.ClearForm();
+        }
+
+        private void ClearForm()
+        {
             this.customerIDTextBox.Clear();
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
+            this.HideErrorMessage();
+        }
+
+        private void CustomerIDTextBox_VisibleChanged(object sender, EventArgs e)
+        {
+            this.ClearForm();
         }
 
         #endregion

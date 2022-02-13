@@ -49,9 +49,8 @@ namespace TechSupport.View
             }
             catch (Exception)
             {
-                this.ShowInvalidErrorMessage();
-                /* MessageBox.Show("CustomerID must be number and title/description must have a value" + Environment.NewLine + ex.Message,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); */
+                string errorMessage = "CustomerID must be number and fields cannot be empty";
+                this.ShowInvalidErrorMessage(errorMessage);
             }
         }
 
@@ -65,9 +64,9 @@ namespace TechSupport.View
             errorMessageLabel.Text = "";
         }
 
-        private void ShowInvalidErrorMessage()
+        private void ShowInvalidErrorMessage(string errorMessage)
         {
-            errorMessageLabel.Text = "CustomerID must be number and fields cannot be empty";
+            errorMessageLabel.Text = errorMessage;
             errorMessageLabel.ForeColor = Color.Red;
         }
 

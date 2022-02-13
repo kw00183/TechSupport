@@ -91,6 +91,7 @@ namespace TechSupport.View
             this.searchDataGridView.Name = "searchDataGridView";
             this.searchDataGridView.Size = new System.Drawing.Size(460, 155);
             this.searchDataGridView.TabIndex = 16;
+            this.searchDataGridView.VisibleChanged += new System.EventHandler(this.SearchDataGridView_VisibleChanged);
             // 
             // errorMessageLabel
             // 

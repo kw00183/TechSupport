@@ -57,7 +57,7 @@ namespace TechSupport.UserControls
             // descriptionTextBox
             // 
             this.descriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(162, 83);
+            this.descriptionTextBox.Location = new System.Drawing.Point(161, 83);
             this.descriptionTextBox.MaxLength = 200;
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -70,7 +70,7 @@ namespace TechSupport.UserControls
             this.descriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLabel.Location = new System.Drawing.Point(37, 80);
+            this.descriptionLabel.Location = new System.Drawing.Point(36, 80);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(104, 24);
             this.descriptionLabel.TabIndex = 29;
@@ -80,7 +80,7 @@ namespace TechSupport.UserControls
             // titleTextBox
             // 
             this.titleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleTextBox.Location = new System.Drawing.Point(162, 42);
+            this.titleTextBox.Location = new System.Drawing.Point(161, 42);
             this.titleTextBox.MaxLength = 50;
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(200, 29);
@@ -104,7 +104,7 @@ namespace TechSupport.UserControls
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(96, 39);
+            this.titleLabel.Location = new System.Drawing.Point(95, 39);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(45, 24);
             this.titleLabel.TabIndex = 28;
@@ -114,19 +114,20 @@ namespace TechSupport.UserControls
             // customerIDTextBox
             // 
             this.customerIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerIDTextBox.Location = new System.Drawing.Point(162, 3);
+            this.customerIDTextBox.Location = new System.Drawing.Point(161, 3);
             this.customerIDTextBox.MaxLength = 50;
             this.customerIDTextBox.Name = "customerIDTextBox";
             this.customerIDTextBox.Size = new System.Drawing.Size(200, 29);
             this.customerIDTextBox.TabIndex = 22;
             this.customerIDTextBox.TextChanged += new System.EventHandler(this.CustomerID_TextChanged);
+            this.customerIDTextBox.VisibleChanged += new System.EventHandler(this.CustomerIDTextBox_VisibleChanged);
             // 
             // customerIDLabel
             // 
             this.customerIDLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerIDLabel.AutoSize = true;
             this.customerIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerIDLabel.Location = new System.Drawing.Point(28, 0);
+            this.customerIDLabel.Location = new System.Drawing.Point(27, 0);
             this.customerIDLabel.Name = "customerIDLabel";
             this.customerIDLabel.Size = new System.Drawing.Size(113, 24);
             this.customerIDLabel.TabIndex = 26;
@@ -138,7 +139,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.34483F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.655172F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
             this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.customerIDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.customerIDTextBox, 2, 0);

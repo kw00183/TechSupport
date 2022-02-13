@@ -36,7 +36,17 @@ namespace TechSupport.View
         private void RefreshSearchDataGrid()
         {
             this.searchDataGridView.DataSource = null;
-            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(this.customerIDTextBox.Text);
+
+            try
+            {
+                int customerID = int.Parse(customerIDTextBox.Text);
+                this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(customerID);
+            }
+            catch (Exception)
+            {
+                string errorMessage = "CustomerID must be number and cannot be empty";
+                this.ShowInvalidErrorMessage(errorMessage);
+            }
         }
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
@@ -54,18 +64,7 @@ namespace TechSupport.View
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                var customerID = int.Parse(this.customerIDTextBox.Text);
-                this.RefreshSearchDataGrid();
-            }
-            catch (Exception)
-            {
-                this.ShowInvalidErrorMessage();
-                /* MessageBox.Show("CustomerID cannot be empty" + Environment.NewLine + ex.Message,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); */
-            }
+            this.RefreshSearchDataGrid();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -78,9 +77,15 @@ namespace TechSupport.View
             errorMessageLabel.Text = "";
         }
 
-        private void ShowInvalidErrorMessage()
+        private void ShowInvalidErrorMessage(string message)
         {
-            errorMessageLabel.Text = "CustomerID must be number and cannot be empty";
+            string errorMessage = message;
+            if (errorMessage is null)
+            {
+                throw new ArgumentNullException(nameof(errorMessage));
+            }
+
+            errorMessageLabel.Text = errorMessage;
             errorMessageLabel.ForeColor = Color.Red;
         }
 
@@ -90,5 +95,11 @@ namespace TechSupport.View
         }
 
         #endregion
+
+        private void SearchDataGridView_VisibleChanged(object sender, EventArgs e)
+        {
+            customerIDTextBox.Text = string.Empty;
+            searchDataGridView.Columns.Clear();
+        }
     }
 }

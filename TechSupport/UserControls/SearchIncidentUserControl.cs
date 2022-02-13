@@ -36,26 +36,34 @@ namespace TechSupport.UserControls
         private void RefreshSearchDataGrid()
         {
             this.searchDataGridView.DataSource = null;
-            this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(this.customerIDTextBox.Text);
+            
+            try
+            {
+                int customerID = int.Parse(customerIDTextBox.Text);
+                this.searchDataGridView.DataSource = incidentController.GetSearchIncidents(customerID);
+            }
+            catch (Exception)
+            {
+                string errorMessage = "CustomerID must be number and cannot be empty";
+                this.ShowInvalidErrorMessage(errorMessage);
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.RefreshSearchDataGrid();
-            }
-            catch (Exception)
-            {
-                string message = "CustomerID must be number and cannot be empty";
-                this.ShowInvalidErrorMessage(message);
-            }
+            this.RefreshSearchDataGrid();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            this.ClearForm();
+        }
+
+        private void ClearForm()
+        {
             this.searchDataGridView.DataSource = null;
             this.customerIDTextBox.Text = "";
+            this.HideErrorMessage();
         }
 
         private void HideErrorMessage()
@@ -72,6 +80,11 @@ namespace TechSupport.UserControls
         private void CustomerID_TextChanged(object sender, EventArgs e)
         {
             HideErrorMessage();
+        }
+
+        private void SearchDataGridView_VisibleChanged(object sender, EventArgs e)
+        {
+            this.ClearForm();
         }
 
         #endregion
