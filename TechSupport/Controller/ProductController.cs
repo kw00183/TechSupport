@@ -36,9 +36,9 @@ namespace TechSupport.Controller
         /// method used to get/return all the product names
         /// </summary>
         /// <returns>a list of all the product names</returns>
-        public List<String> GetAllProductNames()
+        public List<ProductCodeAndName> GetAllProductCodeAndNames()
         {
-            return productDBSource.GetAllProductNames();
+            return productDBSource.GetAllProductCodeAndNames();
         }
 
         #endregion

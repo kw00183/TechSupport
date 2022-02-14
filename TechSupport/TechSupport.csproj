@@ -49,6 +49,7 @@
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\IncidentController.cs" />
     <Compile Include="Controller\ProductController.cs" />
+    <Compile Include="Controller\RegistrationController.cs" />
     <Compile Include="DAL\CustomerDBDAL.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="DAL\IncidentDBDAL.cs" />
@@ -56,9 +57,11 @@
     <Compile Include="DAL\RegistrationDBDAL.cs" />
     <Compile Include="DAL\TechSupportDBConnection.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerIDAndName.cs" />
     <Compile Include="Model\Incident.cs" />
     <Compile Include="Model\OpenIncident.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductCodeAndName.cs" />
     <Compile Include="Model\Registration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

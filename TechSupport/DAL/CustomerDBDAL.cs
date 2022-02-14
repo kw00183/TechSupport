@@ -15,21 +15,21 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
-        /// method used to connect to the database and run a query to return the customers names
+        /// method used to connect to the database and run a query to return the customer ids and names
         /// </summary>
-        /// <returns>list of all customer's names</returns>
-        public List<String> GetAllCustomerNames()
+        /// <returns>list of all customer's ids and names</returns>
+        public List<CustomerIDAndName> GetAllCustomerIDAndNames()
         {
             string selectStatement =
-                "SELECT Name " +
+                "SELECT CustomerID, Name " +
                 "FROM Customers " +
                 "ORDER BY Name";
-            return ProcessStringList(selectStatement, "Name");
+            return ProcessIDAndNameList(selectStatement);
         }
 
-        private static List<String> ProcessStringList(string sql, string column)
+        private static List<CustomerIDAndName> ProcessIDAndNameList(string sql)
         {
-            List<String> stringList = new List<String>();
+            List<CustomerIDAndName> customerList = new List<CustomerIDAndName>();
             string selectStatement = sql;
             try
             {
@@ -43,36 +43,12 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                string stringToAdd = "";
-                                if (column == "Name")
+                                CustomerIDAndName customer = new CustomerIDAndName
                                 {
-                                    stringToAdd = reader["Name"].ToString();
-                                }
-                                else if (column == "Address")
-                                {
-                                    stringToAdd = reader["Address"].ToString();
-                                }
-                                else if (column == "City")
-                                {
-                                    stringToAdd = reader["City"].ToString();
-                                }
-                                else if (column == "State")
-                                {
-                                    stringToAdd = reader["State"].ToString();
-                                }
-                                else if (column == "ZipCode")
-                                {
-                                    stringToAdd = reader["ZipCode"].ToString();
-                                }
-                                else if (column == "Phone")
-                                {
-                                    stringToAdd = reader["Phone"].ToString();
-                                }
-                                else if (column == "Email")
-                                {
-                                    stringToAdd = reader["Email"].ToString();
-                                }
-                                stringList.Add(stringToAdd);
+                                    CustomerID = (int)reader["CustomerID"],
+                                    Name = reader["Name"].ToString()
+                                };
+                                customerList.Add(customer);
                             }
                         }
                     }
@@ -86,7 +62,7 @@ namespace TechSupport.DAL
             {
                 throw;
             }
-            return stringList;
+            return customerList;
         }
 
         #endregion

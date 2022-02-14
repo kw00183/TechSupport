@@ -15,21 +15,21 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
-        /// method used to connect to the database and run a query to return the product's names
+        /// method used to connect to the database and run a query to return the product's codes and names
         /// </summary>
-        /// <returns>list of all product's names</returns>
-        public List<String> GetAllProductNames()
+        /// <returns>list of all product's codes and names</returns>
+        public List<ProductCodeAndName> GetAllProductCodeAndNames()
         {
             string selectStatement =
-                "SELECT Name " +
+                "SELECT ProductCode, Name " +
                 "FROM Products " +
                 "ORDER BY Name";
-            return ProcessStringList(selectStatement, "Name");
+            return ProcessCodeAndNameList(selectStatement);
         }
 
-        private static List<String> ProcessStringList(string sql, string column)
+        private static List<ProductCodeAndName> ProcessCodeAndNameList(string sql)
         {
-            List<String> stringList = new List<String>();
+            List<ProductCodeAndName> productList = new List<ProductCodeAndName>();
             string selectStatement = sql;
             try
             {
@@ -43,16 +43,12 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                string stringToAdd = "";
-                                if (column == "ProductCode")
+                                ProductCodeAndName product = new ProductCodeAndName
                                 {
-                                    stringToAdd = reader["ProductCode"].ToString();
-                                }
-                                else if (column == "Name")
-                                {
-                                    stringToAdd = reader["Name"].ToString();
-                                }
-                                stringList.Add(stringToAdd);
+                                    ProductCode = reader["ProductCode"].ToString(),
+                                    Name = reader["Name"].ToString()
+                                };
+                                productList.Add(product);
                             }
                         }
                     }
@@ -66,7 +62,7 @@ namespace TechSupport.DAL
             {
                 throw;
             }
-            return stringList;
+            return productList;
         }
 
         #endregion

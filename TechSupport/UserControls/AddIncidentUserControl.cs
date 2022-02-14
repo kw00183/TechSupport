@@ -41,24 +41,30 @@ namespace TechSupport.UserControls
 
         private void PopulateProductComboBox()
         {
-            foreach (string name in productController.GetAllProductNames())
+            var products = productController.GetAllProductCodeAndNames();
+            foreach (var product in products)
             {
-                productComboBox.Items.Add(name);
+                productComboBox.Items.Add(product.Name);
             }
             productComboBox.SelectedIndex = 0;
         }
 
         private void PopulateCustomerComboBox()
         {
-            foreach (string name in customerController.GetAllCustomerNames())
+            var customers = customerController.GetAllCustomerIDAndNames();
+            foreach (var customer in customers)
             {
-                customerComboBox.Items.Add(name);
+                customerComboBox.Items.Add(customer.Name);
             }
             customerComboBox.SelectedIndex = 0;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            //string customerSelected = customerComboBox.GetItemText(customerComboBox.SelectedItem);
+            //string productSelected = productComboBox.GetItemText(productComboBox.SelectedItem);
+
+
 
             try
             {
