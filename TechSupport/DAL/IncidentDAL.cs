@@ -13,7 +13,7 @@ namespace TechSupport.DAL
     {
         #region Data Members
 
-        private readonly static List<IncidentStringNull> _incidents = new List<IncidentStringNull>();
+        private readonly static List<Incident> _incidents = new List<Incident>();
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace TechSupport.DAL
         /// method used to get/return all the incidents
         /// </summary>
         /// <returns>list of all the incidents</returns>
-        public List<IncidentStringNull> GetAllIncidents()
+        public List<Incident> GetAllIncidents()
         {
             return _incidents;
         }
@@ -33,7 +33,7 @@ namespace TechSupport.DAL
         /// </summary>
         /// <returns>list of searched incidents</returns>
         /// <param name="customerID">customerID to search</param>
-        public List<IncidentStringNull> GetSearchIncidents(int customerID)
+        public List<Incident> GetSearchIncidents(int customerID)
         {
             if (customerID < 1)
             {
@@ -46,7 +46,7 @@ namespace TechSupport.DAL
         /// method used to add an incident to the list of all incidents
         /// </summary>
         /// <param name="incident">the inicident object</param>
-        public void Add(IncidentStringNull incident)
+        public void Add(Incident incident)
         {
             if (incident == null)
             {

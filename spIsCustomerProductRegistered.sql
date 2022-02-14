@@ -9,7 +9,6 @@ GO
 CREATE PROCEDURE spIsCustomerProductRegistered (
 	@CustomerID INT
     , @ProductCode VARCHAR(10)
-    , @Count INT OUTPUT
 )
 AS
 
@@ -26,9 +25,16 @@ BEGIN
 END
 
 SELECT
-@Count = COUNT(*)
+CustomerID
+, ProductCode
 FROM Registrations
 WHERE
 (CustomerID = @CustomerID
 AND ProductCode = @ProductCode);
 GO
+
+DECLARE @Count INT;
+
+EXEC spIsCustomerProductRegistered 1002, "LEAG10"
+
+SELECT @Count

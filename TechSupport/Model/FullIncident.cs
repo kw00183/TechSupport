@@ -8,7 +8,7 @@ namespace TechSupport.Model
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
-    public class IncidentStringNull
+    public class FullIncident
     {
         #region Data Members
 
@@ -59,7 +59,7 @@ namespace TechSupport.Model
         /// <summary>
         /// default constructor
         /// </summary>
-        public IncidentStringNull()
+        public FullIncident()
         {
         }
 
@@ -74,7 +74,7 @@ namespace TechSupport.Model
         /// <param name="dateClosed">incident date closed</param>
         /// <param name="title">incident title</param>
         /// <param name="description">incident description</param>
-        public IncidentStringNull(int incidentID, int customerID, string productCode, string techID, DateTime dateOpened, string dateClosed, string title, string description)
+        public FullIncident(int incidentID, int customerID, string productCode, string techID, DateTime dateOpened, string dateClosed, string title, string description)
         {
 
             if (incidentID < 0)

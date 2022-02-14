@@ -36,7 +36,7 @@ namespace TechSupport.Controller
         /// method used to get/return all the incidents
         /// </summary>
         /// <returns>a list of all the incidents</returns>
-        public List<IncidentStringNull> GetAllIncidents()
+        public List<Incident> GetAllIncidents()
         {
             return incidentDBSource.GetAllIncidents();
         }
@@ -70,7 +70,7 @@ namespace TechSupport.Controller
         /// method used to get/return all the incidents with a specific CustomerID
         /// </summary>
         /// <returns>list of all the incidents searched</returns>
-        public List<IncidentStringNull> GetSearchIncidents(int customerID)
+        public List<Incident> GetSearchIncidents(int customerID)
         {
             if (customerID < 1)
             {

@@ -13,11 +13,6 @@ namespace TechSupport.Model
         #region Data Members
 
         /// <summary>
-        /// getter method for incident IncidentID
-        /// </summary>
-        public int IncidentID { get; set; }
-
-        /// <summary>
         /// getter method for incident CustomerID
         /// </summary>
         public int CustomerID { get; set; }
@@ -26,21 +21,6 @@ namespace TechSupport.Model
         /// getter method for incident ProductCode
         /// </summary>
         public string ProductCode { get; set; }
-
-        /// <summary>
-        /// getter method for incident TechID
-        /// </summary>
-        public int TechID { get; set; }
-
-        /// <summary>
-        /// getter method for incident DateOpened
-        /// </summary>
-        public DateTime DateOpened { get; set; }
-
-        /// <summary>
-        /// getter method for incident DateClosed
-        /// </summary>
-        public DateTime DateClosed { get; set; }
 
         /// <summary>
         /// getter method for incident title
@@ -66,23 +46,12 @@ namespace TechSupport.Model
         /// <summary>
         /// constructor used to create incident
         /// </summary>
-        /// <param name="incidentID">incident incidentID</param>
         /// <param name="customerID">incident customerID</param>
         /// <param name="productCode">incident product code</param>
-        /// <param name="techID">incident techID</param>
-        /// <param name="dateOpened">incident date opened</param>
-        /// <param name="dateClosed">incident date closed</param>
         /// <param name="title">incident title</param>
         /// <param name="description">incident description</param>
-        public Incident(int incidentID, int customerID, string productCode, int techID, DateTime dateOpened, DateTime dateClosed, string title, string description)
+        public Incident(int customerID, string productCode, string title, string description)
         {
-
-            if (incidentID < 0)
-            {
-                throw new ArgumentOutOfRangeException("incidentID", "Incident's IncidentID has to be number greater than 0");
-
-            }
-
             if (customerID < 0)
             {
                 throw new ArgumentOutOfRangeException("customerID", "Incident's CustomerID has to be number greater than 0");
@@ -92,24 +61,6 @@ namespace TechSupport.Model
             if (string.IsNullOrEmpty(productCode) || productCode.Length > 10)
             {
                 throw new ArgumentException("Incident's Product Code cannot be null/empty or greater than 10", "productCode");
-
-            }
-
-            if (techID < 0)
-            {
-                throw new ArgumentOutOfRangeException("techID", "Incident's TechID has to be number greater than 0");
-
-            }
-
-            if (dateOpened.Year < 2000 || dateOpened > DateTime.Now)
-            {
-                throw new ArgumentOutOfRangeException("dateOpened", "Product's Date Opened has to occur after 2000 and <= current datetime");
-
-            }
-
-            if (dateOpened.Year < 2000 || dateClosed > DateTime.Now)
-            {
-                throw new ArgumentOutOfRangeException("dateClosed", "Product's Date Closed has to occur after 2000 and <= current datetime");
 
             }
 
@@ -125,12 +76,8 @@ namespace TechSupport.Model
 
             }
 
-            this.IncidentID = incidentID;
             this.CustomerID = customerID;
             this.ProductCode = productCode;
-            this.TechID = techID;
-            this.DateOpened = dateOpened;
-            this.DateClosed = dateClosed;
             this.Title = title;
             this.Description = description;
         }

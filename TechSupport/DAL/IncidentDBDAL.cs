@@ -21,8 +21,9 @@ namespace TechSupport.DAL
         {
             
             string insertStatement =
-                "INSERT Incidents (CustomerID, ProductCode, DateOpened, Title, Description) " +
-                "VALUES (" + @customerID + ", " + @productCode + ", " + DateTime.Now + ", " + @title + ", " + description + ")";
+                "INSERT Incidents " +
+                  "(CustomerID, ProductCode, TechID, DateOpened, DateClosed, Title, Description) " +
+                "VALUES (@customerID, @productCode, @techID, @dateOpened, @dateClosed, @title, @description)";
 
             try
             {
@@ -30,18 +31,24 @@ namespace TechSupport.DAL
                 {
                     connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(insertStatement, connection))
+                    using (SqlCommand insertCommand = new SqlCommand(insertStatement, connection))
                     {
-                        selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
-                        selectCommand.Parameters["@customerID"].Value = customerID;
-                        selectCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
-                        selectCommand.Parameters["@productCode"].Value = productCode;
-                        selectCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
-                        selectCommand.Parameters["@title"].Value = title;
-                        selectCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
-                        selectCommand.Parameters["@description"].Value = description;
+                        insertCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                        insertCommand.Parameters["@customerID"].Value = customerID;
+                        insertCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
+                        insertCommand.Parameters["@productCode"].Value = productCode;
+                        insertCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+                        insertCommand.Parameters["@techID"].Value = DBNull.Value;
+                        insertCommand.Parameters.Add("@dateOpened", System.Data.SqlDbType.DateTime);
+                        insertCommand.Parameters["@dateOpened"].Value = DateTime.Now;
+                        insertCommand.Parameters.Add("@dateClosed", System.Data.SqlDbType.DateTime);
+                        insertCommand.Parameters["@dateClosed"].Value = DBNull.Value;
+                        insertCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
+                        insertCommand.Parameters["@title"].Value = title;
+                        insertCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+                        insertCommand.Parameters["@description"].Value = description;
+                        insertCommand.ExecuteNonQuery();
                     }
-                    connection.Close();
                 }
             }
             catch (SqlException)
@@ -58,23 +65,19 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return search incidents by customerID
         /// </summary>
         /// <returns>search incidents list</returns>
-        public List<IncidentStringNull> GetSearchIncidents(int customerID)
+        public List<Incident> GetSearchIncidents(int customerID)
         {
-            List<IncidentStringNull> searchIncidentList = new List<IncidentStringNull>();
+            List<Incident> searchIncidentList = new List<Incident>();
 
             string selectStatement =
                 "SELECT " +
-                "IncidentID" +
-                ", CustomerID" +
+                "CustomerID" +
                 ", ProductCode" +
-                ", TechID" +
-                ", DateOpened" +
-                ", DateClosed" +
                 ", Title " +
                 ", Description " +
                 "FROM Incidents " +
                 "WHERE " +
-                "CustomerID = " + @customerID + " " +
+                "CustomerID = @customerID " +
                 "ORDER BY IncidentID";
 
             try
@@ -91,14 +94,10 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                IncidentStringNull incident = new IncidentStringNull
+                                Incident incident = new Incident
                                 {
-                                    IncidentID = (int)reader["IncidentID"],
                                     CustomerID = (int)reader["CustomerID"],
                                     ProductCode = reader["ProductCode"].ToString(),
-                                    TechID = reader["TechID"].ToString(),
-                                    DateOpened = (DateTime)reader["DateOpened"],
-                                    DateClosed = reader["DateClosed"].ToString(),
                                     Title = reader["Title"].ToString(),
                                     Description = reader["Description"].ToString()
                                 };
@@ -123,18 +122,14 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return all incidents
         /// </summary>
         /// <returns>all incidents list</returns>
-        public List<IncidentStringNull> GetAllIncidents()
+        public List<Incident> GetAllIncidents()
         {
-            List<IncidentStringNull> allIncidentList = new List<IncidentStringNull>();
+            List<Incident> allIncidentList = new List<Incident>();
 
             string selectStatement =
                 "SELECT " +
-                "IncidentID" +
-                ", CustomerID" +
+                "CustomerID" +
                 ", ProductCode" +
-                ", CAST(TechID AS VARCHAR(10)) AS TechID" +
-                ", DateOpened" +
-                ", CAST(FORMAT(DateClosed, 'MM/dd/yyyy') AS VARCHAR(10)) AS DateClosed" +
                 ", Title " +
                 ", Description " +
                 "FROM Incidents " +
@@ -152,14 +147,10 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                IncidentStringNull incident = new IncidentStringNull
+                                Incident incident = new Incident
                                 {
-                                    IncidentID = (int)reader["IncidentID"],
                                     CustomerID = (int)reader["CustomerID"],
                                     ProductCode = reader["ProductCode"].ToString(),
-                                    TechID = reader["TechID"].ToString(),
-                                    DateOpened = (DateTime)reader["DateOpened"],
-                                    DateClosed = reader["DateClosed"].ToString(),
                                     Title = reader["Title"].ToString(),
                                     Description = reader["Description"].ToString()
                                 };
