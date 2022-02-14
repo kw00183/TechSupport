@@ -13,12 +13,7 @@ namespace TechSupport.DAL
     {
         #region Data Members
 
-        private readonly static List<Incident> _incidents = new List<Incident>
-        {
-            new Incident(1, "problem logging in", "when I try to log in, it gives an invalid error"),
-            new Incident(2, "need to change username", "don't see an option to change the username"),
-            new Incident(3, "need to change my password", "don't see an option to allow password change")
-        };
+        private readonly static List<IncidentStringNull> _incidents = new List<IncidentStringNull>();
 
         #endregion
 
@@ -28,7 +23,7 @@ namespace TechSupport.DAL
         /// method used to get/return all the incidents
         /// </summary>
         /// <returns>list of all the incidents</returns>
-        public List<Incident> GetAllIncidents()
+        public List<IncidentStringNull> GetAllIncidents()
         {
             return _incidents;
         }
@@ -38,7 +33,7 @@ namespace TechSupport.DAL
         /// </summary>
         /// <returns>list of searched incidents</returns>
         /// <param name="customerID">customerID to search</param>
-        public List<Incident> GetSearchIncidents(int customerID)
+        public List<IncidentStringNull> GetSearchIncidents(int customerID)
         {
             if (customerID < 1)
             {
@@ -51,7 +46,7 @@ namespace TechSupport.DAL
         /// method used to add an incident to the list of all incidents
         /// </summary>
         /// <param name="incident">the inicident object</param>
-        public void Add(Incident incident)
+        public void Add(IncidentStringNull incident)
         {
             if (incident == null)
             {

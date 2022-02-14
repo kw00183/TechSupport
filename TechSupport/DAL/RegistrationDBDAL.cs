@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using TechSupport.Model;
 
@@ -64,6 +65,52 @@ namespace TechSupport.DAL
                 throw;
             }
             return registrationList;
+        }
+
+        /// <summary>
+        /// method used to call the stored procedure spIsCustomerProductRegistered
+        /// </summary>
+        /// <param name="customerID">customer ID</param>
+        /// <param name="productCode">product code</param>
+        /// <returns>count of 1+ if registered</returns>
+        public Boolean IsCustomerProductRegistered(int customerID, string productCode)
+        {
+            Boolean registered = new Boolean();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            SqlCommand selectCommand = new SqlCommand
+            {
+                Connection = connection,
+                CommandText = "spIsCustomerProductRegistered",
+                CommandType = CommandType.StoredProcedure
+            };
+            selectCommand.Parameters.Add("@CustomerID", SqlDbType.Int);
+            selectCommand.Parameters["@CustomerID"].Value = customerID;
+            selectCommand.Parameters.Add("@ProductCode", SqlDbType.VarChar);
+            selectCommand.Parameters["@ProductCode"].Value = productCode;
+            try
+            {
+                connection.Open();
+                SqlDataReader reader =
+                    selectCommand.ExecuteReader(CommandBehavior.SingleRow);
+                if (reader.HasRows)
+                {
+                    registered = true;
+                }
+                else
+                {
+                    registered = false;
+                }
+                reader.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return registered;
         }
 
         #endregion

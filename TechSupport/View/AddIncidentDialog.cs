@@ -15,7 +15,7 @@ namespace TechSupport.View
     {
         #region Data members
 
-        private readonly IncidentController incidentController;
+ //       private readonly IncidentController incidentController;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace TechSupport.View
         public AddIncidentDialog()
         {
             this.InitializeComponent();
-            this.incidentController = new IncidentController();
+ //           this.incidentController = new IncidentController();
         }
 
         #endregion
@@ -40,10 +40,13 @@ namespace TechSupport.View
             try
             {
                 var customerID = int.Parse(this.customerIDTextBox.Text);
+//                var productCode = "LEAG10";
+                var dateOpened = DateTime.Now;
+                var dateClosed = DateTime.Now;
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 
-                this.incidentController.Add(new Incident(customerID, title, description));
+//                this.incidentController.AddIncident(new Incident(customerID, productCode, title, description));
 
                 this.DialogResult = DialogResult.OK;
             }

@@ -14,7 +14,6 @@ namespace TechSupport.Controller
     {
         #region Data Members
 
-        private readonly IncidentDAL incidentSource;
         private readonly IncidentDBDAL incidentDBSource;
 
         #endregion
@@ -26,7 +25,6 @@ namespace TechSupport.Controller
         /// </summary>
         public IncidentController()
         {
-            incidentSource = new IncidentDAL();
             incidentDBSource = new IncidentDBDAL();
         }
 
@@ -38,35 +36,47 @@ namespace TechSupport.Controller
         /// method used to get/return all the incidents
         /// </summary>
         /// <returns>a list of all the incidents</returns>
-        public List<Incident> GetAllIncidents()
+        public List<IncidentStringNull> GetAllIncidents()
         {
-            return incidentSource.GetAllIncidents();
+            return incidentDBSource.GetAllIncidents();
         }
 
         /// <summary>
         /// method used to add an incident to the list
         /// </summary>
         /// <param name="incident">incident is customrID, title and description</param>
-        public void Add(Incident incident)
+        public void AddIncident(int customerID, string productCode, string title, string description)
         {
-            if (incident == null)
+            if (customerID < 1)
             {
-                throw new ArgumentNullException("Incident cannot be null");
+                throw new ArgumentException("CustomerID cannot be less than 1");
             }
-            incidentSource.Add(incident);
+            if (string.IsNullOrEmpty(productCode))
+            {
+                throw new ArgumentNullException("ProductCode cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException("Title cannot be null or empty");
+            }
+            if (string.IsNullOrEmpty(description))
+            {
+                throw new ArgumentNullException("Description cannot be null or empty");
+            }
+            incidentDBSource.AddIncident(customerID, productCode, title, description);
         }
 
         /// <summary>
         /// method used to get/return all the incidents with a specific CustomerID
         /// </summary>
         /// <returns>list of all the incidents searched</returns>
-        public List<Incident> GetSearchIncidents(int customerID)
+        public List<IncidentStringNull> GetSearchIncidents(int customerID)
         {
             if (customerID < 1)
             {
                 throw new ArgumentException("CustomerID cannot be less than 1");
             }
-            return incidentSource.GetSearchIncidents(customerID);
+            return incidentDBSource.GetSearchIncidents(customerID);
         }
 
         /// <summary>

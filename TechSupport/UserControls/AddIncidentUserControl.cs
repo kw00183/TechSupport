@@ -15,8 +15,10 @@ namespace TechSupport.UserControls
     {
         #region Data members
 
+        private readonly IncidentController incidentController;
         private readonly ProductController productController;
         private readonly CustomerController customerController;
+        private readonly RegistrationController registrationController;
 
         #endregion
 
@@ -28,8 +30,10 @@ namespace TechSupport.UserControls
         public AddIncidentUserControl()
         {
             this.InitializeComponent();
+            this.incidentController = new IncidentController();
             this.productController = new ProductController();
             this.customerController = new CustomerController();
+            this.registrationController = new RegistrationController();
 
             this.PopulateProductComboBox();
             this.PopulateCustomerComboBox();
@@ -41,6 +45,7 @@ namespace TechSupport.UserControls
 
         private void PopulateProductComboBox()
         {
+            productComboBox.Items.Clear();
             var products = productController.GetAllProductCodeAndNames();
             foreach (var product in products)
             {
@@ -51,6 +56,7 @@ namespace TechSupport.UserControls
 
         private void PopulateCustomerComboBox()
         {
+            customerComboBox.Items.Clear();
             var customers = customerController.GetAllCustomerIDAndNames();
             foreach (var customer in customers)
             {
@@ -59,25 +65,65 @@ namespace TechSupport.UserControls
             customerComboBox.SelectedIndex = 0;
         }
 
+        private int GetSelectedCustomerID(int selectedIndex)
+        {
+            var customers = customerController.GetAllCustomerIDAndNames();
+            int customerID = 0;
+            int index = 0;
+            foreach (var customer in customers)
+            {
+                if (index == selectedIndex)
+                {
+                    customerID = customer.CustomerID;
+                }
+                index++;
+            }
+            return customerID;
+        }
+
+        private string GetSelectedProductCode(int selectedIndex)
+        {
+            var products = productController.GetAllProductCodeAndNames();
+            string productCode = null;
+            int index = 0;
+            foreach (var product in products)
+            {
+                if (index == selectedIndex)
+                {
+                    productCode = product.ProductCode;
+                }
+                index++;
+            }
+            return productCode;
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //string customerSelected = customerComboBox.GetItemText(customerComboBox.SelectedItem);
-            //string productSelected = productComboBox.GetItemText(productComboBox.SelectedItem);
+            int customerIndexSelected = customerComboBox.SelectedIndex;
+            int productIndexSelected = productComboBox.SelectedIndex;
 
+            string productCodeSelected = GetSelectedProductCode(productIndexSelected);
+            int customerIDSelected = GetSelectedCustomerID(customerIndexSelected);
 
+            var title = this.titleTextBox.Text;
+            var description = this.descriptionTextBox.Text;
 
-            try
+            Boolean isRegistered = this.registrationController.IsCustomerProductRegistered(customerIDSelected, productCodeSelected);
+
+            if (isRegistered == false)
             {
-                var title = this.titleTextBox.Text;
-                var description = this.descriptionTextBox.Text;
-
-                string errorMessage = "XXX";
+                string errorMessage = "No registration associated with the product";
                 this.ShowInvalidErrorMessage(errorMessage);
             }
-            catch (Exception)
+            else if (title == "" || title == null || description == "" || description == null)
             {
-                string errorMessage = "CustomerID must be number and fields cannot be empty";
+                string errorMessage = "Title and/or Description cannot be empty";
                 this.ShowInvalidErrorMessage(errorMessage);
+            }
+
+            if (isRegistered == true && String.IsNullOrEmpty(title) == false && String.IsNullOrEmpty(description) == false)
+            {
+                this.incidentController.AddIncident(customerIDSelected, productCodeSelected, title, description);
             }
         }
 

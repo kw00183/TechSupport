@@ -58,7 +58,7 @@
     <Compile Include="DAL\TechSupportDBConnection.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\CustomerIDAndName.cs" />
-    <Compile Include="Model\Incident.cs" />
+    <Compile Include="Model\IncidentStringNull.cs" />
     <Compile Include="Model\OpenIncident.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCodeAndName.cs" />

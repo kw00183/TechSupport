@@ -41,6 +41,11 @@ namespace TechSupport.Controller
             return registrationDBSource.GetAllRegistrations();
         }
 
+        public Boolean IsCustomerProductRegistered(int customerID, string productCode)
+        {
+            return registrationDBSource.IsCustomerProductRegistered(customerID, productCode);
+        }
+
         #endregion
     }
 }

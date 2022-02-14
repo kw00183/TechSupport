@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace TechSupport.Model
 {
     /// <summary>
-    /// model class used to define incidents
+    /// model class used to define incidents with string nulls
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
-    public class Incident
+    public class IncidentStringNull
     {
         #region Data Members
 
@@ -30,7 +30,7 @@ namespace TechSupport.Model
         /// <summary>
         /// getter method for incident TechID
         /// </summary>
-        public int TechID { get; set; }
+        public string TechID { get; set; }
 
         /// <summary>
         /// getter method for incident DateOpened
@@ -40,7 +40,7 @@ namespace TechSupport.Model
         /// <summary>
         /// getter method for incident DateClosed
         /// </summary>
-        public DateTime DateClosed { get; set; }
+        public string DateClosed { get; set; }
 
         /// <summary>
         /// getter method for incident title
@@ -59,7 +59,7 @@ namespace TechSupport.Model
         /// <summary>
         /// default constructor
         /// </summary>
-        public Incident()
+        public IncidentStringNull()
         {
         }
 
@@ -74,7 +74,7 @@ namespace TechSupport.Model
         /// <param name="dateClosed">incident date closed</param>
         /// <param name="title">incident title</param>
         /// <param name="description">incident description</param>
-        public Incident(int incidentID, int customerID, string productCode, int techID, DateTime dateOpened, DateTime dateClosed, string title, string description)
+        public IncidentStringNull(int incidentID, int customerID, string productCode, string techID, DateTime dateOpened, string dateClosed, string title, string description)
         {
 
             if (incidentID < 0)
@@ -95,21 +95,9 @@ namespace TechSupport.Model
 
             }
 
-            if (techID < 0)
-            {
-                throw new ArgumentOutOfRangeException("techID", "Incident's TechID has to be number greater than 0");
-
-            }
-
             if (dateOpened.Year < 2000 || dateOpened > DateTime.Now)
             {
                 throw new ArgumentOutOfRangeException("dateOpened", "Product's Date Opened has to occur after 2000 and <= current datetime");
-
-            }
-
-            if (dateOpened.Year < 2000 || dateClosed > DateTime.Now)
-            {
-                throw new ArgumentOutOfRangeException("dateClosed", "Product's Date Closed has to occur after 2000 and <= current datetime");
 
             }
 

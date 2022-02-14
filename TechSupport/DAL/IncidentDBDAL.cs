@@ -15,6 +15,172 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
+        /// method used to connect to the database and run a query to add incident
+        /// </summary>
+        public void AddIncident(int customerID, string productCode, string title, string description)
+        {
+            
+            string insertStatement =
+                "INSERT Incidents (CustomerID, ProductCode, DateOpened, Title, Description) " +
+                "VALUES (" + @customerID + ", " + @productCode + ", " + DateTime.Now + ", " + @title + ", " + description + ")";
+
+            try
+            {
+                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(insertStatement, connection))
+                    {
+                        selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                        selectCommand.Parameters["@customerID"].Value = customerID;
+                        selectCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
+                        selectCommand.Parameters["@productCode"].Value = productCode;
+                        selectCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
+                        selectCommand.Parameters["@title"].Value = title;
+                        selectCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+                        selectCommand.Parameters["@description"].Value = description;
+                    }
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// method used to connect to the database and run a query to return search incidents by customerID
+        /// </summary>
+        /// <returns>search incidents list</returns>
+        public List<IncidentStringNull> GetSearchIncidents(int customerID)
+        {
+            List<IncidentStringNull> searchIncidentList = new List<IncidentStringNull>();
+
+            string selectStatement =
+                "SELECT " +
+                "IncidentID" +
+                ", CustomerID" +
+                ", ProductCode" +
+                ", TechID" +
+                ", DateOpened" +
+                ", DateClosed" +
+                ", Title " +
+                ", Description " +
+                "FROM Incidents " +
+                "WHERE " +
+                "CustomerID = " + @customerID + " " +
+                "ORDER BY IncidentID";
+
+            try
+            {
+                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                        selectCommand.Parameters["@customerID"].Value = customerID;
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                IncidentStringNull incident = new IncidentStringNull
+                                {
+                                    IncidentID = (int)reader["IncidentID"],
+                                    CustomerID = (int)reader["CustomerID"],
+                                    ProductCode = reader["ProductCode"].ToString(),
+                                    TechID = reader["TechID"].ToString(),
+                                    DateOpened = (DateTime)reader["DateOpened"],
+                                    DateClosed = reader["DateClosed"].ToString(),
+                                    Title = reader["Title"].ToString(),
+                                    Description = reader["Description"].ToString()
+                                };
+                                searchIncidentList.Add(incident);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return searchIncidentList;
+        }
+
+        /// <summary>
+        /// method used to connect to the database and run a query to return all incidents
+        /// </summary>
+        /// <returns>all incidents list</returns>
+        public List<IncidentStringNull> GetAllIncidents()
+        {
+            List<IncidentStringNull> allIncidentList = new List<IncidentStringNull>();
+
+            string selectStatement =
+                "SELECT " +
+                "IncidentID" +
+                ", CustomerID" +
+                ", ProductCode" +
+                ", CAST(TechID AS VARCHAR(10)) AS TechID" +
+                ", DateOpened" +
+                ", CAST(FORMAT(DateClosed, 'MM/dd/yyyy') AS VARCHAR(10)) AS DateClosed" +
+                ", Title " +
+                ", Description " +
+                "FROM Incidents " +
+                "ORDER BY IncidentID";
+
+            try
+            {
+                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                IncidentStringNull incident = new IncidentStringNull
+                                {
+                                    IncidentID = (int)reader["IncidentID"],
+                                    CustomerID = (int)reader["CustomerID"],
+                                    ProductCode = reader["ProductCode"].ToString(),
+                                    TechID = reader["TechID"].ToString(),
+                                    DateOpened = (DateTime)reader["DateOpened"],
+                                    DateClosed = reader["DateClosed"].ToString(),
+                                    Title = reader["Title"].ToString(),
+                                    Description = reader["Description"].ToString()
+                                };
+                                allIncidentList.Add(incident);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return allIncidentList;
+        }
+
+        /// <summary>
         /// method used to connect to the database and run a query to return the open incidents
         /// </summary>
         /// <returns>list of open incidents</returns>
