@@ -15,7 +15,8 @@ namespace TechSupport.UserControls
     {
         #region Data members
 
-        private readonly IncidentController incidentController;
+        private readonly ProductController productController;
+        private readonly CustomerController customerController;
 
         #endregion
 
@@ -27,25 +28,44 @@ namespace TechSupport.UserControls
         public AddIncidentUserControl()
         {
             this.InitializeComponent();
-            this.incidentController = new IncidentController();
+            this.productController = new ProductController();
+            this.customerController = new CustomerController();
+
+            this.PopulateProductComboBox();
+            this.PopulateCustomerComboBox();
         }
 
         #endregion
 
         #region Methods
 
+        private void PopulateProductComboBox()
+        {
+            foreach (string name in productController.GetAllProductNames())
+            {
+                productComboBox.Items.Add(name);
+            }
+            productComboBox.SelectedIndex = 0;
+        }
+
+        private void PopulateCustomerComboBox()
+        {
+            foreach (string name in customerController.GetAllCustomerNames())
+            {
+                customerComboBox.Items.Add(name);
+            }
+            customerComboBox.SelectedIndex = 0;
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
 
             try
             {
-                var customerID = int.Parse(this.customerIDTextBox.Text);
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 
-                this.incidentController.Add(new Incident(customerID, title, description));
-
-                string errorMessage = "Incident Added for CustomerID " + customerID.ToString();
+                string errorMessage = "XXX";
                 this.ShowInvalidErrorMessage(errorMessage);
             }
             catch (Exception)
@@ -88,7 +108,8 @@ namespace TechSupport.UserControls
 
         private void ClearForm()
         {
-            this.customerIDTextBox.Clear();
+            this.PopulateCustomerComboBox();
+            this.PopulateProductComboBox();
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
             this.HideErrorMessage();
