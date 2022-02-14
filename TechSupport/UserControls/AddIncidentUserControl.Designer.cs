@@ -59,13 +59,14 @@ namespace TechSupport.UserControls
             // descriptionTextBox
             // 
             this.descriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(158, 119);
+            this.descriptionTextBox.Location = new System.Drawing.Point(157, 119);
             this.descriptionTextBox.MaxLength = 200;
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(200, 89);
             this.descriptionTextBox.TabIndex = 24;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.Description_TextChanged);
+            this.descriptionTextBox.VisibleChanged += new System.EventHandler(this.DescriptionTextBox_VisibleChanged);
             // 
             // descriptionLabel
             // 
@@ -82,7 +83,7 @@ namespace TechSupport.UserControls
             // titleTextBox
             // 
             this.titleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleTextBox.Location = new System.Drawing.Point(158, 82);
+            this.titleTextBox.Location = new System.Drawing.Point(157, 82);
             this.titleTextBox.MaxLength = 50;
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(200, 29);
@@ -130,7 +131,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.34483F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.655172F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.tableLayoutPanel1.Controls.Add(this.customerComboBox, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.customerLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 2, 4);
@@ -155,7 +156,7 @@ namespace TechSupport.UserControls
             // 
             this.customerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(158, 3);
+            this.customerComboBox.Location = new System.Drawing.Point(157, 3);
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(200, 32);
             this.customerComboBox.TabIndex = 32;
@@ -189,7 +190,7 @@ namespace TechSupport.UserControls
             // 
             this.productComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(158, 43);
+            this.productComboBox.Location = new System.Drawing.Point(157, 43);
             this.productComboBox.Name = "productComboBox";
             this.productComboBox.Size = new System.Drawing.Size(200, 32);
             this.productComboBox.TabIndex = 34;

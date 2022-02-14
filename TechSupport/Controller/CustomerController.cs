@@ -35,7 +35,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to get/return all the customer names
         /// </summary>
-        /// <returns>a list of all the customer names</returns>
+        /// <returns>a list of all the customer ids and names</returns>
         public List<CustomerIDAndName> GetAllCustomerIDAndNames()
         {
             return customerDBSource.GetAllCustomerIDAndNames();

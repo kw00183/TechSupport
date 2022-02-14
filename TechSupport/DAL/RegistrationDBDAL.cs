@@ -72,7 +72,7 @@ namespace TechSupport.DAL
         /// </summary>
         /// <param name="customerID">customer ID</param>
         /// <param name="productCode">product code</param>
-        /// <returns>count of 1+ if registered</returns>
+        /// <returns>boolean of true/false if customer is registered</returns>
         public Boolean IsCustomerProductRegistered(int customerID, string productCode)
         {
             Boolean registered = new Boolean();

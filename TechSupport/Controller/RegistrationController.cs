@@ -41,6 +41,12 @@ namespace TechSupport.Controller
             return registrationDBSource.GetAllRegistrations();
         }
 
+        /// <summary>
+        /// method used to call stored procedure and return boolean value if record is registered
+        /// </summary>
+        /// <param name="customerID">customer id</param>
+        /// <param name="productCode">product code</param>
+        /// <returns>return boolean value if product is registered</returns>
         public Boolean IsCustomerProductRegistered(int customerID, string productCode)
         {
             return registrationDBSource.IsCustomerProductRegistered(customerID, productCode);

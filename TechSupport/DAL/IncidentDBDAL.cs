@@ -17,6 +17,10 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to add incident
         /// </summary>
+        /// <param name="customerID"> customer id</param>
+        /// <param name="productCode">product code</param>
+        /// <param name="title">incident title</param>
+        /// <param name="description">incident description</param>
         public void AddIncident(int customerID, string productCode, string title, string description)
         {
             
@@ -64,7 +68,8 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to return search incidents by customerID
         /// </summary>
-        /// <returns>search incidents list</returns>
+        /// <param name="customerID">customer id</param>
+        /// <returns>list of searched incidents</returns>
         public List<Incident> GetSearchIncidents(int customerID)
         {
             List<Incident> searchIncidentList = new List<Incident>();

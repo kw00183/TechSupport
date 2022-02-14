@@ -35,8 +35,8 @@ namespace TechSupport.UserControls
             this.customerController = new CustomerController();
             this.registrationController = new RegistrationController();
 
-            this.PopulateProductComboBox();
             this.PopulateCustomerComboBox();
+            this.PopulateProductComboBox();
         }
 
         #endregion
@@ -99,31 +99,41 @@ namespace TechSupport.UserControls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            int customerIndexSelected = customerComboBox.SelectedIndex;
-            int productIndexSelected = productComboBox.SelectedIndex;
-
-            string productCodeSelected = GetSelectedProductCode(productIndexSelected);
-            int customerIDSelected = GetSelectedCustomerID(customerIndexSelected);
-
-            var title = this.titleTextBox.Text;
-            var description = this.descriptionTextBox.Text;
-
-            Boolean isRegistered = this.registrationController.IsCustomerProductRegistered(customerIDSelected, productCodeSelected);
-
-            if (isRegistered == false)
+            try
             {
-                string errorMessage = "No registration associated with the product";
-                this.ShowInvalidErrorMessage(errorMessage);
+                int customerIndexSelected = customerComboBox.SelectedIndex;
+                int productIndexSelected = productComboBox.SelectedIndex;
+
+                string productCodeSelected = GetSelectedProductCode(productIndexSelected);
+                int customerIDSelected = GetSelectedCustomerID(customerIndexSelected);
+
+                var title = this.titleTextBox.Text;
+                var description = this.descriptionTextBox.Text;
+
+                Boolean isRegistered = this.registrationController.IsCustomerProductRegistered(customerIDSelected, productCodeSelected);
+
+                if (isRegistered == false)
+                {
+                    string errorMessage = "No registration associated with the product";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (title == "" || title == null || description == "" || description == null)
+                {
+                    string errorMessage = "Title and/or Description cannot be empty";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+
+                if (isRegistered == true && String.IsNullOrEmpty(title) == false && String.IsNullOrEmpty(description) == false)
+                {
+                    this.incidentController.AddIncident(customerIDSelected, productCodeSelected, title, description);
+                    string errorMessage = "Incident Added";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
             }
-            else if (title == "" || title == null || description == "" || description == null)
+            catch (Exception)
             {
-                string errorMessage = "Title and/or Description cannot be empty";
+                string errorMessage = "Invalid form entries";
                 this.ShowInvalidErrorMessage(errorMessage);
-            }
-
-            if (isRegistered == true && String.IsNullOrEmpty(title) == false && String.IsNullOrEmpty(description) == false)
-            {
-                this.incidentController.AddIncident(customerIDSelected, productCodeSelected, title, description);
             }
         }
 
@@ -167,7 +177,7 @@ namespace TechSupport.UserControls
             this.HideErrorMessage();
         }
 
-        private void CustomerIDTextBox_VisibleChanged(object sender, EventArgs e)
+        private void DescriptionTextBox_VisibleChanged(object sender, EventArgs e)
         {
             this.ClearForm();
         }
