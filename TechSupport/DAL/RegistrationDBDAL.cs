@@ -6,30 +6,30 @@ using TechSupport.Model;
 namespace TechSupport.DAL
 {
     /// <summary>
-    /// data layer class used to access the products
+    /// data layer class used to access the registrations
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
-    public class ProductDBDAL
+    public class RegistrationDBDAL
     {
         #region Methods
 
         /// <summary>
-        /// method used to connect to the database and run a query to return the product's names
+        /// method used to connect to the database and run a query to return the customers names
         /// </summary>
-        /// <returns>list of all product's names</returns>
-        public List<String> GetAllProductNames()
+        /// <returns>list of all customer's names</returns>
+        public List<Registration> GetAllRegistrations()
         {
             string selectStatement =
-                "SELECT Name " +
-                "FROM Products " +
-                "ORDER BY Name";
-            return ProcessStringList(selectStatement, "Name");
+                "SELECT * " +
+                "FROM Registrations " +
+                "ORDER BY CustomerID, ProductCode";
+            return ProcessList(selectStatement);
         }
 
-        private static List<String> ProcessStringList(string sql, string column)
+        private static List<Registration> ProcessList(string sql)
         {
-            List<String> stringList = new List<String>();
+            List<Registration> registrationList = new List<Registration>();
             string selectStatement = sql;
             try
             {
@@ -43,16 +43,13 @@ namespace TechSupport.DAL
                         {
                             while (reader.Read())
                             {
-                                string stringToAdd = "";
-                                if (column == "ProductCode")
+                                Registration registration = new Registration
                                 {
-                                    stringToAdd = reader["ProductCode"].ToString();
-                                }
-                                else if (column == "Name")
-                                {
-                                    stringToAdd = reader["Name"].ToString();
-                                }
-                                stringList.Add(stringToAdd);
+                                    CustomerID = (int)reader["CustomerID"],
+                                    ProductCode = reader["ProductCode"].ToString(),
+                                    RegistrationDate = (DateTime)reader["RegistrationDate"]
+                                };
+                                registrationList.Add(registration);
                             }
                         }
                     }
@@ -66,7 +63,7 @@ namespace TechSupport.DAL
             {
                 throw;
             }
-            return stringList;
+            return registrationList;
         }
 
         #endregion

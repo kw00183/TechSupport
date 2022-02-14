@@ -15,21 +15,28 @@ namespace TechSupport.Model
         /// <summary>
         /// getter method for registration CustomerID
         /// </summary>
-        public int CustomerID { get; }
+        public int CustomerID { get; set; }
 
         /// <summary>
         /// getter method for registration ProductCode
         /// </summary>
-        public string ProductCode { get; }
+        public string ProductCode { get; set; }
 
         /// <summary>
         /// getter method for registration RegistrationDate
         /// </summary>
-        public DateTime RegistrationDate { get; }
+        public DateTime RegistrationDate { get; set; }
 
         #endregion
 
-        #region Methods
+        #region Constructors
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        public Registration()
+        {
+        }
 
         /// <summary>
         /// constructor used to create registration

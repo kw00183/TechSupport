@@ -5,6 +5,11 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// data layer class used to access the customers
+    /// Author: Kim Weible
+    /// Version: Spring 2022
+    /// </summary>
     public class CustomerDBDAL
     {
         #region Methods
@@ -82,50 +87,6 @@ namespace TechSupport.DAL
                 throw;
             }
             return stringList;
-        }
-
-        private static List<Customer> ProcessList(string sql)
-        {
-            List<Customer> customerList = new List<Customer>();
-            string selectStatement = sql;
-            try
-            {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
-
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                    {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                Customer customer = new Customer
-                                {
-                                    CustomerID = Convert.ToInt32(reader["CustomerID"]),
-                                    Name = reader["Name"].ToString(),
-                                    Address = reader["Address"].ToString(),
-                                    City = reader["City"].ToString(),
-                                    State = reader["State"].ToString(),
-                                    ZipCode = reader["ZipCode"].ToString(),
-                                    Phone = reader["Phone"].ToString(),
-                                    Email = reader["Email"].ToString()
-                                };
-                                customerList.Add(customer);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return customerList;
         }
 
         #endregion
