@@ -31,36 +31,24 @@ namespace TechSupport.DAL
         {
             List<ProductCodeAndName> productList = new List<ProductCodeAndName>();
             string selectStatement = sql;
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    connection.Open();
-
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            ProductCodeAndName product = new ProductCodeAndName
                             {
-                                ProductCodeAndName product = new ProductCodeAndName
-                                {
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    Name = reader["Name"].ToString()
-                                };
-                                productList.Add(product);
-                            }
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Name = reader["Name"].ToString()
+                            };
+                            productList.Add(product);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return productList;
         }

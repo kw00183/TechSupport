@@ -32,37 +32,26 @@ namespace TechSupport.DAL
         {
             List<Registration> registrationList = new List<Registration>();
             string selectStatement = sql;
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
+                connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            Registration registration = new Registration
                             {
-                                Registration registration = new Registration
-                                {
-                                    CustomerID = (int)reader["CustomerID"],
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    RegistrationDate = (DateTime)reader["RegistrationDate"]
-                                };
-                                registrationList.Add(registration);
-                            }
+                                CustomerID = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                RegistrationDate = (DateTime)reader["RegistrationDate"]
+                            };
+                            registrationList.Add(registration);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return registrationList;
         }
@@ -75,7 +64,7 @@ namespace TechSupport.DAL
         /// <returns>boolean of true/false if customer is registered</returns>
         public Boolean IsCustomerProductRegistered(int customerID, string productCode)
         {
-            Boolean registered = new Boolean();
+            Boolean registered;
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             SqlCommand selectCommand = new SqlCommand
             {
@@ -87,29 +76,18 @@ namespace TechSupport.DAL
             selectCommand.Parameters["@CustomerID"].Value = customerID;
             selectCommand.Parameters.Add("@ProductCode", SqlDbType.VarChar);
             selectCommand.Parameters["@ProductCode"].Value = productCode;
-            try
+            connection.Open();
+            SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow);
+            if (reader.HasRows)
             {
-                connection.Open();
-                SqlDataReader reader =
-                    selectCommand.ExecuteReader(CommandBehavior.SingleRow);
-                if (reader.HasRows)
-                {
-                    registered = true;
-                }
-                else
-                {
-                    registered = false;
-                }
-                reader.Close();
+                registered = true;
             }
-            catch (SqlException)
+            else
             {
-                throw;
+                registered = false;
             }
-            finally
-            {
-                connection.Close();
-            }
+            reader.Close();
+            connection.Close();
             return registered;
         }
 

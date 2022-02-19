@@ -21,47 +21,35 @@ namespace TechSupport.DAL
         /// <param name="productCode">product code</param>
         /// <param name="title">incident title</param>
         /// <param name="description">incident description</param>
-        public void AddIncident(int customerID, string productCode, string title, string description)
+        public void AddIncident(Incident incident)
         {
-            
             string insertStatement =
                 "INSERT Incidents " +
                   "(CustomerID, ProductCode, TechID, DateOpened, DateClosed, Title, Description) " +
                 "VALUES (@customerID, @productCode, @techID, @dateOpened, @dateClosed, @title, @description)";
 
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
+                connection.Open();
 
-                    using (SqlCommand insertCommand = new SqlCommand(insertStatement, connection))
-                    {
-                        insertCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
-                        insertCommand.Parameters["@customerID"].Value = customerID;
-                        insertCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
-                        insertCommand.Parameters["@productCode"].Value = productCode;
-                        insertCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
-                        insertCommand.Parameters["@techID"].Value = DBNull.Value;
-                        insertCommand.Parameters.Add("@dateOpened", System.Data.SqlDbType.DateTime);
-                        insertCommand.Parameters["@dateOpened"].Value = DateTime.Now;
-                        insertCommand.Parameters.Add("@dateClosed", System.Data.SqlDbType.DateTime);
-                        insertCommand.Parameters["@dateClosed"].Value = DBNull.Value;
-                        insertCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
-                        insertCommand.Parameters["@title"].Value = title;
-                        insertCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
-                        insertCommand.Parameters["@description"].Value = description;
-                        insertCommand.ExecuteNonQuery();
-                    }
+                using (SqlCommand insertCommand = new SqlCommand(insertStatement, connection))
+                {
+                    insertCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                    insertCommand.Parameters["@customerID"].Value = incident.CustomerID;
+                    insertCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
+                    insertCommand.Parameters["@productCode"].Value = incident.ProductCode;
+                    insertCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+                    insertCommand.Parameters["@techID"].Value = DBNull.Value;
+                    insertCommand.Parameters.Add("@dateOpened", System.Data.SqlDbType.DateTime);
+                    insertCommand.Parameters["@dateOpened"].Value = DateTime.Now;
+                    insertCommand.Parameters.Add("@dateClosed", System.Data.SqlDbType.DateTime);
+                    insertCommand.Parameters["@dateClosed"].Value = DBNull.Value;
+                    insertCommand.Parameters.Add("@title", System.Data.SqlDbType.VarChar);
+                    insertCommand.Parameters["@title"].Value = incident.Title;
+                    insertCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+                    insertCommand.Parameters["@description"].Value = incident.Description;
+                    insertCommand.ExecuteNonQuery();
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
 
@@ -85,40 +73,29 @@ namespace TechSupport.DAL
                 "CustomerID = @customerID " +
                 "ORDER BY IncidentID";
 
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
+                connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@customerID"].Value = customerID;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
-                        selectCommand.Parameters["@customerID"].Value = customerID;
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            Incident incident = new Incident
                             {
-                                Incident incident = new Incident
-                                {
-                                    CustomerID = (int)reader["CustomerID"],
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    Title = reader["Title"].ToString(),
-                                    Description = reader["Description"].ToString()
-                                };
-                                searchIncidentList.Add(incident);
-                            }
+                                CustomerID = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
+                            searchIncidentList.Add(incident);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return searchIncidentList;
         }
@@ -140,38 +117,27 @@ namespace TechSupport.DAL
                 "FROM Incidents " +
                 "ORDER BY IncidentID";
 
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
+                connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            Incident incident = new Incident
                             {
-                                Incident incident = new Incident
-                                {
-                                    CustomerID = (int)reader["CustomerID"],
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    Title = reader["Title"].ToString(),
-                                    Description = reader["Description"].ToString()
-                                };
-                                allIncidentList.Add(incident);
-                            }
+                                CustomerID = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
+                            allIncidentList.Add(incident);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return allIncidentList;
         }
@@ -201,39 +167,28 @@ namespace TechSupport.DAL
                 "AND INC.DateOpened IS NOT NULL " +
                 "ORDER BY INC.DateOpened";
 
-            try
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                using (SqlConnection connection = TechSupportDBConnection.GetConnection())
-                {
-                    connection.Open();
+                connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            OpenIncident openIncident = new OpenIncident
                             {
-                                OpenIncident openIncident = new OpenIncident
-                                {
-                                    ProductCode = reader["ProductCode"].ToString(),
-                                    DateOpened = (DateTime)reader["DateOpened"],
-                                    Customer = reader["Customer"].ToString(),
-                                    Technician = reader["Technician"].ToString(),
-                                    Title = reader["Title"].ToString()
-                                };
-                                openIncidentList.Add(openIncident);
-                            }
+                                ProductCode = reader["ProductCode"].ToString(),
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                Customer = reader["Customer"].ToString(),
+                                Technician = reader["Technician"].ToString(),
+                                Title = reader["Title"].ToString()
+                            };
+                            openIncidentList.Add(openIncident);
                         }
                     }
                 }
-            }
-                catch (SqlException)
-            {
-                throw;
-            }
-                catch (Exception)
-            {
-                throw;
             }
             return openIncidentList;
         }

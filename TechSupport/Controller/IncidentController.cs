@@ -45,25 +45,25 @@ namespace TechSupport.Controller
         /// method used to add an incident to the list
         /// </summary>
         /// <param name="incident">incident is customrID, productCode, title and description</param>
-        public void AddIncident(int customerID, string productCode, string title, string description)
+        public void AddIncident(Incident incident)
         {
-            if (customerID < 1)
+            if (incident.CustomerID < 1)
             {
                 throw new ArgumentException("CustomerID cannot be less than 1");
             }
-            if (string.IsNullOrEmpty(productCode))
+            if (string.IsNullOrEmpty(incident.ProductCode))
             {
                 throw new ArgumentNullException("ProductCode cannot be null or empty");
             }
-            if (string.IsNullOrEmpty(title))
+            if (string.IsNullOrEmpty(incident.Title))
             {
                 throw new ArgumentNullException("Title cannot be null or empty");
             }
-            if (string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(incident.Description))
             {
                 throw new ArgumentNullException("Description cannot be null or empty");
             }
-            incidentDBSource.AddIncident(customerID, productCode, title, description);
+            incidentDBSource.AddIncident(incident);
         }
 
         /// <summary>

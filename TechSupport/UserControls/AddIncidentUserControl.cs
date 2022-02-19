@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
@@ -43,58 +44,24 @@ namespace TechSupport.UserControls
 
         #region Methods
 
-        private void PopulateProductComboBox()
+        private List<ProductCodeAndName> PopulateProductComboBox()
         {
-            productComboBox.Items.Clear();
-            var products = productController.GetAllProductCodeAndNames();
-            foreach (var product in products)
-            {
-                productComboBox.Items.Add(product.Name);
-            }
+            List<ProductCodeAndName> products = productController.GetAllProductCodeAndNames();
+            productComboBox.DataSource = products;
+            productComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            productComboBox.DisplayMember = "Name";
             productComboBox.SelectedIndex = 0;
+            return products;
         }
 
-        private void PopulateCustomerComboBox()
+        private List<CustomerIDAndName> PopulateCustomerComboBox()
         {
-            customerComboBox.Items.Clear();
-            var customers = customerController.GetAllCustomerIDAndNames();
-            foreach (var customer in customers)
-            {
-                customerComboBox.Items.Add(customer.Name);
-            }
+            List<CustomerIDAndName> customers = customerController.GetAllCustomerIDAndNames();
+            customerComboBox.DataSource = customers;
+            customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            customerComboBox.DisplayMember = "Name";
             customerComboBox.SelectedIndex = 0;
-        }
-
-        private int GetSelectedCustomerID(int selectedIndex)
-        {
-            var customers = customerController.GetAllCustomerIDAndNames();
-            int customerID = 0;
-            int index = 0;
-            foreach (var customer in customers)
-            {
-                if (index == selectedIndex)
-                {
-                    customerID = customer.CustomerID;
-                }
-                index++;
-            }
-            return customerID;
-        }
-
-        private string GetSelectedProductCode(int selectedIndex)
-        {
-            var products = productController.GetAllProductCodeAndNames();
-            string productCode = null;
-            int index = 0;
-            foreach (var product in products)
-            {
-                if (index == selectedIndex)
-                {
-                    productCode = product.ProductCode;
-                }
-                index++;
-            }
-            return productCode;
+            return customers;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -104,8 +71,8 @@ namespace TechSupport.UserControls
                 int customerIndexSelected = customerComboBox.SelectedIndex;
                 int productIndexSelected = productComboBox.SelectedIndex;
 
-                string productCodeSelected = GetSelectedProductCode(productIndexSelected);
-                int customerIDSelected = GetSelectedCustomerID(customerIndexSelected);
+                string productCodeSelected = PopulateProductComboBox()[productIndexSelected].ProductCode;
+                int customerIDSelected = PopulateCustomerComboBox()[customerIndexSelected].CustomerID;
 
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
@@ -125,7 +92,8 @@ namespace TechSupport.UserControls
 
                 if (isRegistered == true && String.IsNullOrEmpty(title) == false && String.IsNullOrEmpty(description) == false)
                 {
-                    this.incidentController.AddIncident(customerIDSelected, productCodeSelected, title, description);
+                    Incident newIncident = new Incident(customerIDSelected, productCodeSelected, title, description);
+                    this.incidentController.AddIncident(newIncident);
                     string errorMessage = "Incident Added";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
