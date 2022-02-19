@@ -44,24 +44,30 @@ namespace TechSupport.UserControls
 
         #region Methods
 
-        private List<ProductCodeAndName> PopulateProductComboBox()
+        private void PopulateProductComboBox()
         {
-            List<ProductCodeAndName> products = productController.GetAllProductCodeAndNames();
-            productComboBox.DataSource = products;
+            productComboBox.DataSource = productController.GetAllProductCodeAndNames();
             productComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             productComboBox.DisplayMember = "Name";
             productComboBox.SelectedIndex = 0;
-            return products;
         }
 
-        private List<CustomerIDAndName> PopulateCustomerComboBox()
+        private void PopulateCustomerComboBox()
         {
-            List<CustomerIDAndName> customers = customerController.GetAllCustomerIDAndNames();
-            customerComboBox.DataSource = customers;
+            customerComboBox.DataSource = customerController.GetAllCustomerIDAndNames();
             customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customerComboBox.DisplayMember = "Name";
             customerComboBox.SelectedIndex = 0;
-            return customers;
+        }
+
+        private List<CustomerIDAndName> GetCustomerList()
+        {
+            return customerController.GetAllCustomerIDAndNames();
+        }
+
+        private List<ProductCodeAndName> GetProductList()
+        {
+            return productController.GetAllProductCodeAndNames();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -71,8 +77,8 @@ namespace TechSupport.UserControls
                 int customerIndexSelected = customerComboBox.SelectedIndex;
                 int productIndexSelected = productComboBox.SelectedIndex;
 
-                string productCodeSelected = PopulateProductComboBox()[productIndexSelected].ProductCode;
-                int customerIDSelected = PopulateCustomerComboBox()[customerIndexSelected].CustomerID;
+                string productCodeSelected = GetProductList()[productIndexSelected].ProductCode;
+                int customerIDSelected = GetCustomerList()[customerIndexSelected].CustomerID;
 
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
@@ -92,7 +98,7 @@ namespace TechSupport.UserControls
 
                 if (isRegistered == true && String.IsNullOrEmpty(title) == false && String.IsNullOrEmpty(description) == false)
                 {
-                    Incident newIncident = new Incident(customerIDSelected, productCodeSelected, title, description);
+                    Incident newIncident = new Incident(null, customerIDSelected, productCodeSelected, null, DateTime.Now, null, title, description);
                     this.incidentController.AddIncident(newIncident);
                     string errorMessage = "Incident Added";
                     this.ShowInvalidErrorMessage(errorMessage);
