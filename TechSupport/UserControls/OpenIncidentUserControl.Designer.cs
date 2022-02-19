@@ -45,9 +45,10 @@ namespace TechSupport.UserControls
             this.customerHeader,
             this.technicianHeader,
             this.titleHeader});
-            this.listViewOpenIncidents.Location = new System.Drawing.Point(14, 15);
+            this.listViewOpenIncidents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewOpenIncidents.Location = new System.Drawing.Point(3, 3);
             this.listViewOpenIncidents.Name = "listViewOpenIncidents";
-            this.listViewOpenIncidents.Size = new System.Drawing.Size(420, 270);
+            this.listViewOpenIncidents.Size = new System.Drawing.Size(424, 494);
             this.listViewOpenIncidents.TabIndex = 0;
             this.listViewOpenIncidents.UseCompatibleStateImageBehavior = false;
             this.listViewOpenIncidents.View = System.Windows.Forms.View.Details;
@@ -56,22 +57,22 @@ namespace TechSupport.UserControls
             // productCodeHeader
             // 
             this.productCodeHeader.Text = "Product Code";
-            this.productCodeHeader.Width = 102;
+            this.productCodeHeader.Width = 91;
             // 
             // dateOpenedHeader
             // 
             this.dateOpenedHeader.Text = "Date Opened";
-            this.dateOpenedHeader.Width = 117;
+            this.dateOpenedHeader.Width = 105;
             // 
             // customerHeader
             // 
             this.customerHeader.Text = "Customer";
-            this.customerHeader.Width = 97;
+            this.customerHeader.Width = 83;
             // 
             // technicianHeader
             // 
             this.technicianHeader.Text = "Technician";
-            this.technicianHeader.Width = 101;
+            this.technicianHeader.Width = 86;
             // 
             // titleHeader
             // 
@@ -84,7 +85,7 @@ namespace TechSupport.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listViewOpenIncidents);
             this.Name = "OpenIncidentUserControl";
-            this.Size = new System.Drawing.Size(450, 300);
+            this.Size = new System.Drawing.Size(430, 500);
             this.ResumeLayout(false);
 
         }
