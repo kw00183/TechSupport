@@ -48,7 +48,7 @@ namespace TechSupport.UserControls
             this.dateOpenedTextBox = new System.Windows.Forms.TextBox();
             this.technicianComboBox = new System.Windows.Forms.ComboBox();
             this.customerTextBox = new System.Windows.Forms.TextBox();
-            this.productTextBox = new System.Windows.Forms.TextBox();
+            this.productCodeTextBox = new System.Windows.Forms.TextBox();
             this.addTextLlabel = new System.Windows.Forms.Label();
             this.dateOpenedLabel = new System.Windows.Forms.Label();
             this.technicianLabel = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.Controls.Add(this.titleTextBox, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.technicianComboBox, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.customerTextBox, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.productTextBox, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.productCodeTextBox, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.descriptionLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.addTextLlabel, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 3);
@@ -298,14 +298,14 @@ namespace TechSupport.UserControls
             this.customerTextBox.Size = new System.Drawing.Size(252, 26);
             this.customerTextBox.TabIndex = 38;
             // 
-            // productTextBox
+            // productCodeTextBox
             // 
-            this.productTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productTextBox.Location = new System.Drawing.Point(154, 35);
-            this.productTextBox.MaxLength = 50;
-            this.productTextBox.Name = "productTextBox";
-            this.productTextBox.Size = new System.Drawing.Size(252, 26);
-            this.productTextBox.TabIndex = 39;
+            this.productCodeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productCodeTextBox.Location = new System.Drawing.Point(154, 35);
+            this.productCodeTextBox.MaxLength = 50;
+            this.productCodeTextBox.Name = "productCodeTextBox";
+            this.productCodeTextBox.Size = new System.Drawing.Size(252, 26);
+            this.productCodeTextBox.TabIndex = 39;
             // 
             // addTextLlabel
             // 
@@ -387,7 +387,7 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.TextBox dateOpenedTextBox;
         private System.Windows.Forms.ComboBox technicianComboBox;
         private System.Windows.Forms.TextBox customerTextBox;
-        private System.Windows.Forms.TextBox productTextBox;
+        private System.Windows.Forms.TextBox productCodeTextBox;
         private System.Windows.Forms.Label addTextLlabel;
         private System.Windows.Forms.Label dateOpenedLabel;
         private System.Windows.Forms.Label technicianLabel;

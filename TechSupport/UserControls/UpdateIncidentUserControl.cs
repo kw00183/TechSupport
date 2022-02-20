@@ -10,6 +10,11 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// user control class that encapsulates the update incident controls
+    /// Author: Kim Weible
+    /// Version: Spring 2022
+    /// </summary>
     public partial class UpdateIncidentUserControl : UserControl
     {
 
@@ -17,17 +22,28 @@ namespace TechSupport.UserControls
 
         private readonly TechnicianController technicianController;
         private readonly IncidentController incidentController;
+        private readonly CustomerController customerController;
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// constructor used to create the add incident controls
+        /// </summary>
         public UpdateIncidentUserControl()
         {
             InitializeComponent();
             this.technicianController = new TechnicianController();
             this.incidentController = new IncidentController();
+            this.customerController = new CustomerController();
 
             this.PopulateTechnicianComboBox();
         }
+
+        #endregion
+
+        #region Methods
 
         private void PopulateTechnicianComboBox()
         {
@@ -64,6 +80,21 @@ namespace TechSupport.UserControls
 
                 if (getIncidentCheck == true && incidentList.Count > 0)
                 {
+                    var techID = incidentList[0].TechID;
+
+                    if (techID == null)
+                    {
+                        technicianComboBox.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        int technicianIndex = GetTechnicianList().FindIndex(p => p.TechID == techID);
+                        Console.WriteLine("bobsux" + technicianIndex.ToString());
+                        technicianComboBox.SelectedIndex= technicianIndex;
+                    }
+
+                    customerTextBox.Text = GetCustomerName(incidentList[0].CustomerID);
+                    productCodeTextBox.Text = incidentList[0].ProductCode;
                     titleTextBox.Text = incidentList[0].Title;
                     dateOpenedTextBox.Text = incidentList[0].DateOpened.ToShortDateString();
                     descriptionTextBox.Text = incidentList[0].Description;
@@ -83,6 +114,18 @@ namespace TechSupport.UserControls
             }
         }
 
+        private string GetCustomerName(int customerID)
+        {
+            string customerName = "";
+            List<Customer> customerList = new List<Customer>();
+            customerList = customerController.GetCustomer(customerID);
+            if (customerList.Count > 0)
+            {
+                customerName = customerList[0].Name;
+            }
+            return customerName;
+        }
+
         private void HideErrorMessage()
         {
             errorMessageLabel.Text = "";
@@ -93,5 +136,7 @@ namespace TechSupport.UserControls
             errorMessageLabel.Text = errorMessage;
             errorMessageLabel.ForeColor = Color.Red;
         }
+
+        #endregion
     }
 }
