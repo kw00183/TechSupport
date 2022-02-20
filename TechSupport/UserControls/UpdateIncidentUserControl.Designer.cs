@@ -258,6 +258,7 @@ namespace TechSupport.UserControls
             this.getButton.TabIndex = 36;
             this.getButton.Text = "Get";
             this.getButton.UseVisualStyleBackColor = true;
+            this.getButton.Click += new System.EventHandler(this.GetButton_Click);
             // 
             // addTextTextBox
             // 

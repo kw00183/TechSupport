@@ -46,7 +46,7 @@ namespace TechSupport.UserControls
 
         private void PopulateProductComboBox()
         {
-            productComboBox.DataSource = productController.GetAllProductCodeAndNames();
+            productComboBox.DataSource = GetProductList();
             productComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             productComboBox.DisplayMember = "Name";
             productComboBox.SelectedIndex = 0;
@@ -54,7 +54,7 @@ namespace TechSupport.UserControls
 
         private void PopulateCustomerComboBox()
         {
-            customerComboBox.DataSource = customerController.GetAllCustomerIDAndNames();
+            customerComboBox.DataSource = GetCustomerList();
             customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customerComboBox.DisplayMember = "Name";
             customerComboBox.SelectedIndex = 0;

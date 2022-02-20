@@ -67,6 +67,19 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
+        /// method used to get/return the incident with a specific IncidentID
+        /// </summary>
+        /// <returns>list of incidents</returns>
+        public List<Incident> GetIncident(int incidentID)
+        {
+            if (incidentID < 1)
+            {
+                throw new ArgumentException("IncidentID cannot be less than 1");
+            }
+            return incidentDBSource.GetIncident(incidentID);
+        }
+
+        /// <summary>
         /// method used to get/return all the incidents with a specific CustomerID
         /// </summary>
         /// <returns>list of all the incidents searched</returns>

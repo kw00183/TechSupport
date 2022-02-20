@@ -54,6 +54,52 @@ namespace TechSupport.DAL
         }
 
         /// <summary>
+        /// method used to connect to the database and run a query to return incident by incidentID
+        /// </summary>
+        /// <param name="incidentID">incident id</param>
+        /// <returns>single incident</returns>
+        public List<Incident> GetIncident(int incidentID)
+        {
+            List<Incident> incidentList = new List<Incident>();
+
+            string selectStatement =
+                "SELECT * " +
+                "FROM Incidents " +
+                "WHERE " +
+                "IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@incidentID"].Value = incidentID;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Incident incident = new Incident
+                            {
+                                IncidentID = (int)reader["IncidentID"],
+                                CustomerID = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                TechID = (int)reader["TechID"],
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                DateClosed = (DateTime)reader["DateClosed"],
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
+                            incidentList.Add(incident);
+                        }
+                    }
+                }
+            }
+            return incidentList;
+        }
+
+        /// <summary>
         /// method used to connect to the database and run a query to return search incidents by customerID
         /// </summary>
         /// <param name="customerID">customer id</param>
@@ -109,7 +155,7 @@ namespace TechSupport.DAL
             List<Incident> allIncidentList = new List<Incident>();
 
             string selectStatement =
-                "SELECT " +
+                "SELECT * " +
                 "CustomerID" +
                 ", ProductCode" +
                 ", Title " +
