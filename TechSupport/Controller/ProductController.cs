@@ -33,6 +33,20 @@ namespace TechSupport.Controller
         #region Methods
 
         /// <summary>
+        /// method used to get a product
+        /// </summary>
+        /// <param name="productCode">product code</param>
+        /// <returns>list of products</returns>
+        public List<Product> GetProduct(string productCode)
+        {
+            if (string.IsNullOrEmpty(productCode))
+            {
+                throw new ArgumentNullException("ProductCode cannot be null or empty");
+            }
+            return productDBSource.GetProduct(productCode);
+        }
+
+        /// <summary>
         /// method used to get/return all the product names
         /// </summary>
         /// <returns>a list of all the product codes and names</returns>

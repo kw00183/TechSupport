@@ -33,6 +33,20 @@ namespace TechSupport.Controller
         #region Methods
 
         /// <summary>
+        /// method used to get a customer
+        /// </summary>
+        /// <param name="customerID">customer id</param>
+        /// <returns>list of customers</returns>
+        public List<Customer> GetCustomer(int customerID)
+        {
+            if (customerID < 1)
+            {
+                throw new ArgumentException("CustomerID cannot be less than 1");
+            }
+            return customerDBSource.GetCustomer(customerID);
+        }
+
+        /// <summary>
         /// method used to get/return all the customer names
         /// </summary>
         /// <returns>a list of all the customer ids and names</returns>

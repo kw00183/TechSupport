@@ -44,7 +44,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to add an incident to the list
         /// </summary>
-        /// <param name="incident">incident is customrID, productCode, title and description</param>
+        /// <param name="incident">incident object</param>
         public void AddIncident(Incident incident)
         {
             if (incident.CustomerID < 1)

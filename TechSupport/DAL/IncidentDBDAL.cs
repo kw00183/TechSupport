@@ -57,7 +57,7 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return incident by incidentID
         /// </summary>
         /// <param name="incidentID">incident id</param>
-        /// <returns>single incident</returns>
+        /// <returns>single incident in list</returns>
         public List<Incident> GetIncident(int incidentID)
         {
             List<Incident> incidentList = new List<Incident>();

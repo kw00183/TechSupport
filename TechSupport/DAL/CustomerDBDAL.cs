@@ -15,22 +15,64 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
+        /// method used to connect to the database and run a query to return customer by customerID
+        /// </summary>
+        /// <param name="customerID">customer id</param>
+        /// <returns>single customer in list</returns>
+        public List<Customer> GetCustomer(int customerID)
+        {
+            List<Customer> customerList = new List<Customer>();
+
+            string selectStatement =
+                "SELECT * " +
+                "FROM Customers " +
+                "WHERE " +
+                "CustomerID = @customerID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@customerID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@customerID"].Value = customerID;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Customer customer = new Customer
+                            {
+                                CustomerID = (int)reader["CustomerID"],
+                                Name = reader["Name"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                City = reader["City"].ToString(),
+                                State = reader["State"].ToString(),
+                                ZipCode = reader["ZipCode"].ToString(),
+                                Phone = reader["Phone"].ToString(),
+                                Email = reader["Email"].ToString()
+                            };
+                            customerList.Add(customer);
+                        }
+                    }
+                }
+            }
+            return customerList;
+        }
+
+        /// <summary>
         /// method used to connect to the database and run a query to return the customer ids and names
         /// </summary>
         /// <returns>list of all customer's ids and names</returns>
         public List<CustomerIDAndName> GetAllCustomerIDAndNames()
         {
+            List<CustomerIDAndName> customerList = new List<CustomerIDAndName>();
+
             string selectStatement =
                 "SELECT CustomerID, Name " +
                 "FROM Customers " +
                 "ORDER BY Name";
-            return ProcessIDAndNameList(selectStatement);
-        }
-
-        private static List<CustomerIDAndName> ProcessIDAndNameList(string sql)
-        {
-            List<CustomerIDAndName> customerList = new List<CustomerIDAndName>();
-            string selectStatement = sql;
+            
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();
