@@ -69,7 +69,8 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to get/return the incident with a specific IncidentID
         /// </summary>
-        /// <returns>list of incidents</returns>
+        /// <param name="incidentID">incident id</param>
+        /// <returns>list of incident objects</returns>
         public List<Incident> GetIncident(int incidentID)
         {
             if (incidentID < 1)
@@ -80,9 +81,23 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
+        /// method used to close the incident with a specific IncidentID
+        /// </summary>
+        /// <param name="incidentID">incident id</param>
+        public void CloseIncident(int incidentID)
+        {
+            if (incidentID < 1)
+            {
+                throw new ArgumentException("IncidentID cannot be less than 1");
+            }
+            incidentDBSource.CloseIncident(incidentID);
+        }
+
+        /// <summary>
         /// method used to get/return all the incidents with a specific CustomerID
         /// </summary>
-        /// <returns>list of all the incidents searched</returns>
+        /// <param name="customerID">customer id</param>
+        /// <returns>list of all the incident objects searched</returns>
         public List<Incident> GetSearchIncidents(int customerID)
         {
             if (customerID < 1)

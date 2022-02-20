@@ -295,6 +295,7 @@ namespace TechSupport.UserControls
             this.closeButton.TabIndex = 35;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -334,6 +335,7 @@ namespace TechSupport.UserControls
             this.incidentIDTextBox.Name = "incidentIDTextBox";
             this.incidentIDTextBox.Size = new System.Drawing.Size(100, 26);
             this.incidentIDTextBox.TabIndex = 27;
+            this.incidentIDTextBox.VisibleChanged += new System.EventHandler(this.IncidentIDTextBox_VisibleChanged);
             // 
             // getButton
             // 
@@ -358,6 +360,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.updateButton);
             this.Name = "UpdateIncidentUserControl";
             this.Size = new System.Drawing.Size(430, 500);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

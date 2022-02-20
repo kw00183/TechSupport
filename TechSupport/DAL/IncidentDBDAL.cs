@@ -15,12 +15,9 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
-        /// method used to connect to the database and run a query to add incident
+        /// used to connect to the database and run a query to add incident
         /// </summary>
-        /// <param name="customerID"> customer id</param>
-        /// <param name="productCode">product code</param>
-        /// <param name="title">incident title</param>
-        /// <param name="description">incident description</param>
+        /// <param name="incident">incident object</param>
         public void AddIncident(Incident incident)
         {
             string insertStatement =
@@ -144,6 +141,33 @@ namespace TechSupport.DAL
                 }
             }
             return searchIncidentList;
+        }
+
+        /// <summary>
+        /// method used to connect to the database and run a query to update incident to closed
+        /// </summary>
+        /// <param name="incidentID">incident id</param>
+        public void CloseIncident(int incidentID)
+        {
+            string updateStatement =
+                "UPDATE Incidents SET " +
+                "DateClosed = @time " +
+                "WHERE IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@incidentID"].Value = incidentID;
+                    updateCommand.Parameters.Add("@time", System.Data.SqlDbType.Date);
+                    updateCommand.Parameters["@time"].Value = DateTime.Now;
+                    Console.WriteLine(incidentID.ToString());
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>
