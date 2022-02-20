@@ -48,12 +48,37 @@ namespace TechSupport.UserControls
         {
             try
             {
-                int incidentID = int.Parse(this.incidentIDTextBox.Text);
-                this.incidentController.GetIncident(incidentID);
+                Boolean getIncidentCheck = Int32.TryParse(incidentIDTextBox.Text, out int incidentID);
+                List<Incident> incidentList = new List<Incident>();
+                string errorMessage = "";
+
+                if (getIncidentCheck == false)
+                {
+                    errorMessage = "IncidentID cannot be empty and must be a number";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else
+                {
+                    incidentList = incidentController.GetIncident(incidentID);
+                }
+
+                if (getIncidentCheck == true && incidentList.Count > 0)
+                {
+                    titleTextBox.Text = incidentList[0].Title;
+                    dateOpenedTextBox.Text = incidentList[0].DateOpened.ToShortDateString();
+                    descriptionTextBox.Text = incidentList[0].Description;
+                    errorMessage = "";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (getIncidentCheck == true && incidentList.Count == 0)
+                {
+                    errorMessage = "No Incident Found";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
             }
             catch (Exception)
             {
-                string errorMessage = "IncidentID must be number and cannot be empty";
+                string errorMessage = "Invalid form entries";
                 this.ShowInvalidErrorMessage(errorMessage);
             }
         }

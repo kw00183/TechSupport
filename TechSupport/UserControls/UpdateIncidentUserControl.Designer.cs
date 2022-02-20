@@ -45,7 +45,7 @@ namespace TechSupport.UserControls
             this.incidentIDTextBox = new System.Windows.Forms.TextBox();
             this.getButton = new System.Windows.Forms.Button();
             this.addTextTextBox = new System.Windows.Forms.TextBox();
-            this.dateopenedTextBox = new System.Windows.Forms.TextBox();
+            this.dateOpenedTextBox = new System.Windows.Forms.TextBox();
             this.technicianComboBox = new System.Windows.Forms.ComboBox();
             this.customerTextBox = new System.Windows.Forms.TextBox();
             this.productTextBox = new System.Windows.Forms.TextBox();
@@ -67,7 +67,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.Controls.Add(this.errorMessageLabel, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.addTextTextBox, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.descriptionTextBox, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.dateopenedTextBox, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.dateOpenedTextBox, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.titleTextBox, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.technicianComboBox, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.customerTextBox, 2, 0);
@@ -270,15 +270,15 @@ namespace TechSupport.UserControls
             this.addTextTextBox.Size = new System.Drawing.Size(252, 72);
             this.addTextTextBox.TabIndex = 35;
             // 
-            // dateopenedTextBox
+            // dateOpenedTextBox
             // 
-            this.dateopenedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateopenedTextBox.Location = new System.Drawing.Point(154, 139);
-            this.dateopenedTextBox.MaxLength = 200;
-            this.dateopenedTextBox.Multiline = true;
-            this.dateopenedTextBox.Name = "dateopenedTextBox";
-            this.dateopenedTextBox.Size = new System.Drawing.Size(123, 34);
-            this.dateopenedTextBox.TabIndex = 36;
+            this.dateOpenedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateOpenedTextBox.Location = new System.Drawing.Point(154, 139);
+            this.dateOpenedTextBox.MaxLength = 200;
+            this.dateOpenedTextBox.Multiline = true;
+            this.dateOpenedTextBox.Name = "dateOpenedTextBox";
+            this.dateOpenedTextBox.Size = new System.Drawing.Size(123, 34);
+            this.dateOpenedTextBox.TabIndex = 36;
             // 
             // technicianComboBox
             // 
@@ -384,7 +384,7 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.TextBox incidentIDTextBox;
         private System.Windows.Forms.Button getButton;
         private System.Windows.Forms.TextBox addTextTextBox;
-        private System.Windows.Forms.TextBox dateopenedTextBox;
+        private System.Windows.Forms.TextBox dateOpenedTextBox;
         private System.Windows.Forms.ComboBox technicianComboBox;
         private System.Windows.Forms.TextBox customerTextBox;
         private System.Windows.Forms.TextBox productTextBox;

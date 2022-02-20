@@ -84,10 +84,10 @@ namespace TechSupport.DAL
                             {
                                 IncidentID = (int)reader["IncidentID"],
                                 CustomerID = (int)reader["CustomerID"],
-                                ProductCode = reader["ProductCode"].ToString(),
-                                TechID = (int)reader["TechID"],
+                                ProductCode = reader["ProductCode"].ToString(),                                
+                                TechID = reader["TechID"] as int? ?? default,
                                 DateOpened = (DateTime)reader["DateOpened"],
-                                DateClosed = (DateTime)reader["DateClosed"],
+                                DateClosed = reader["DateClosed"] as DateTime? ?? default,
                                 Title = reader["Title"].ToString(),
                                 Description = reader["Description"].ToString()
                             };
