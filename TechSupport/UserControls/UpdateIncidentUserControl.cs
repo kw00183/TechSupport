@@ -88,9 +88,9 @@ namespace TechSupport.UserControls
                     }
                     else
                     {
-                        int technicianIndex = GetTechnicianList().FindIndex(p => p.TechID == techID);
-                        Console.WriteLine("bobsux" + technicianIndex.ToString());
-                        technicianComboBox.SelectedIndex= technicianIndex;
+                        int technicianIndex = 0;
+                        technicianIndex = GetTechnicianList().FindIndex(index => index.TechID == techID);
+                        technicianComboBox.SelectedIndex = technicianIndex;
                     }
 
                     customerTextBox.Text = GetCustomerName(incidentList[0].CustomerID);
@@ -135,6 +135,24 @@ namespace TechSupport.UserControls
         {
             errorMessageLabel.Text = errorMessage;
             errorMessageLabel.ForeColor = Color.Red;
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            this.PopulateTechnicianComboBox();
+            this.HideErrorMessage();
+            this.incidentIDTextBox.Clear();
+            this.customerTextBox.Clear();
+            this.productCodeTextBox.Clear();
+            this.dateOpenedTextBox.Clear();
+            this.titleTextBox.Clear();
+            this.descriptionTextBox.Clear();
+            this.addTextTextBox.Clear();
         }
 
         #endregion
