@@ -6,7 +6,7 @@ using TechSupport.Model;
 namespace TechSupport.Controller
 {
     /// <summary>
-    /// class controller used to access the DAL to search registrations
+    /// class controller used to access the DAL for registration
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
@@ -35,7 +35,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to get/return all the registrations
         /// </summary>
-        /// <returns>a list of all the registrations</returns>
+        /// <returns>a list of all the registration objects</returns>
         public List<Registration> GetAllRegistrations()
         {
             return registrationDBSource.GetAllRegistrations();

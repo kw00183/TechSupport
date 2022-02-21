@@ -55,7 +55,7 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return incident by incidentID
         /// </summary>
         /// <param name="incidentID">incident id</param>
-        /// <returns>single incident in list</returns>
+        /// <returns>single incident object in list</returns>
         public List<Incident> GetIncident(int incidentID)
         {
             List<Incident> incidentList = new List<Incident>();
@@ -101,7 +101,7 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return search incidents by customerID
         /// </summary>
         /// <param name="customerID">customer id</param>
-        /// <returns>list of searched incidents</returns>
+        /// <returns>list of searched incident objects</returns>
         public List<Incident> GetSearchIncidents(int customerID)
         {
             List<Incident> searchIncidentList = new List<Incident>();
@@ -165,7 +165,6 @@ namespace TechSupport.DAL
                     updateCommand.Parameters["@incidentID"].Value = incidentID;
                     updateCommand.Parameters.Add("@time", System.Data.SqlDbType.Date);
                     updateCommand.Parameters["@time"].Value = DateTime.Now;
-                    Console.WriteLine(incidentID.ToString());
                     updateCommand.ExecuteNonQuery();
                 }
             }
@@ -213,7 +212,7 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to return all incidents
         /// </summary>
-        /// <returns>all incidents list</returns>
+        /// <returns>all incident objects in list</returns>
         public List<Incident> GetAllIncidents()
         {
             List<Incident> allIncidentList = new List<Incident>();
@@ -255,7 +254,7 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to return the open incidents
         /// </summary>
-        /// <returns>list of open incidents</returns>
+        /// <returns>list of open incident objects</returns>
         public List<OpenIncident> GetOpenIncidents()
         {
             List<OpenIncident> openIncidentList = new List<OpenIncident>();

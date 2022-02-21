@@ -6,7 +6,7 @@ using TechSupport.Model;
 namespace TechSupport.Controller
 {
     /// <summary>
-    /// class controller used to access the DAL to search incidents in the incidents list
+    /// class controller used to access the DAL for incident
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
@@ -21,7 +21,7 @@ namespace TechSupport.Controller
         #region Constructors
 
         /// <summary>
-        /// create an IncidentController object to add incidents
+        /// create an IncidentController object
         /// </summary>
         public IncidentController()
         {
@@ -35,7 +35,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to get/return all the incidents
         /// </summary>
-        /// <returns>a list of all the incidents</returns>
+        /// <returns>a list of all the incident objects</returns>
         public List<Incident> GetAllIncidents()
         {
             return incidentDBSource.GetAllIncidents();
@@ -127,7 +127,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to return open incidents from DAL
         /// </summary>
-        /// <returns>return list of open incidents</returns>
+        /// <returns>return list of open incident objects</returns>
         public List<OpenIncident> GetOpenIncidents()
         {
             return incidentDBSource.GetOpenIncidents();

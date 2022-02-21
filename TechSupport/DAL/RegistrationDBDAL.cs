@@ -16,22 +16,18 @@ namespace TechSupport.DAL
         #region Methods
 
         /// <summary>
-        /// method used to connect to the database and run a query to return the customers names
+        /// method used to connect to the database and run a query to return the registrations
         /// </summary>
-        /// <returns>list of all customer's names</returns>
+        /// <returns>list of all registration objects</returns>
         public List<Registration> GetAllRegistrations()
         {
+            List<Registration> registrationList = new List<Registration>();
+
             string selectStatement =
                 "SELECT * " +
                 "FROM Registrations " +
                 "ORDER BY CustomerID, ProductCode";
-            return ProcessList(selectStatement);
-        }
-
-        private static List<Registration> ProcessList(string sql)
-        {
-            List<Registration> registrationList = new List<Registration>();
-            string selectStatement = sql;
+            
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();

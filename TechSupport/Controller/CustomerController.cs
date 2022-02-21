@@ -6,7 +6,7 @@ using TechSupport.Model;
 namespace TechSupport.Controller
 {
     /// <summary>
-    /// class controller used to access the DAL to search customers
+    /// class controller used to access the DAL for customer
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
@@ -36,7 +36,7 @@ namespace TechSupport.Controller
         /// method used to get a customer
         /// </summary>
         /// <param name="customerID">customer id</param>
-        /// <returns>list of customers</returns>
+        /// <returns>list of customer objects</returns>
         public List<Customer> GetCustomer(int customerID)
         {
             if (customerID < 1)
@@ -47,7 +47,7 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
-        /// method used to get/return all the customer names
+        /// method used to get/return all the customer id and names
         /// </summary>
         /// <returns>a list of all the customer ids and names</returns>
         public List<CustomerIDAndName> GetAllCustomerIDAndNames()

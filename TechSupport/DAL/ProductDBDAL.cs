@@ -18,7 +18,7 @@ namespace TechSupport.DAL
         /// method used to connect to the database and run a query to return product by productCode
         /// </summary>
         /// <param name="productCode">product code</param>
-        /// <returns>single product in list</returns>
+        /// <returns>single product object in list</returns>
         public List<Product> GetProduct(string productCode)
         {
             List<Product> productList = new List<Product>();
@@ -59,7 +59,7 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to return the product's codes and names
         /// </summary>
-        /// <returns>list of all product's codes and names</returns>
+        /// <returns>list of all product objects with code and name</returns>
         public List<ProductCodeAndName> GetAllProductCodeAndNames()
         {
             List<ProductCodeAndName> productList = new List<ProductCodeAndName>();

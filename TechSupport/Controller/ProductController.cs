@@ -6,7 +6,7 @@ using TechSupport.Model;
 namespace TechSupport.Controller
 {
     /// <summary>
-    /// class controller used to access the DAL to search products
+    /// class controller used to access the DAL for products
     /// Author: Kim Weible
     /// Version: Spring 2022
     /// </summary>
@@ -33,10 +33,10 @@ namespace TechSupport.Controller
         #region Methods
 
         /// <summary>
-        /// method used to get a product
+        /// method used to get a product by ProductCode
         /// </summary>
         /// <param name="productCode">product code</param>
-        /// <returns>list of products</returns>
+        /// <returns>list of product objects</returns>
         public List<Product> GetProduct(string productCode)
         {
             if (string.IsNullOrEmpty(productCode))
@@ -47,9 +47,9 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
-        /// method used to get/return all the product names
+        /// method used to get/return all the product codes and names
         /// </summary>
-        /// <returns>a list of all the product codes and names</returns>
+        /// <returns>a list of all the product objects with codes and names</returns>
         public List<ProductCodeAndName> GetAllProductCodeAndNames()
         {
             return productDBSource.GetAllProductCodeAndNames();
