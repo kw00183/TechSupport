@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using TechSupport.Model;
 
@@ -165,6 +166,45 @@ namespace TechSupport.DAL
                     updateCommand.Parameters.Add("@time", System.Data.SqlDbType.Date);
                     updateCommand.Parameters["@time"].Value = DateTime.Now;
                     Console.WriteLine(incidentID.ToString());
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// method used to connect to the database and run a query to update specific fields of incident
+        /// </summary>
+        /// <param name="incident">incident object</param>
+        public void UpdateIncident(Incident incident)
+        {
+            string updateStatement =
+                "UPDATE Incidents SET " +
+                "TechID = @techID " +
+                ", Description = @description " +
+                "WHERE IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@incidentID"].Value = incident.IncidentID;
+                    updateCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@description"].Value = incident.Description;
+
+                    if (incident.TechID == null || incident.TechID == 0)
+                    {
+                        updateCommand.Parameters.Add("@techID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@techID"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@techID"].Value = incident.TechID;
+                    }
+                    
                     updateCommand.ExecuteNonQuery();
                 }
             }

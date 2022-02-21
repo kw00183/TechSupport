@@ -81,6 +81,23 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
+        /// method used to update specific fields of incident
+        /// </summary>
+        /// <param name="incident">incident object</param>
+        public void UpdateIncident(Incident incident)
+        {
+            if (incident.IncidentID < 1)
+            {
+                throw new ArgumentException("IncidentID cannot be less than 1");
+            }
+            if (incident.Description.Length > 2000)
+            {
+                throw new ArgumentException("Description cannot be greater than 2000");
+            }
+            incidentDBSource.UpdateIncident(incident);
+        }
+
+        /// <summary>
         /// method used to close the incident with a specific IncidentID
         /// </summary>
         /// <param name="incidentID">incident id</param>

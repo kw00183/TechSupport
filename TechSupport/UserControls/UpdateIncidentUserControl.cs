@@ -23,7 +23,13 @@ namespace TechSupport.UserControls
         private readonly IncidentController incidentController;
         private readonly CustomerController customerController;
 
-        private int loadedIncidentID;
+        private int dbIncidentID;
+        private int dbCustomerID;
+        private string dbProductCode;
+        private int dbTechID;
+        private DateTime dbDateOpened;
+        private string dbTitle;
+        private string dbDescription;
 
         #endregion
 
@@ -67,6 +73,11 @@ namespace TechSupport.UserControls
 
         private void GetButton_Click(object sender, EventArgs e)
         {
+            GetIncident();   
+        }
+
+        private void GetIncident()
+        {
             try
             {
                 Boolean getIncidentCheck = Int32.TryParse(incidentIDTextBox.Text, out int incidentID);
@@ -98,13 +109,10 @@ namespace TechSupport.UserControls
                         technicianComboBox.SelectedIndex = technicianIndex;
                     }
 
-                    loadedIncidentID = (int)incidentList[0].IncidentID;
+                    AssignDatabaseFields(incidentList);
 
-                    customerTextBox.Text = GetCustomerName(incidentList[0].CustomerID);
-                    productCodeTextBox.Text = incidentList[0].ProductCode.Trim();
-                    titleTextBox.Text = incidentList[0].Title;
-                    dateOpenedTextBox.Text = incidentList[0].DateOpened.ToShortDateString();
-                    descriptionTextBox.Text = incidentList[0].Description;
+                    AssignTextBoxFields();
+
                     errorMessage = "";
                     this.ShowInvalidErrorMessage(errorMessage);
 
@@ -131,6 +139,29 @@ namespace TechSupport.UserControls
                 string errorMessage = "Invalid form entries";
                 this.ShowInvalidErrorMessage(errorMessage);
             }
+        }
+
+        private void AssignDatabaseFields(List<Incident> incidentList)
+        {
+            dbIncidentID = (int)incidentList[0].IncidentID;
+            dbCustomerID = incidentList[0].CustomerID;
+            dbProductCode = incidentList[0].ProductCode;
+            dbTechID = (int)incidentList[0].TechID;
+            dbDateOpened = incidentList[0].DateOpened;
+            dbTitle = incidentList[0].Title;
+            dbDescription = incidentList[0].Description;
+        }
+
+        private void AssignTextBoxFields()
+        {
+            customerTextBox.Text = GetCustomerName(dbCustomerID);
+            productCodeTextBox.Text = dbProductCode.Trim();
+            titleTextBox.Text = dbTitle;
+            titleTextBox.ScrollBars = ScrollBars.Vertical;
+            dateOpenedTextBox.Text = dbDateOpened.ToShortDateString();
+            descriptionTextBox.Text = dbDescription;
+            descriptionTextBox.ScrollBars = ScrollBars.Vertical;
+            addTextTextBox.Text = "";
         }
 
         private void EnableUpdateFormElements(Boolean enable)
@@ -175,6 +206,132 @@ namespace TechSupport.UserControls
             return incidentClosed;
         }
 
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            ValidateUpdateFields();
+        }
+
+        private void ValidateUpdateFields()
+        {
+            string incidentIDEntered = incidentIDTextBox.Text;
+            string addTextTEntered = addTextTextBox.Text;
+            try
+            {
+                Boolean getIncidentCheck = Int32.TryParse(incidentIDEntered, out int incidentID);
+                string errorMessage = "";
+
+                int technicianIndexSelected = technicianComboBox.SelectedIndex;
+                int technicianSelected = GetTechnicianList()[technicianIndexSelected].TechID;
+
+                if (getIncidentCheck == false)
+                {
+                    errorMessage = "IncidentID cannot be empty and must be a number";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (dbIncidentID != incidentID)
+                {
+                    errorMessage = "IncidentID has changed, so new entry cannot update";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (dbIncidentID == incidentID && dbDescription.Length > 2000)
+                {
+                    errorMessage = "Description cannot accept any more text";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (dbIncidentID == incidentID && (addTextTEntered.Length > 0 || dbTechID != technicianSelected))
+                {
+                    string concatAddText = "";
+                    if (addTextTEntered.Length > 0)
+                    {
+                        concatAddText = "\r\n<" + DateTime.Now.ToString("MM/dd/yyyy") + "> " + addTextTEntered;
+                    }
+                    UpdateIncident(technicianSelected, concatAddText);
+                }
+                else
+                {
+                    errorMessage = "No changes made";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+            }
+            catch (Exception)
+            {
+                string errorMessage = "Invalid entry";
+                this.ShowInvalidErrorMessage(errorMessage);
+            }
+        }
+
+        private void UpdateIncident(int? techID, string concatAddText)
+        {
+            string errorMessage;
+            try
+            {
+                if (concatAddText != "" && dbDescription.Length <= 1800)
+                {
+                    if (concatAddText.Length > 200)
+                    {
+                        string message = "The new text to add exceeds 200 characters. Do you want to truncate it and proceed?";
+                        string title = "Update Incident";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult result = MessageBox.Show(message, title, buttons);
+                        if (result == DialogResult.Yes)
+                        {
+                            Incident newIncident = CreateUpdateIncident(techID, concatAddText.Substring(0, 200));
+                            errorMessage = "Updated description with added truncated message";
+                            this.ProcessUpdate(newIncident, errorMessage);
+                        }
+                    }
+                    else if (concatAddText.Length <= 200)
+                    {
+                        Incident newIncident = CreateUpdateIncident(techID, concatAddText);
+                        errorMessage = "Updated description with added message";
+                        this.ProcessUpdate(newIncident, errorMessage);
+                    }
+                }
+                else if (concatAddText != "" && dbDescription.Length + concatAddText.Substring(0, 200).Trim().Length > 2000)
+                {
+                    errorMessage = "No more updates allowed to description";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (dbTechID != techID)
+                {
+                    Incident newIncident = CreateUpdateIncident(techID, concatAddText);
+                    errorMessage = "Updated technician";
+                    this.ProcessUpdate(newIncident, errorMessage);
+                }
+            }
+            catch (Exception)
+            {
+                errorMessage = "Invalid entry";
+                this.ShowInvalidErrorMessage(errorMessage);
+            }
+        }
+
+        private void ProcessUpdate(Incident newIncident, string errorMessage)
+        {
+            incidentController.UpdateIncident(newIncident);
+            GetIncident();
+            this.ShowInvalidErrorMessage(errorMessage);
+        }
+
+
+        private Incident CreateUpdateIncident(int? techID, string concatAddText)
+        {
+            int? updateTechID;
+            string updateDescription = concatAddText.Length == 0 ? dbDescription : dbDescription + concatAddText;
+            updateTechID = techID == 0 ? null : techID;
+
+            Incident newIncident = new Incident(
+                dbIncidentID
+                , dbCustomerID
+                , dbProductCode
+                , updateTechID
+                , dbDateOpened
+                , null
+                , dbTitle
+                , updateDescription);
+            return newIncident;
+        }
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             string message = "The incident cannot be updated in this form once closed. Do you still want to close the incident?";
@@ -194,14 +351,15 @@ namespace TechSupport.UserControls
                         errorMessage = "IncidentID cannot be empty and must be a number";
                         this.ShowInvalidErrorMessage(errorMessage);
                     }
-                    else if (loadedIncidentID == incidentID)
+                    else if (dbIncidentID != incidentID)
                     {
-                        incidentController.CloseIncident(incidentID);
+                        errorMessage = "IncidentID has changed, so new entry cannot close";
+                        this.ShowInvalidErrorMessage(errorMessage);
                     }
                     else
                     {
-                        errorMessage = "IncidentID has changed";
-                        this.ShowInvalidErrorMessage(errorMessage);
+                        incidentController.CloseIncident(incidentID);
+                        GetIncident();
                     }
                 }
                 catch (Exception)
