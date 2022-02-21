@@ -206,6 +206,20 @@ namespace TechSupport.UserControls
             return incidentClosed;
         }
 
+        private Boolean HasDescriptionChanged(int incidentID)
+        {
+            Boolean descriptionChanged = false;
+            List<Incident> incidentList = incidentController.GetIncident(incidentID);
+            string oldDescription = dbDescription;
+            string newDescription = incidentList[0].Description;
+
+            if (oldDescription != newDescription)
+            {
+                descriptionChanged = true;
+            }
+            return descriptionChanged;
+        }
+
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             ValidateUpdateFields();
@@ -231,6 +245,16 @@ namespace TechSupport.UserControls
                 else if (dbIncidentID != incidentID)
                 {
                     errorMessage = "IncidentID has changed, so new entry cannot update";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (IsIncidentClosed(incidentID))
+                {
+                    errorMessage = "Incident was closed by another user";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (HasDescriptionChanged(incidentID))
+                {
+                    errorMessage = "Description has changed, so new entry cannot update";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (dbIncidentID == incidentID && dbDescription.Length > 2000)
@@ -355,6 +379,12 @@ namespace TechSupport.UserControls
                     {
                         errorMessage = "IncidentID has changed, so new entry cannot close";
                         this.ShowInvalidErrorMessage(errorMessage);
+                    }
+                    else if (IsIncidentClosed(incidentID))
+                    {
+                        errorMessage = "Incident was closed by another user";
+                        this.ShowInvalidErrorMessage(errorMessage);
+                        GetIncident();
                     }
                     else
                     {
