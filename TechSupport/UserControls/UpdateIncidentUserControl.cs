@@ -358,7 +358,6 @@ namespace TechSupport.UserControls
         private void CloseButton_Click(object sender, EventArgs e)
         {
             int technicianIndexSelected = technicianComboBox.SelectedIndex;
-            int technicianSelected = GetTechnicianList()[technicianIndexSelected].TechID;
 
             string message = "The incident cannot be updated in this form once closed. Do you still want to close the incident?";
             string title = "Close Incident";
