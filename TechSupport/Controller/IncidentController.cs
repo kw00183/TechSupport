@@ -70,8 +70,8 @@ namespace TechSupport.Controller
         /// method used to get/return the incident with a specific IncidentID
         /// </summary>
         /// <param name="incidentID">incident id</param>
-        /// <returns>list of incident objects</returns>
-        public List<Incident> GetIncident(int incidentID)
+        /// <returns>incident object</returns>
+        public Incident GetIncident(int incidentID)
         {
             if (incidentID < 1)
             {
@@ -83,18 +83,28 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to update specific fields of incident
         /// </summary>
-        /// <param name="incident">incident object</param>
-        public void UpdateIncident(Incident incident)
+        /// <param name="oldIncident">old Incident object</param>
+        /// <param name="newIncident">new Incident object</param>
+        /// <returns>boolean if Incident object was updated</returns>
+        public bool UpdateIncident(Incident oldIncident, Incident newIncident)
         {
-            if (incident.IncidentID < 1)
+            if (oldIncident.IncidentID < 1)
             {
-                throw new ArgumentException("IncidentID cannot be less than 1");
+                throw new ArgumentException("Old IncidentID cannot be less than 1");
             }
-            if (incident.Description.Length > 2000)
+            if (oldIncident.Description.Length > 2000)
             {
-                throw new ArgumentException("Description cannot be greater than 2000");
+                throw new ArgumentException("Old Description cannot be greater than 2000");
             }
-            incidentDBSource.UpdateIncident(incident);
+            if (newIncident.IncidentID < 1)
+            {
+                throw new ArgumentException("New IncidentID cannot be less than 1");
+            }
+            if (newIncident.Description.Length > 2000)
+            {
+                throw new ArgumentException("New Description cannot be greater than 2000");
+            }
+            return incidentDBSource.UpdateIncident(oldIncident, newIncident);
         }
 
         /// <summary>
