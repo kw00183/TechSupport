@@ -110,14 +110,28 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to close the incident with a specific IncidentID
         /// </summary>
-        /// <param name="incidentID">incident id</param>
-        public void CloseIncident(int incidentID)
+        /// <param name="oldIncident">old Incident object</param>
+        /// <param name="newIncident">new Incident object</param>
+        /// <returns>boolean if Incident object was closed</returns>
+        public bool CloseIncident(Incident oldIncident, Incident newIncident)
         {
-            if (incidentID < 1)
+            if (oldIncident.IncidentID < 1)
             {
-                throw new ArgumentException("IncidentID cannot be less than 1");
+                throw new ArgumentException("Old IncidentID cannot be less than 1");
             }
-            incidentDBSource.CloseIncident(incidentID);
+            if (oldIncident.Description.Length > 2000)
+            {
+                throw new ArgumentException("Old Description cannot be greater than 2000");
+            }
+            if (newIncident.IncidentID < 1)
+            {
+                throw new ArgumentException("New IncidentID cannot be less than 1");
+            }
+            if (newIncident.Description.Length > 2000)
+            {
+                throw new ArgumentException("New Description cannot be greater than 2000");
+            }
+            return incidentDBSource.CloseIncident(oldIncident, newIncident);
         }
 
         /// <summary>

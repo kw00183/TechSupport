@@ -26,6 +26,7 @@ namespace TechSupport.UserControls
         private Incident incident;
         private int customerID;
         private DateTime dateOpened;
+        private DateTime? dateClosed;
 
         #endregion
 
@@ -62,6 +63,18 @@ namespace TechSupport.UserControls
             technicianComboBox.SelectedIndex = 0;
         }
 
+        private bool IsIncidentClosed(int incidentID)
+        {
+            bool incidentClosed = false;
+            Incident incident = incidentController.GetIncident(incidentID);
+
+            if (DateTime.Parse(incident.DateClosed.ToString()).Year > 1900)
+            {
+                incidentClosed = true;
+            }
+            return incidentClosed;
+        }
+
         private List<TechnicianIDAndName> GetTechnicianList()
         {
             List<TechnicianIDAndName> newList = technicianController.GetAllTechnicianIDAndNames();
@@ -78,7 +91,7 @@ namespace TechSupport.UserControls
         {
             try
             {
-                Boolean getIncidentCheck = Int32.TryParse(incidentIDTextBox.Text, out int incidentID);
+                bool getIncidentCheck = Int32.TryParse(incidentIDTextBox.Text, out int incidentID);
                 incident = new Incident();
                 string errorMessage = "";
 
@@ -92,12 +105,13 @@ namespace TechSupport.UserControls
                     incident = incidentController.GetIncident(incidentID);
                     customerID = incident.CustomerID;
                     dateOpened = incident.DateOpened;
+                    dateClosed = incident.DateClosed;
                 }
 
-                if (getIncidentCheck == true)
+                if (getIncidentCheck == true && incident.CustomerID > 0)
                 {
                     var techID = incident.TechID;
-
+                    
                     if (techID == null)
                     {
                         technicianComboBox.SelectedIndex = 0;
@@ -114,9 +128,9 @@ namespace TechSupport.UserControls
                     errorMessage = "";
                     this.ShowInvalidErrorMessage(errorMessage);
 
-                    Boolean incidentClosed = this.IsIncidentClosed(incidentID);
+                    bool incidentClosed = this.IsIncidentClosed(incidentID);
 
-                    if (!incidentClosed)
+                    if (incidentClosed == false)
                     {
                         this.EnableUpdateFormElements(true);
                     }
@@ -145,7 +159,7 @@ namespace TechSupport.UserControls
             incident.ProductCode = productCodeTextBox.Text;
             incident.TechID = GetTechIDSelected();
             incident.DateOpened = dateOpened;
-            incident.DateClosed = null;
+            incident.DateClosed = dateClosed;
             incident.Title = titleTextBox.Text;
             incident.Description = descriptionTextBox.Text + addText;
         }
@@ -155,15 +169,15 @@ namespace TechSupport.UserControls
             customerTextBox.Text = GetCustomerName(incident.CustomerID);
             productCodeTextBox.Text = incident.ProductCode.Trim();
             titleTextBox.Text = incident.Title;
-            titleTextBox.ScrollBars = ScrollBars.Vertical;
+                titleTextBox.ScrollBars = ScrollBars.Vertical;
             dateOpenedTextBox.Text = incident.DateOpened.ToShortDateString();
             descriptionTextBox.Text = incident.Description;
-            descriptionTextBox.ScrollBars = ScrollBars.Vertical;
+                descriptionTextBox.ScrollBars = ScrollBars.Vertical;
             addTextTextBox.Text = "";
-            addTextTextBox.ScrollBars = ScrollBars.Vertical;
+                addTextTextBox.ScrollBars = ScrollBars.Vertical;
         }
 
-        private void EnableUpdateFormElements(Boolean enable)
+        private void EnableUpdateFormElements(bool enable)
         {
             if (enable)
             {
@@ -193,69 +207,15 @@ namespace TechSupport.UserControls
             return customerName;
         }
 
-        private Boolean IsIncidentClosed(int incidentID)
-        {
-            Boolean incidentClosed = false;
-            Incident incident = incidentController.GetIncident(incidentID);
-
-            if (DateTime.Parse(incident.DateClosed.ToString()).Year > 1900)
-            {
-                incidentClosed = true;
-            }
-            return incidentClosed;
-        }
-
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            ValidateUpdate();
+            ProcessUpdate();
         }
 
         private int GetTechIDSelected()
         {
             int technicianIndexSelected = technicianComboBox.SelectedIndex;
             return GetTechnicianList()[technicianIndexSelected].TechID;
-        }
-
-        private void ValidateUpdate()
-        {
-            string incidentIDEntered = incidentIDTextBox.Text;
-            string addTextEntered = addTextTextBox.Text;
-            try
-            {
-                Boolean getIncidentCheck = Int32.TryParse(incidentIDEntered, out int incidentID);
-                string errorMessage = "";
-
-                if (getIncidentCheck == false)
-                {
-                    errorMessage = "IncidentID cannot be empty and must be a number";
-                    this.ShowInvalidErrorMessage(errorMessage);
-                }
-                else if (IsIncidentClosed(incidentID))
-                {
-                    GetIncident();
-                    errorMessage = "Incident was closed by another user";
-                    this.ShowInvalidErrorMessage(errorMessage);
-                }
-                else if (incident.IncidentID == incidentID && addTextEntered.Length == 0 && incident.TechID == GetTechIDSelected())
-                {
-                    errorMessage = "Cannot update as no changes made";
-                    this.ShowInvalidErrorMessage(errorMessage);
-                }
-                else if (incident.IncidentID == incidentID && incident.Description.Length >= 200 && addTextEntered.Length > 0)
-                {
-                    errorMessage = "Description cannot accept any more text";
-                    this.ShowInvalidErrorMessage(errorMessage);
-                }
-                else if (incident.IncidentID == incidentID && (addTextEntered.Length > 0 || incident.TechID != GetTechIDSelected()))
-                {
-                    TryUpdateIncident();
-                }
-            }
-            catch (Exception)
-            {
-                string errorMessage = "Invalid validation";
-                this.ShowInvalidErrorMessage(errorMessage);
-            }
         }
 
         private string CreateAddTextConcatenation()
@@ -269,122 +229,140 @@ namespace TechSupport.UserControls
             return concatAddText;
         }
 
-        private void TryUpdateIncident()
+        private void ProcessUpdate()
         {
+            string addTextEntered = addTextTextBox.Text;
             string errorMessage;
             try
             {
-                Incident newIncident = new Incident();
-                newIncident.IncidentID = incident.IncidentID;
+                Incident newIncident = new Incident
+                {
+                    IncidentID = incident.IncidentID
+                };
+                this.PutIncidentData(newIncident, CreateAddTextConcatenation());
 
                 int newDescriptionLength = incident.Description.Length + CreateAddTextConcatenation().Length;
-                if (newDescriptionLength > 200 && CreateAddTextConcatenation().Length > 0)
+
+                if (incident.Description.Length >= 200 && addTextEntered.Length > 0)
+                {
+                    errorMessage = "Description cannot accept any more text";
+                    addTextTextBox.Text = "";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if ((addTextEntered.Length > 0 || incident.TechID != GetTechIDSelected()) &&
+                    newDescriptionLength > 200 && CreateAddTextConcatenation().Length > 0)
                 {
                     string message = "The new text to add exceeds allowed characters. Do you want to truncate it and proceed?";
                     string title = "Update Incident";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result = MessageBox.Show(message, title, buttons);
-                    
+
                     int truncatedConcatAddTextLength = 200 - incident.Description.Length;
-                    
+
                     if (result == DialogResult.Yes)
                     {
                         string addText = CreateAddTextConcatenation().Substring(0, truncatedConcatAddTextLength);
                         this.PutIncidentData(newIncident, addText);
+
+                        incidentController.UpdateIncident(incident, newIncident);
+                        GetIncident();
                         errorMessage = "Updated description with added truncated message";
-                        this.ProcessUpdate(incident, newIncident, errorMessage);
+                        this.ShowInvalidErrorMessage(errorMessage);
                     }
                 }
-                else if (newDescriptionLength <= 200 && CreateAddTextConcatenation().Length > 0)
+                else if ((addTextEntered.Length > 0 || incident.TechID != GetTechIDSelected()) && 
+                    newDescriptionLength <= 200 && CreateAddTextConcatenation().Length > 0)
                 {
                     string addText = CreateAddTextConcatenation();
                     this.PutIncidentData(newIncident, addText);
+
+                    incidentController.UpdateIncident(incident, newIncident);
+                    GetIncident();
                     errorMessage = "Updated description with added message";
-                    this.ProcessUpdate(incident, newIncident, errorMessage);
+                    this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (incident.TechID != GetTechIDSelected())
                 {
                     string addText = CreateAddTextConcatenation();
                     this.PutIncidentData(newIncident, addText);
+
+                    incidentController.UpdateIncident(incident, newIncident);
+                    GetIncident();
                     errorMessage = "Updated technician";
-                    this.ProcessUpdate(incident, newIncident, errorMessage);
+                    this.ShowInvalidErrorMessage(errorMessage);
                 }
-            }
-            catch (Exception)
-            {
-                errorMessage = "Invalid update";
-                this.ShowInvalidErrorMessage(errorMessage);
-            }
-        }
-
-        private void ProcessUpdate(Incident oldIncident, Incident newIncident, string errorMessage)
-        {
-            try
-            {
-                Boolean isIncidentUpdated = incidentController.UpdateIncident(oldIncident, newIncident);
-
-                if (!isIncidentUpdated)
+                else if (!incidentController.UpdateIncident(incident, newIncident))
                 {
                     GetIncident();
-                    errorMessage = "Description or Technician has changed by another user, so new entry cannot update";
+                    errorMessage = "Description, Technician or Status has changed by another user, so cannot update";
+                    this.ShowInvalidErrorMessage(errorMessage);
+                }
+                else if (addTextEntered.Length == 0 && incident.TechID == GetTechIDSelected())
+                {
+                    GetIncident();
+                    errorMessage = "No changes made";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else
                 {
+                    incidentController.UpdateIncident(incident, newIncident);
                     GetIncident();
-                    errorMessage = "Updated";
+                    errorMessage = "Incident Updated";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
                 errorMessage = "Invalid update";
                 this.ShowInvalidErrorMessage(errorMessage);
             }
         }
 
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            ProcessClose();
+        }
+
+        private void ProcessClose()
+        {
             int technicianIndexSelected = technicianComboBox.SelectedIndex;
+
+            Incident newIncident = new Incident
+            {
+                IncidentID = incident.IncidentID
+            };
+            this.PutIncidentData(newIncident, CreateAddTextConcatenation());
 
             string message = "The incident cannot be updated in this form once closed. Do you still want to close the incident?";
             string title = "Close Incident";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
+
             if (result == DialogResult.Yes)
             {
-                string incidentIDEntered = incidentIDTextBox.Text;
                 try
                 {
-                    Boolean getIncidentCheck = Int32.TryParse(incidentIDEntered, out int incidentID);
-                    string errorMessage = "";
+                    string errorMessage;
 
-                    if (getIncidentCheck == false)
-                    {
-                        errorMessage = "IncidentID cannot be empty and must be a number";
-                        this.ShowInvalidErrorMessage(errorMessage);
-                    }
-                    else if (incident.IncidentID != incidentID)
-                    {
-                        errorMessage = "IncidentID has changed, so new entry cannot close";
-                        this.ShowInvalidErrorMessage(errorMessage);
-                    }
-                    else if (IsIncidentClosed(incidentID))
+                    if (GetTechnicianList()[technicianIndexSelected].TechID == 0)
                     {
                         GetIncident();
-                        errorMessage = "Incident was closed by another user";
+                        errorMessage = "Cannot close incident without assigning technician";
                         this.ShowInvalidErrorMessage(errorMessage);
                     }
-                    else if (GetTechnicianList()[technicianIndexSelected].TechID == 0)
+                    else if (!incidentController.CloseIncident(incident, newIncident))
                     {
-                        errorMessage = "Cannot close incident without assigning technician";
+                        GetIncident();
+                        errorMessage = "Incident has already been closed";
                         this.ShowInvalidErrorMessage(errorMessage);
                     }
                     else
                     {
-                        incidentController.CloseIncident(incidentID);
+                        incidentController.CloseIncident(incident, newIncident);
                         GetIncident();
+                        errorMessage = "Incident closed";
+                        this.ShowInvalidErrorMessage(errorMessage);
                     }
                 }
                 catch (Exception)
