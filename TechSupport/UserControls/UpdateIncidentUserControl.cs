@@ -418,8 +418,6 @@ namespace TechSupport.UserControls
             this.ClearForm();
         }
 
-        #endregion
-
         private void IncidentIDTextBox_TextChanged(object sender, EventArgs e)
         {
             this.PopulateTechnicianComboBox();
@@ -435,5 +433,7 @@ namespace TechSupport.UserControls
             this.updateButton.Enabled = false;
             this.closeButton.Enabled = false;
         }
+
+        #endregion
     }
 }
