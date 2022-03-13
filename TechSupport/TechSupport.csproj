@@ -66,6 +66,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCodeAndName.cs" />
     <Compile Include="Model\Registration.cs" />
+    <Compile Include="Model\Technician.cs" />
     <Compile Include="Model\TechnicianIDAndName.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +93,12 @@
     </Compile>
     <Compile Include="UserControls\SearchIncidentUserControl.Designer.cs">
       <DependentUpon>SearchIncidentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TechnicianIncidentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TechnicianIncidentUserControl.Designer.cs">
+      <DependentUpon>TechnicianIncidentUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UpdateIncidentUserControl.cs">
       <SubType>UserControl</SubType>
@@ -140,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SearchIncidentUserControl.resx">
       <DependentUpon>SearchIncidentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TechnicianIncidentUserControl.resx">
+      <DependentUpon>TechnicianIncidentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UpdateIncidentUserControl.resx">
       <DependentUpon>UpdateIncidentUserControl.cs</DependentUpon>
