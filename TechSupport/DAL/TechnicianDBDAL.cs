@@ -52,7 +52,7 @@ namespace TechSupport.DAL
         }
 
         /// <summary>
-        /// method used to connect to the database and run a query to return the all technicians assigned to tickets
+        /// method used to connect to the database and run a query to return the all technicians assigned to incidents
         /// </summary>
         /// <returns>list of all technician objects</returns>
         public List<Technician> GetAssignedTechnicians()

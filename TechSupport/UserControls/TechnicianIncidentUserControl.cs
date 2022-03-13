@@ -51,7 +51,7 @@ namespace TechSupport.UserControls
             technicianList = technicianController.GetAssignedTechnicians();
             technicianNameComboBox.DataSource = technicianList;
 
-            technician = technicianList[technicianNameComboBox.SelectedIndex];
+            technician = technicianList[0];
 
             technicianOpenIncidentList = incidentController.GetTechnicianOpenIncidents(technician.TechID);
             PopulateDataGridView(technicianOpenIncidentList);
@@ -70,8 +70,6 @@ namespace TechSupport.UserControls
 
             technicianOpenIncidentList = incidentController.GetTechnicianOpenIncidents(technician.TechID);
             PopulateDataGridView(technicianOpenIncidentList);
-
-            
         }
 
         private void PopulateDataGridView(List<OpenIncidentAssigned> technicianOpenIncidentList)
@@ -87,6 +85,17 @@ namespace TechSupport.UserControls
                 assigned.Title = go.Title;
                 technicianOpenIncidentBindingSource.Add(assigned);
             }
+        }
+
+        private void TechnicianNameComboBox_VisibleChanged(object sender, EventArgs e)
+        {
+            technicianList = technicianController.GetAssignedTechnicians();
+            technicianNameComboBox.DataSource = technicianList;
+
+            technician = technicianList[0];
+
+            technicianOpenIncidentList = incidentController.GetTechnicianOpenIncidents(technician.TechID);
+            PopulateDataGridView(technicianOpenIncidentList);
         }
 
         #endregion
