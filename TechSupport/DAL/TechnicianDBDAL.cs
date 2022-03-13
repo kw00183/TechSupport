@@ -52,6 +52,45 @@ namespace TechSupport.DAL
         }
 
         /// <summary>
+        /// method used to connect to the database and run a query to return the all technicians assigned to tickets
+        /// </summary>
+        /// <returns>list of all technician objects</returns>
+        public List<Technician> GetAssignedTechnicians()
+        {
+            List<Technician> technicianList = new List<Technician>();
+
+            string selectStatement =
+                "SELECT DISTINCT TEC.* " +
+                "FROM Technicians TEC " +
+                "INNER JOIN Incidents INC " +
+                "ON TEC.TechID = INC.TechID " +
+                "ORDER BY Name";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Technician technician = new Technician
+                            {
+                                TechID = (int)reader["TechID"],
+                                Name = reader["Name"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Phone = reader["Phone"].ToString()
+                            };
+                            technicianList.Add(technician);
+                        }
+                    }
+                }
+            }
+            return technicianList;
+        }
+
+        /// <summary>
         /// method used to connect to the database and run a query to return the technician's ids and names
         /// </summary>
         /// <returns>list of all technician objects with id and name</returns>

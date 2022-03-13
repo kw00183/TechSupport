@@ -178,6 +178,15 @@
     <EmbeddedResource Include="View\SearchIncidentDialog.resx">
       <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\TechSupport.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.CustomerIDAndName.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.Incident.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.OpenIncident.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.Product.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.ProductCodeAndName.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.Registration.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.Technician.datasource" />
+    <None Include="Properties\DataSources\TechSupport.Model.TechnicianIDAndName.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
