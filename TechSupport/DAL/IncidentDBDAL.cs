@@ -469,6 +469,62 @@ namespace TechSupport.DAL
             return openIncidentList;
         }
 
+        /// <summary>
+        /// method used to connect to the database and run a query to return the open incidents assigned
+        /// </summary>
+        /// <param name="techID">technician id</param>
+        /// <returns>open incident assigned objects</returns>
+        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(int techID)
+        {
+            List<OpenIncidentAssigned> technicianOpenIncidentList = new List<OpenIncidentAssigned>();
+
+            string selectStatement =
+                "SELECT " +
+                "PRD.Name AS Name" +
+                ", INC.DateOpened " +
+                ", ISNULL(CUS.Name, '') AS Customer" +
+                ", INC.TechID" +
+                ", INC.Title " +
+                "FROM Incidents INC " +
+                "INNER JOIN Products PRD " +
+                "    ON INC.ProductCode = PRD.ProductCode " +
+                "LEFT JOIN Customers CUS " +
+                "    ON INC.CustomerID = CUS.CustomerID " +
+                "WHERE " +
+                "INC.DateClosed IS NULL " +
+                "AND INC.DateOpened IS NOT NULL " +
+                "AND INC.TechID = @TechID " +
+                "ORDER BY INC.DateOpened";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@TechID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@TechID"].Value = techID;
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            OpenIncidentAssigned technicianOpenIncident = new OpenIncidentAssigned
+                            {
+                                Name = reader["Name"].ToString(),
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                Customer = reader["Customer"].ToString(),
+                                TechID = (int)reader["TechID"],
+                                Title = reader["Title"].ToString()
+                            };
+                            technicianOpenIncidentList.Add(technicianOpenIncident);
+                        }
+                    }
+                }
+            }
+            return technicianOpenIncidentList;
+        }
+
         #endregion
     }
 }

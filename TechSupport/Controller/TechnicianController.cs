@@ -51,9 +51,9 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
-        /// method used to get/return all the technicians assigned to incidents
+        /// method used to get/return all the technicians with assigned tickets
         /// </summary>
-        /// <returns>a list of assigned technician objects</returns>
+        /// <returns>a list of all the technician objects</returns>
         public List<Technician> GetAssignedTechnicians()
         {
             return technicianDBSource.GetAssignedTechnicians();

@@ -157,6 +157,16 @@ namespace TechSupport.Controller
             return incidentDBSource.GetOpenIncidents();
         }
 
+        /// <summary>
+        /// method used to return open incidents assigned from DAL
+        /// </summary>
+        /// <param name="techID">technician id</param>
+        /// <returns>list of assigned open incident objects</returns>
+        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(int techID)
+        {
+            return incidentDBSource.GetTechnicianOpenIncidents(techID);
+        }
+
         #endregion
     }
 }

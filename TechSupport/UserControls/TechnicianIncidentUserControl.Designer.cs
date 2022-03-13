@@ -31,17 +31,27 @@ namespace TechSupport.UserControls
         {
             this.components = new System.ComponentModel.Container();
             this.phoneTextBox = new System.Windows.Forms.TextBox();
+            this.technicianBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.phoneLabel = new System.Windows.Forms.Label();
             this.technicianNameComboBox = new System.Windows.Forms.ComboBox();
-            this.technicianBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.technicianNameLabel = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.technicianOpenIncidentDataGridView = new System.Windows.Forms.DataGridView();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOpenedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.technicianOpenIncidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.incidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.openIncidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.technicianOpenIncidentDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.technicianOpenIncidentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incidentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // phoneTextBox
@@ -49,18 +59,22 @@ namespace TechSupport.UserControls
             this.phoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianBindingSource, "Phone", true));
             this.phoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(146, 91);
+            this.phoneTextBox.Location = new System.Drawing.Point(143, 91);
             this.phoneTextBox.MaxLength = 50;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(268, 26);
             this.phoneTextBox.TabIndex = 23;
+            // 
+            // technicianBindingSource
+            // 
+            this.technicianBindingSource.DataSource = typeof(TechSupport.Model.Technician);
             // 
             // phoneLabel
             // 
             this.phoneLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneLabel.Location = new System.Drawing.Point(77, 88);
+            this.phoneLabel.Location = new System.Drawing.Point(71, 88);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.phoneLabel.Size = new System.Drawing.Size(55, 25);
@@ -75,22 +89,18 @@ namespace TechSupport.UserControls
             this.technicianNameComboBox.DisplayMember = "Name";
             this.technicianNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.technicianNameComboBox.FormattingEnabled = true;
-            this.technicianNameComboBox.Location = new System.Drawing.Point(146, 3);
+            this.technicianNameComboBox.Location = new System.Drawing.Point(140, 3);
             this.technicianNameComboBox.Name = "technicianNameComboBox";
             this.technicianNameComboBox.Size = new System.Drawing.Size(268, 28);
             this.technicianNameComboBox.TabIndex = 37;
-            this.technicianNameComboBox.SelectedIndexChanged += new System.EventHandler(this.technicianNameComboBox_SelectedIndexChanged);
-            // 
-            // technicianBindingSource
-            // 
-            this.technicianBindingSource.DataSource = typeof(TechSupport.Model.Technician);
+            this.technicianNameComboBox.SelectedIndexChanged += new System.EventHandler(this.TechnicianNameComboBox_SelectedIndexChanged);
             // 
             // technicianNameLabel
             // 
             this.technicianNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.technicianNameLabel.AutoSize = true;
             this.technicianNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.technicianNameLabel.Location = new System.Drawing.Point(81, 0);
+            this.technicianNameLabel.Location = new System.Drawing.Point(75, 0);
             this.technicianNameLabel.Name = "technicianNameLabel";
             this.technicianNameLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.technicianNameLabel.Size = new System.Drawing.Size(51, 25);
@@ -102,7 +112,7 @@ namespace TechSupport.UserControls
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianBindingSource, "Email", true));
             this.emailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(146, 48);
+            this.emailTextBox.Location = new System.Drawing.Point(140, 48);
             this.emailTextBox.MaxLength = 50;
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(268, 26);
@@ -113,7 +123,7 @@ namespace TechSupport.UserControls
             this.emailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.emailLabel.AutoSize = true;
             this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(84, 45);
+            this.emailLabel.Location = new System.Drawing.Point(78, 45);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.emailLabel.Size = new System.Drawing.Size(48, 25);
@@ -126,7 +136,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.11765F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.882353F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 273F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 279F));
             this.tableLayoutPanel1.Controls.Add(this.emailLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.emailTextBox, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.technicianNameLabel, 0, 0);
@@ -142,19 +152,71 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(417, 134);
             this.tableLayoutPanel1.TabIndex = 35;
             // 
-            // dataGridView1
+            // technicianOpenIncidentDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 149);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(417, 347);
-            this.dataGridView1.TabIndex = 36;
+            this.technicianOpenIncidentDataGridView.AllowUserToAddRows = false;
+            this.technicianOpenIncidentDataGridView.AllowUserToDeleteRows = false;
+            this.technicianOpenIncidentDataGridView.AllowUserToOrderColumns = true;
+            this.technicianOpenIncidentDataGridView.AutoGenerateColumns = false;
+            this.technicianOpenIncidentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.technicianOpenIncidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.technicianOpenIncidentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Product,
+            this.dateOpenedDataGridViewTextBoxColumn,
+            this.Customer,
+            this.titleDataGridViewTextBoxColumn});
+            this.technicianOpenIncidentDataGridView.DataSource = this.technicianOpenIncidentBindingSource;
+            this.technicianOpenIncidentDataGridView.Location = new System.Drawing.Point(11, 149);
+            this.technicianOpenIncidentDataGridView.Name = "technicianOpenIncidentDataGridView";
+            this.technicianOpenIncidentDataGridView.ReadOnly = true;
+            this.technicianOpenIncidentDataGridView.Size = new System.Drawing.Size(417, 347);
+            this.technicianOpenIncidentDataGridView.TabIndex = 36;
+            // 
+            // Product
+            // 
+            this.Product.DataPropertyName = "Name";
+            this.Product.HeaderText = "Product";
+            this.Product.Name = "Product";
+            this.Product.ReadOnly = true;
+            // 
+            // dateOpenedDataGridViewTextBoxColumn
+            // 
+            this.dateOpenedDataGridViewTextBoxColumn.DataPropertyName = "DateOpened";
+            this.dateOpenedDataGridViewTextBoxColumn.HeaderText = "Date Opened";
+            this.dateOpenedDataGridViewTextBoxColumn.Name = "dateOpenedDataGridViewTextBoxColumn";
+            this.dateOpenedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Customer
+            // 
+            this.Customer.DataPropertyName = "Customer";
+            this.Customer.HeaderText = "Customer";
+            this.Customer.Name = "Customer";
+            this.Customer.ReadOnly = true;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // technicianOpenIncidentBindingSource
+            // 
+            this.technicianOpenIncidentBindingSource.DataSource = typeof(TechSupport.Model.OpenIncidentAssigned);
+            // 
+            // incidentBindingSource
+            // 
+            this.incidentBindingSource.DataSource = typeof(TechSupport.Model.Incident);
+            // 
+            // openIncidentBindingSource
+            // 
+            this.openIncidentBindingSource.DataSource = typeof(TechSupport.Model.OpenIncident);
             // 
             // TechnicianIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.technicianOpenIncidentDataGridView);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "TechnicianIncidentUserControl";
             this.Size = new System.Drawing.Size(439, 508);
@@ -162,7 +224,10 @@ namespace TechSupport.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.technicianOpenIncidentDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.technicianOpenIncidentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incidentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,7 +241,14 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView technicianOpenIncidentDataGridView;
         private System.Windows.Forms.BindingSource technicianBindingSource;
+        private System.Windows.Forms.BindingSource openIncidentBindingSource;
+        private System.Windows.Forms.BindingSource incidentBindingSource;
+        private System.Windows.Forms.BindingSource technicianOpenIncidentBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOpenedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
     }
 }
