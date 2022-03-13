@@ -46,9 +46,10 @@ namespace TechSupport.Model
         /// <summary>
         /// constructor used to create technician
         /// </summary>
-        /// <param name="customerID">registration's customerID</param>
-        /// <param name="productCode">registration's product code</param>
-        /// <param name="registrationDate">registration's date</param>
+        /// <param name="techID">technician techID</param>
+        /// <param name="name">technician name</param>
+        /// <param name="email">technician email</param>
+        /// <param name="phone">technician phone</param>
         public Technician(int techID, string name, string email, string phone)
         {
 

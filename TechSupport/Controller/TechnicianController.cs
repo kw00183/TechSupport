@@ -41,6 +41,15 @@ namespace TechSupport.Controller
             return technicianDBSource.GetAllTechnicianIDAndNames();
         }
 
+        /// <summary>
+        /// method used to get/return all the technicians
+        /// </summary>
+        /// <returns>a list of all the technician objects</returns>
+        public List<Technician> GetAllTechnicians()
+        {
+            return technicianDBSource.GetAllTechnicians();
+        }
+
         #endregion
     }
 }
