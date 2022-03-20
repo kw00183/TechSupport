@@ -472,9 +472,9 @@ namespace TechSupport.DAL
         /// <summary>
         /// method used to connect to the database and run a query to return the open incidents assigned
         /// </summary>
-        /// <param name="techID">technician id</param>
+        /// <param name="technician">technician object</param>
         /// <returns>open incident assigned objects</returns>
-        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(int techID)
+        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(Technician technician)
         {
             List<OpenIncidentAssigned> technicianOpenIncidentList = new List<OpenIncidentAssigned>();
 
@@ -503,7 +503,7 @@ namespace TechSupport.DAL
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
                     selectCommand.Parameters.Add("@TechID", System.Data.SqlDbType.Int);
-                    selectCommand.Parameters["@TechID"].Value = techID;
+                    selectCommand.Parameters["@TechID"].Value = technician.TechID;
 
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {

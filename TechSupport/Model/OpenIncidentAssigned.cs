@@ -12,6 +12,8 @@ namespace TechSupport.Model
     {
         #region Data Members
 
+        private DateTime TheDate;
+
         /// <summary>
         /// getter and setter for Name
         /// </summary>
@@ -20,7 +22,7 @@ namespace TechSupport.Model
         /// <summary>
         /// getter and setter for DateOpened
         /// </summary>
-        public DateTime DateOpened { get; set; }
+        public DateTime DateOpened { get { return TheDate.Date; } set { TheDate = value; } }
 
         /// <summary>
         /// getter and setter for Customer name

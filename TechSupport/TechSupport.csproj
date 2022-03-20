@@ -189,7 +189,6 @@
     <None Include="Properties\DataSources\TechSupport.Model.Registration.datasource" />
     <None Include="Properties\DataSources\TechSupport.Model.Technician.datasource" />
     <None Include="Properties\DataSources\TechSupport.Model.TechnicianIDAndName.datasource" />
-    <None Include="Properties\DataSources\TechSupport.Model.TechnicianOpenIncident.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

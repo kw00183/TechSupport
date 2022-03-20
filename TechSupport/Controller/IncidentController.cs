@@ -160,11 +160,19 @@ namespace TechSupport.Controller
         /// <summary>
         /// method used to return open incidents assigned from DAL
         /// </summary>
-        /// <param name="techID">technician id</param>
+        /// <param name="technician">technician object</param>
         /// <returns>list of assigned open incident objects</returns>
-        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(int techID)
+        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(Technician technician)
         {
-            return incidentDBSource.GetTechnicianOpenIncidents(techID);
+            if (technician.Equals(null))
+            {
+                throw new ArgumentException("Technician object cannot be null");
+            }
+            if (technician.TechID < 1)
+            {
+                throw new ArgumentException("Technician TechID cannot be less than 1");
+            }
+            return incidentDBSource.GetTechnicianOpenIncidents(technician);
         }
 
         #endregion

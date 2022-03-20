@@ -49,6 +49,14 @@ namespace TechSupport.Controller
         /// <returns>return boolean value if product is registered</returns>
         public Boolean IsCustomerProductRegistered(int customerID, string productCode)
         {
+            if (string.IsNullOrEmpty(productCode))
+            {
+                throw new ArgumentNullException("ProductCode cannot be null or empty");
+            }
+            if (customerID < 1)
+            {
+                throw new ArgumentException("CustomerID cannot be less than 1");
+            }
             return registrationDBSource.IsCustomerProductRegistered(customerID, productCode);
         }
 
