@@ -480,16 +480,19 @@ namespace TechSupport.DAL
 
             string selectStatement =
                 "SELECT " +
-                "PRD.Name AS Name" +
+                "PRD.Name AS ProductName " +
                 ", INC.DateOpened " +
-                ", ISNULL(CUS.Name, '') AS Customer" +
+                ", ISNULL(CUS.Name, '') AS CustomerName " +
                 ", INC.TechID" +
                 ", INC.Title " +
+                ", TEC.Name AS TechnicianName " +
                 "FROM Incidents INC " +
                 "INNER JOIN Products PRD " +
                 "    ON INC.ProductCode = PRD.ProductCode " +
                 "LEFT JOIN Customers CUS " +
                 "    ON INC.CustomerID = CUS.CustomerID " +
+                "INNER JOIN Technicians TEC " +
+                "    ON INC.TechID = TEC.TechID " +
                 "WHERE " +
                 "INC.DateClosed IS NULL " +
                 "AND INC.DateOpened IS NOT NULL " +
@@ -511,11 +514,12 @@ namespace TechSupport.DAL
                         {
                             OpenIncidentAssigned technicianOpenIncident = new OpenIncidentAssigned
                             {
-                                Name = reader["Name"].ToString(),
+                                ProductName = reader["ProductName"].ToString(),
                                 DateOpened = (DateTime)reader["DateOpened"],
-                                Customer = reader["Customer"].ToString(),
+                                CustomerName = reader["CustomerName"].ToString(),
                                 TechID = (int)reader["TechID"],
-                                Title = reader["Title"].ToString()
+                                Title = reader["Title"].ToString(),
+                                TechnicianName = reader["TechnicianName"].ToString()
                             };
                             technicianOpenIncidentList.Add(technicianOpenIncident);
                         }

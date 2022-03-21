@@ -42,9 +42,9 @@ namespace TechSupport.UserControls
             this.incidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openIncidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openIncidentAssignedDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -61,10 +61,10 @@ namespace TechSupport.UserControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianBindingSource, "Phone", true));
             this.phoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(127, 91);
+            this.phoneTextBox.Location = new System.Drawing.Point(125, 91);
             this.phoneTextBox.MaxLength = 50;
             this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.Size = new System.Drawing.Size(287, 26);
+            this.phoneTextBox.Size = new System.Drawing.Size(289, 26);
             this.phoneTextBox.TabIndex = 23;
             // 
             // technicianBindingSource
@@ -76,7 +76,7 @@ namespace TechSupport.UserControls
             this.phoneLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneLabel.Location = new System.Drawing.Point(59, 88);
+            this.phoneLabel.Location = new System.Drawing.Point(57, 88);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.phoneLabel.Size = new System.Drawing.Size(55, 25);
@@ -94,9 +94,9 @@ namespace TechSupport.UserControls
             this.technicianNameComboBox.DisplayMember = "Name";
             this.technicianNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.technicianNameComboBox.FormattingEnabled = true;
-            this.technicianNameComboBox.Location = new System.Drawing.Point(127, 3);
+            this.technicianNameComboBox.Location = new System.Drawing.Point(125, 3);
             this.technicianNameComboBox.Name = "technicianNameComboBox";
-            this.technicianNameComboBox.Size = new System.Drawing.Size(287, 28);
+            this.technicianNameComboBox.Size = new System.Drawing.Size(289, 28);
             this.technicianNameComboBox.TabIndex = 37;
             this.technicianNameComboBox.SelectedIndexChanged += new System.EventHandler(this.TechnicianNameComboBox_SelectedIndexChanged);
             // 
@@ -105,7 +105,7 @@ namespace TechSupport.UserControls
             this.technicianNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.technicianNameLabel.AutoSize = true;
             this.technicianNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.technicianNameLabel.Location = new System.Drawing.Point(63, 0);
+            this.technicianNameLabel.Location = new System.Drawing.Point(61, 0);
             this.technicianNameLabel.Name = "technicianNameLabel";
             this.technicianNameLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.technicianNameLabel.Size = new System.Drawing.Size(51, 25);
@@ -120,10 +120,10 @@ namespace TechSupport.UserControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianBindingSource, "Email", true));
             this.emailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(127, 48);
+            this.emailTextBox.Location = new System.Drawing.Point(125, 48);
             this.emailTextBox.MaxLength = 50;
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(287, 26);
+            this.emailTextBox.Size = new System.Drawing.Size(289, 26);
             this.emailTextBox.TabIndex = 39;
             // 
             // emailLabel
@@ -131,7 +131,7 @@ namespace TechSupport.UserControls
             this.emailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.emailLabel.AutoSize = true;
             this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(66, 45);
+            this.emailLabel.Location = new System.Drawing.Point(64, 45);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.emailLabel.Size = new System.Drawing.Size(48, 25);
@@ -144,7 +144,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.11765F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.882353F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 292F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 294F));
             this.tableLayoutPanel1.Controls.Add(this.emailLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.emailTextBox, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.technicianNameLabel, 0, 0);
@@ -181,9 +181,9 @@ namespace TechSupport.UserControls
             this.openIncidentAssignedDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.openIncidentAssignedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.openIncidentAssignedDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.ProductName,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
+            this.CustomerName,
             this.dataGridViewTextBoxColumn5});
             this.openIncidentAssignedDataGridView.DataSource = this.technicianOpenIncidentBindingSource;
             this.openIncidentAssignedDataGridView.Location = new System.Drawing.Point(11, 149);
@@ -193,12 +193,12 @@ namespace TechSupport.UserControls
             this.openIncidentAssignedDataGridView.TabIndex = 35;
             this.openIncidentAssignedDataGridView.VisibleChanged += new System.EventHandler(this.OpenIncidnetAssignedDataGridView_VisibleChanged);
             // 
-            // dataGridViewTextBoxColumn1
+            // ProductName
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Product";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -207,12 +207,12 @@ namespace TechSupport.UserControls
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // CustomerName
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Customer";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Customer";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "Customer";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -255,9 +255,9 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.BindingSource incidentBindingSource;
         private System.Windows.Forms.BindingSource technicianOpenIncidentBindingSource;
         private System.Windows.Forms.DataGridView openIncidentAssignedDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

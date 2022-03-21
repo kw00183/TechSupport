@@ -17,7 +17,7 @@ namespace TechSupport.Model
         /// <summary>
         /// getter and setter for Name
         /// </summary>
-        public string Name { get; set; }
+        public string ProductName { get; set; }
 
         /// <summary>
         /// getter and setter for DateOpened
@@ -27,7 +27,7 @@ namespace TechSupport.Model
         /// <summary>
         /// getter and setter for Customer name
         /// </summary>
-        public string Customer { get; set; }
+        public string CustomerName { get; set; }
 
         /// <summary>
         /// getter and setter for TechID
@@ -38,6 +38,11 @@ namespace TechSupport.Model
         /// getter and setter for Title of incident
         /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// getter and setter for Technician name
+        /// </summary>
+        public string TechnicianName { get; set; }
 
         #endregion
 
@@ -58,13 +63,15 @@ namespace TechSupport.Model
         /// <param name="customer">customer name</param>
         /// <param name="techID">technician id</param>
         /// <param name="title">incident title</param>
-        public OpenIncidentAssigned(string name, DateTime dateOpened, string customer, int techID, string title)
+        public OpenIncidentAssigned(string productName, DateTime dateOpened, string customerName, 
+            int techID, string title, string technicianName)
         {
-            this.Name = name;
+            this.ProductName = productName;
             this.DateOpened = dateOpened;
-            this.Customer = customer;
+            this.CustomerName = customerName;
             this.TechID = techID;
             this.Title = title;
+            this.TechnicianName = technicianName;
         }
 
         #endregion
