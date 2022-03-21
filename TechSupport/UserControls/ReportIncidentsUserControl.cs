@@ -27,7 +27,7 @@ namespace TechSupport.UserControls
 
         private void AssignedOpenIncidentsReportViewer_VisibleChanged(object sender, EventArgs e)
         {
-            this.assignOpenIncidentsTableAdapter.Fill(this.techSupportDataSet.AssignOpenIncidents);
+            this.assignedOpenIncidentsTableAdapter.Fill(this.techSupportDataSetVM.AssignedOpenIncidents);
 
             this.assignedOpenIncidentsReportViewer.RefreshReport();
 

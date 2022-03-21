@@ -101,6 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TechSupportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TechSupportDataSetVM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TechSupportDataSetVM.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AddIncidentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +179,7 @@
       <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AssignedOpenIncidentsReport.rdlc" />
+    <EmbeddedResource Include="AssignedOpenIncidentsVMReport.rdlc" />
     <EmbeddedResource Include="UserControls\AddIncidentUserControl.resx">
       <DependentUpon>AddIncidentUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +265,17 @@
     </None>
     <None Include="TechSupportDataSet.xss">
       <DependentUpon>TechSupportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TechSupportDataSetVM.xsc">
+      <DependentUpon>TechSupportDataSetVM.xsd</DependentUpon>
+    </None>
+    <None Include="TechSupportDataSetVM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TechSupportDataSetVM.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TechSupportDataSetVM.xss">
+      <DependentUpon>TechSupportDataSetVM.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
