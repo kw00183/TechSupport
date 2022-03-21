@@ -425,13 +425,6 @@ namespace TechSupport {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssignOpenIncidentsRow FindByIncidentID(int IncidentID) {
-                return ((AssignOpenIncidentsRow)(this.Rows.Find(new object[] {
-                            IncidentID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 AssignOpenIncidentsDataTable cln = ((AssignOpenIncidentsDataTable)(base.Clone()));
                 cln.InitVars();
@@ -470,14 +463,11 @@ namespace TechSupport {
                 base.Columns.Add(this.columnCustomerName);
                 this.columnTechnicianName = new global::System.Data.DataColumn("TechnicianName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTechnicianName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIncidentID}, true));
                 this.columnIncidentID.AutoIncrement = true;
                 this.columnIncidentID.AutoIncrementSeed = -1;
                 this.columnIncidentID.AutoIncrementStep = -1;
                 this.columnIncidentID.AllowDBNull = false;
                 this.columnIncidentID.ReadOnly = true;
-                this.columnIncidentID.Unique = true;
                 this.columnDateOpened.AllowDBNull = false;
                 this.columnTitle.AllowDBNull = false;
                 this.columnTitle.MaxLength = 50;

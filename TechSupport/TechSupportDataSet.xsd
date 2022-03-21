@@ -52,7 +52,7 @@ ORDER BY Incidents.DateOpened</CommandText>
   <xs:element name="TechSupportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TechSupportDataSet" msprop:Generator_UserDSName="TechSupportDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="AssignOpenIncidents" msprop:Generator_TableClassName="AssignOpenIncidentsDataTable" msprop:Generator_TableVarName="tableAssignOpenIncidents" msprop:Generator_RowChangedName="AssignOpenIncidentsRowChanged" msprop:Generator_TablePropName="AssignOpenIncidents" msprop:Generator_RowDeletingName="AssignOpenIncidentsRowDeleting" msprop:Generator_RowChangingName="AssignOpenIncidentsRowChanging" msprop:Generator_RowEvHandlerName="AssignOpenIncidentsRowChangeEventHandler" msprop:Generator_RowDeletedName="AssignOpenIncidentsRowDeleted" msprop:Generator_RowClassName="AssignOpenIncidentsRow" msprop:Generator_UserTableName="AssignOpenIncidents" msprop:Generator_RowEvArgName="AssignOpenIncidentsRowChangeEvent">
+        <xs:element name="AssignOpenIncidents" msprop:Generator_TableClassName="AssignOpenIncidentsDataTable" msprop:Generator_TableVarName="tableAssignOpenIncidents" msprop:Generator_TablePropName="AssignOpenIncidents" msprop:Generator_RowDeletingName="AssignOpenIncidentsRowDeleting" msprop:Generator_RowChangingName="AssignOpenIncidentsRowChanging" msprop:Generator_RowEvHandlerName="AssignOpenIncidentsRowChangeEventHandler" msprop:Generator_RowDeletedName="AssignOpenIncidentsRowDeleted" msprop:Generator_UserTableName="AssignOpenIncidents" msprop:Generator_RowChangedName="AssignOpenIncidentsRowChanged" msprop:Generator_RowEvArgName="AssignOpenIncidentsRowChangeEvent" msprop:Generator_RowClassName="AssignOpenIncidentsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IncidentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIncidentID" msprop:Generator_ColumnPropNameInRow="IncidentID" msprop:Generator_ColumnPropNameInTable="IncidentIDColumn" msprop:Generator_UserColumnName="IncidentID" type="xs:int" />
@@ -90,9 +90,5 @@ ORDER BY Incidents.DateOpened</CommandText>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:AssignOpenIncidents" />
-      <xs:field xpath="mstns:IncidentID" />
-    </xs:unique>
   </xs:element>
 </xs:schema>
