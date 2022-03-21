@@ -58,11 +58,12 @@ namespace TechSupport.Model
         /// <summary>
         /// constuctor that accepts open incidents assigned parameters and makes them available to getter/setters
         /// </summary>
-        /// <param name="name">product name</param>
+        /// <param name="productName">incident product name</param>
         /// <param name="dateOpened">incident date opened</param>
-        /// <param name="customer">customer name</param>
+        /// <param name="customerName">customer name</param>
         /// <param name="techID">technician id</param>
         /// <param name="title">incident title</param>
+        /// <param name="technicianName">technician name</param>
         public OpenIncidentAssigned(string productName, DateTime dateOpened, string customerName, 
             int techID, string title, string technicianName)
         {
