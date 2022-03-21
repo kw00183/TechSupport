@@ -32,5 +32,15 @@ namespace TechSupport.Properties {
                 return ((string)(this["LocalHostConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HPN-CND4405P1D;Initial Catalog=TechSupport;Integrated Security=True")]
+        public string TechSupportConnectionString {
+            get {
+                return ((string)(this["TechSupportConnectionString"]));
+            }
+        }
     }
 }
