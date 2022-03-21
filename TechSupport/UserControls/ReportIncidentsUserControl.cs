@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Windows.Forms;
 
 namespace TechSupport.UserControls
@@ -26,10 +27,11 @@ namespace TechSupport.UserControls
 
         private void AssignedOpenIncidentsReportViewer_VisibleChanged(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'TechSupportDataSet.AssignOpenIncidents' table. You can move, or remove it, as needed.
             this.assignOpenIncidentsTableAdapter.Fill(this.techSupportDataSet.AssignOpenIncidents);
 
             this.assignedOpenIncidentsReportViewer.RefreshReport();
+
+            this.assignedOpenIncidentsReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
         }
 
         #endregion
